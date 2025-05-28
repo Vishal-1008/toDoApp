@@ -1,0 +1,11 @@
+<p-calendar
+  [(ngModel)]="date"
+  appendTo="body"
+  placeholder="Select date"
+  [readonlyInput]="true"
+  dateFormat="dd/mm/yy"
+  [showIcon]="true"
+  [showOnFocus]="false"
+  (ngModelChange)="emitDate()"
+  [minDate]="minDate"
+/>

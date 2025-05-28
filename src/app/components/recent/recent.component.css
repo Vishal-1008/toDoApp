@@ -1,0 +1,45 @@
+.recent {
+    width: 18%;
+    background-color: #151515;
+    border: 1px solid #222;
+    position: absolute;
+    left: 5%;
+    top: 14.5vh;
+    border-radius: 1.7vw;
+    padding: 1.5vw 1.7vw;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .recent h4 {
+    padding: 1.5vw 0.5vw 0.5vw;
+    border-bottom: 1px solid #222;
+    /* border-radius: 0.8vw; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9vw;
+  }
+  
+  .title{
+    transition: 0.1s ease-in;
+    font-weight: 500;
+    font-size: 0.8vw !important;
+  }
+  
+  .title:hover {
+    color: #89ac46;
+  }
+  
+  .recent h4 span {
+    height: 1.2vw;
+    width: 1.2vw;
+    display: grid;
+    place-content: center;
+    border-radius: 200px;
+    background-color: #89ac46;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.7vw;
+  }
+  
