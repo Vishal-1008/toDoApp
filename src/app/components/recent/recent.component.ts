@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { CreateNewTodoComponent } from '../create-new-todo/create-new-todo.component';
+// import { CreateNewTodoComponent } from '../create-new-todo/create-new-todo.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recent',
   standalone: true,
-  imports: [CommonModule, CreateNewTodoComponent],
+  imports: [CommonModule],
   templateUrl: './recent.component.html',
-  styleUrl: './recent.component.css',
+  styleUrls: ['./recent.component.css'],
 })
 export class RecentComponent {
   @Input() data!: number

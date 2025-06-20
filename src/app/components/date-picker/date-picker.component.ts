@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-date-picker',
   standalone: true,
-  imports: [CalendarModule, FormsModule, CalendarModule],
+  imports: [CalendarModule, FormsModule],
   templateUrl: './date-picker.component.html',
-  styleUrl: './date-picker.component.css',
+  styleUrls: ['./date-picker.component.css'],
 })
 export class DatePickerComponent {
   @Output() selectedDate = new EventEmitter<any>();
