@@ -2,7 +2,7 @@
     width: 18%;
     background-color: #151515;
     border: 1px solid #222;
-    position: absolute;
+    position: fixed;
     left: 5%;
     top: 14.5vh;
     border-radius: 1.7vw;

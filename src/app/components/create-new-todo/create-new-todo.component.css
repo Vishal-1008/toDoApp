@@ -219,9 +219,6 @@
   z-index: 1;
   height: auto;
   width: 60%;
-  /* background-color: #3E5879; */
-  /* background-color: #608BC1; */
-  /* background-color: #55679c; */
   background-color: #151515;
   border-radius: 1.7vw;
   border: 1px solid #222;
@@ -229,6 +226,7 @@
 }
 
 .top {
+  margin-top: 6vh;
   height: 5vh;
   width: 100%;
   display: flex;
@@ -363,7 +361,9 @@
 }
 
 .todoOpt button {
-  background-color: #fff;
+  padding: 0.25vw ;
+  border-radius: 0.3vw;
+  background-color: #555;
 }
 
 .red {

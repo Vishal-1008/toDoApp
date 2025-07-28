@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RecentComponent } from '../recent/recent.component';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 
@@ -7,6 +7,7 @@ interface TodoItem {
   todo: string;
   pri: string;
   isUpdate: boolean;
+  getConfirmation?: boolean;
 }
 
 interface TodoList {
@@ -48,6 +49,7 @@ export class CreateNewTodoComponent implements OnInit{
             todo: 'your todos here!', 
             pri: 'Medium',
             isUpdate: false,
+            getConfirmation: false,
           },
         ],
       });
@@ -73,8 +75,6 @@ export class CreateNewTodoComponent implements OnInit{
         this.errorMsg = '';
       }, 5000);
     }
-    console.log(this.todoLists);
-    
   }
 
   addTodo(listIndex: number, todoText: string, priority: string) {
@@ -96,6 +96,7 @@ export class CreateNewTodoComponent implements OnInit{
   }
 
   deleteTodo(listIndex: number, taskIndex: number) {
+    this.todoLists[listIndex].tasks[taskIndex].getConfirmation = !this.todoLists[listIndex].tasks[taskIndex].getConfirmation;
     this.todoLists[listIndex].tasks.splice(taskIndex, 1);
     this.saveToLocalStorage();
   }

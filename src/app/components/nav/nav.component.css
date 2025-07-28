@@ -1,36 +1,36 @@
 .navbar {
-    height: 6vh;
+    height: 7vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #111;
     padding: 0 10vw;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(50px);
+    border-bottom: 1px solid #222;
+    margin-bottom: 3vh;
   }
   
   .redh1 {
     color: #e94a4a;
-    /* border-bottom: 1px solid #e94a4a; */
   }
   .greenh1 {
     color: #89ac46;
-    /* border-bottom: 1px solid #89AC46; */
   }
   .orangeh1 {
     color: #ffa955;
-    /* border-bottom: 1px solid #FFA955; */
   }
   
   .navbar nav {
     height: 90%;
-    /* background-color: #55679C; */
     width: 35%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2vw;
     border-radius: 100px;
-    /* border: 2px solid #333; */
   }
   
   nav li {
@@ -44,8 +44,8 @@
     background-color: #89ac46;
     font-weight: bold;
     font-size: 0.8vw;
-  padding:  0.5vw 0.6vw;
-  border-radius: 0.6vw;
+    padding:  0.5vw 0.6vw;
+    border-radius: 0.6vw;
   }
   
   nav button a {
@@ -55,7 +55,7 @@
   }
   
   nav button:hover a {
-  color: #fff;
+    color: #fff;
   }
   
   nav li a {
