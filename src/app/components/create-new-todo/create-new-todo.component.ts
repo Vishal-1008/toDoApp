@@ -39,7 +39,7 @@ export class CreateNewTodoComponent implements OnInit{
 
   addTitle(title: string) {
     if (this.todoLists.length < 3 && title && title.trim().length > 0) {
-      this.todoLists.push({
+      this.todoLists.unshift({
         title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
         date: this.selDate,
         isTitle: true,
@@ -65,7 +65,7 @@ export class CreateNewTodoComponent implements OnInit{
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
-      }, 5000);
+      }, 4000);
     } else if (!title && this.todoLists.length <= 3) {
       this.errorStatus = true;
       this.errorMsg = 'Cannot create list without title. Enter list title and try again.';
@@ -73,19 +73,27 @@ export class CreateNewTodoComponent implements OnInit{
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
-      }, 5000);
+      }, 4000);
     }
   }
 
   addTodo(listIndex: number, todoText: string, priority: string) {
     if (todoText.trim() && priority !== 'Priority') {
-      this.todoLists[listIndex].tasks.push({
+      this.todoLists[listIndex].tasks.unshift({
         todo:
           todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
         pri: priority,
         isUpdate: false,
       });
       this.saveToLocalStorage();
+    } else {
+      this.errorStatus = true;
+      this.errorMsg = 'Cannot create todo without text or priority. Please enter both and try again.';
+
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+      }, 4000);
     }
   }
 

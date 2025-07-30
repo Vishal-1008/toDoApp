@@ -161,7 +161,6 @@
   transform: translate(-50%, -20%);
   width: 25vw;
   padding: 2vw;
-  /* background-color: #151515; */
   background-color: #151515;
   border-radius: 1vw;
   display: grid;
@@ -184,6 +183,27 @@
   justify-content: center;
   gap: 2vw;
   margin-top: 1vw;
+}
+
+.confirmation .closeModal {
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+  font-size: 0.9vw;
+  cursor: pointer;
+  color: #ffa955;
+  border-radius: 100px;
+  height: 1.5vw;
+  width: 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  transition: 0.1s ease-in-out;
+}
+
+.confirmation .closeModal:hover {
+  background-color: #444;
 }
 
 .confirmation button {
@@ -277,6 +297,10 @@
   color: #fff;
 }
 
+.opacity-50 {
+  opacity: 0.5;
+}
+
 .bottom {
   width: 100%;
   background-color: #111;
@@ -307,18 +331,16 @@
   gap: 1vw;
 }
 
-.todoList button {
+.todoList .deleteBtn {
   outline: none;
   border: none;
-  padding: 0.5vw;
+  padding: 0.2vw;
   font-size: 0.8vw;
-  font-weight: bold;
-  border-radius: 0.5vw;
+  border-radius: 0.3vw;
   transition: 0.1s ease-in;
-  color: #111;
 }
 
-.todoList button:hover {
+.todoList .deleteBtn:hover {
   background-color: #e94a4a;
   color: #fff;
 }
@@ -358,12 +380,6 @@
   border-radius: 0.3vw;
   font-weight: 600;
   letter-spacing: 0.5px;
-}
-
-.todoOpt button {
-  padding: 0.25vw ;
-  border-radius: 0.3vw;
-  background-color: #555;
 }
 
 .red {

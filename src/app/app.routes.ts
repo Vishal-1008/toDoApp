@@ -12,9 +12,6 @@ export const routes: Routes = [
         path: "",
         component: HomeComponent
        },
-//     {
-// path:"", redirectTo:"about", pathMatch:"full"
-//     },
     {
     path: "about",
     component: AboutComponent
@@ -22,19 +19,11 @@ export const routes: Routes = [
    {
     path: "contact",
     component: ContactComponent
-   }, 
+   },  
    {
-    path: "nav",
-    component: NavComponent
-   }, 
-   {
-    path: "newTodo",
+    path: "new-todo",
     component: CreateNewTodoComponent
    }, 
-   {
-    path: 'recent',
-    component: RecentComponent
-   },
    {
     path: "**",
     component: PageNotFoundComponent

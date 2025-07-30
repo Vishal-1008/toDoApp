@@ -19,11 +19,12 @@
     <div class="titleOpt">
       <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
       <div class="options">
-        <button class="move" (click)="moveUp(i)" title="move list up">☝🏽</button>
-        <button class="move" (click)="moveDown(i)" title="move list down">👇🏽</button>
+        <button class="move" (click)="moveUp(i)" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+        <button class="move" (click)="moveDown(i)" title="move list down" [ngClass]="{ 'opacity-50': i === (todoLists.length - 1) }">👇🏽</button>
         <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
         <ng-container *ngIf="list.getConfirmation">
           <div class="confirmation">
+            <span class="closeModal" (click)="list.getConfirmation = false">x</span>
             <h4>Are you sure you want to delete this List?</h4>
             <div>
               <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
@@ -48,11 +49,12 @@
       <div class="todoList" *ngFor="let todo of list.tasks; let j = index">
         <h3>{{ j + 1 }}.</h3>
         <div class="todoItem">
-          <div>
-            <h3>{{ todo.todo }}</h3>
-          </div>
+         
           <ng-container *ngIf="todo.isUpdate; then elseBlock; else thenBlock"></ng-container>
           <ng-template #thenBlock>
+             <div>
+            <h3>{{ todo.todo }}</h3>
+          </div>
             <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
           </ng-template>
           <ng-template #elseBlock>
@@ -63,9 +65,10 @@
 
         <div class="todoOpt">
           <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{ todo.pri }}</h6>
-          <button (click)="todo.getConfirmation = true" title="delete task">🗑️</button>
+          <button (click)="todo.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
           <ng-container *ngIf="todo.getConfirmation">
            <div class="confirmation">
+            <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
             <h4>Are you sure you want to delete this Task?</h4>
             <div>
               <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
