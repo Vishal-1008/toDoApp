@@ -37,6 +37,16 @@ export class CreateNewTodoComponent implements OnInit{
   todoLists: TodoList[] = [];
   todoTitles: { title: string }[] = [];
 
+  ngOnInit() {
+  if (this.isBrowser()) {
+    const stored = localStorage.getItem('todoLists');
+    if (stored) {
+      this.todoLists = JSON.parse(stored);
+      this.todoTitles = this.todoLists.map(list => ({ title: list.title }));
+    }
+  }
+}
+
   addTitle(title: string) {
     if (this.todoLists.length < 3 && title && title.trim().length > 0) {
       this.todoLists.unshift({
@@ -155,17 +165,4 @@ export class CreateNewTodoComponent implements OnInit{
   isBrowser(): boolean {
   return typeof window !== 'undefined' && !!window.localStorage;
 }
-
-
- ngOnInit() {
-  if (this.isBrowser()) {
-    const stored = localStorage.getItem('todoLists');
-    if (stored) {
-      this.todoLists = JSON.parse(stored);
-      this.todoTitles = this.todoLists.map(list => ({ title: list.title }));
-    }
-  }
-}
-
-
 }
