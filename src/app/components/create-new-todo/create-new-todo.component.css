@@ -11,86 +11,6 @@
   gap: 2vw;
 }
 
-.overlay1 {
-  height: 350px;
-  width: 350px;
-  position: absolute;
-  z-index: 0;
-  right: 0;
-  top: 20px;
-  border-radius: 200px;
-  background: radial-gradient(
-    #88ac4656 0%,
-    #111 50%,
-    rgba(17, 17, 17, 0.5) 80%,
-    rgba(17, 17, 17, 0) 100%
-  );
-}
-
-.overlay2 {
-  height: 275px;
-  width: 275px;
-  position: absolute;
-  z-index: 0;
-  left: 340px;
-  top: 100px;
-  border-radius: 200px;
-  background: radial-gradient(
-    #ffaa5556 0%,
-    #111 50%,
-    rgba(17, 17, 17, 0.5) 80%,
-    rgba(17, 17, 17, 0) 100%
-  );
-}
-
-.overlay3 {
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  z-index: 0;
-  left: 50px;
-  bottom: 20px;
-  border-radius: 200px;
-  background: radial-gradient(
-    #e94a4a59 0%,
-    #111 50%,
-    rgba(17, 17, 17, 0.5) 80%,
-    rgba(17, 17, 17, 0) 100%
-  );
-}
-
-.overlay4 {
-  height: 250px;
-  width: 250px;
-  position: absolute;
-  z-index: 0;
-  right: 180px;
-  bottom: 100px;
-  border-radius: 200px;
-  background: radial-gradient(
-    #ffaa5556 0%,
-    #111 50%,
-    rgba(17, 17, 17, 0.5) 80%,
-    rgba(17, 17, 17, 0) 100%
-  );
-}
-
-.overlay5 {
-  height: 400px;
-  width: 400px;
-  position: absolute;
-  z-index: 0;
-  left: 350px;
-  bottom: 20px;
-  border-radius: 200px;
-  background: radial-gradient(
-    #88ac4656 0%,
-    #111 50%,
-    rgba(17, 17, 17, 0.5) 80%,
-    rgba(17, 17, 17, 0) 100%
-  );
-}
-
 .titleCont {
   width: 60% !important;
   position: relative;
@@ -334,10 +254,11 @@
 .todoList .deleteBtn {
   outline: none;
   border: none;
-  padding: 0.2vw;
+  padding: 0.1vw;
   font-size: 0.8vw;
-  border-radius: 0.3vw;
+  border-radius: 0.25vw;
   transition: 0.1s ease-in;
+  background-color: #666;
 }
 
 .todoList .deleteBtn:hover {
@@ -376,10 +297,10 @@
 }
 
 .todoOpt h6 {
-  padding: 0.25vw 0.4vw;
-  border-radius: 0.3vw;
+  padding: 0.1vw 0.3vw;
+  border-radius: 0.25vw;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 0.7vw;
 }
 
 .red {
@@ -398,12 +319,12 @@
   place-content: center;
   cursor: pointer;
   transition: 0.1s ease-in;
-  height: 1.5vw;
-  min-width: 1.55vw;
-  border-radius: 100px;
-  background-color: transparent;
+  background-color: #666;
+  padding: 0.1vw;
+  font-size: 0.8vw;
+  border-radius: 0.27vw;
 }
 
 .editTodo:hover {
-  background-color: #fff;
+background-color: #777;
 }
