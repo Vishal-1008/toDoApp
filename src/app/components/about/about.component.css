@@ -41,3 +41,38 @@ p{
 .green {
     color: #ffa955;
 }
+
+
+@media only screen and (max-width: 768px) {
+.about{
+    padding: 0 5vw;
+
+}
+
+h3 {
+    margin: 23vw 0 3.5vw 0;
+}
+
+h4 {
+    font-size: 2.7vw;
+   margin-top: 2.5vw;
+   padding-top: 3vw;
+}
+
+p{
+    font-size: 2.5vw;
+    margin: 1.5vw 0;
+    color: #e9e9e9;
+}
+
+
+.flex {
+    flex-wrap: wrap;
+}
+
+.left, .right {
+    width: 100%;
+}
+
+
+}

@@ -328,3 +328,298 @@
 .editTodo:hover {
 background-color: #777;
 }
+
+
+
+/* START: MOBILE VIEW */
+
+@media only screen and (max-width: 768px) {
+
+.newToDoContainer {
+  min-height: 93vh;
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  padding: 25vw 5vw 4vw 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10vw;
+}
+
+.titleCont {
+  width: 100% !important;
+  margin-top: 10vh;
+}
+
+.titleCont input {
+  background-color: #151515 !important;
+  width: 50% !important;
+}
+
+.titleOpt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vw;
+}
+
+.titleOpt h1 {
+  font-size: 4vw;
+}
+
+.titleOpt span {
+  font-weight: 500;
+  font-size: 2.5vw;
+  color: #ffa955;
+}
+
+.titleOpt .options {
+  display: flex;
+  gap: 2vw;
+}
+
+.titleOpt .delete,
+.titleOpt .move {
+  height: 5vw;
+  width: 5vw;
+  font-size: 3vw;
+}
+
+.titleOpt .delete:hover {
+  background-color: #e94a4a;
+  color: #fff;
+}
+
+.titleOpt .move:hover {
+  background-color: #fff;
+}
+
+.errorMsg,
+.confirmation {
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 65%;
+  padding: 5vw;
+  border-radius: 2vw;
+}
+
+.errorMsg h4,
+.confirmation h4 {
+  font-size: 2.5vw;
+}
+
+.confirmation div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  margin-top: 5vw;
+}
+
+.confirmation .closeModal {
+  top: 1.5vw;
+  right: 1.5vw;
+  font-size: 2.5vw;
+  height: 4vw;
+  width: 4vw;
+}
+
+
+.confirmation button {
+  width: 15vw;
+  padding: 1vw 2vw;
+  border-radius: 1.5vw;
+  font-size: 2.5vw;
+}
+
+.cancelBtn {
+  background-color: #111;
+  border: 2px solid #555;
+  color: #555;
+}
+
+.confirmBtn {
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.confirmation button:hover {
+  background-color: #89ac46;
+  color: #fff;
+  border: 2px solid #89ac46;
+}
+
+.toDoCont {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  width: 100%;
+  background-color: #151515;
+  border-radius: 2.5vw;
+  border: 1px solid #222;
+  padding: 3vw;
+}
+
+.top {
+  height: 3.5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3vh;
+}
+
+.top input {
+  height: 100%;
+  width: 60%;
+  border-radius: 1.5vw;
+  outline: none;
+  background-color: #111;
+  border: 1px solid #222;
+  color: #fff;
+  padding: 0 3vw;
+  font-size: 2.5vw;
+  font-weight: 500;
+}
+
+.top button,
+.top select {
+  outline: none;
+  border: none;
+  height: 100%;
+  padding: 0 2vw;
+  border-radius: 1.5vw;
+  font-size: 2vw;
+  font-weight: bold;
+  transition: 0.1s ease-in-out;
+  background-color: #fff;
+  color: #222;
+}
+
+
+.top select option {
+  font-weight: bold;
+  color: #222;
+  font-size: 2vw;
+}
+
+.top button:hover {
+  background-color: #89ac46;
+  color: #fff;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.bottom {
+  width: 100%;
+  background-color: #111;
+  border: 1px solid #222;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 1vw;
+  border-radius: 1vw;
+  gap: 1vw;
+}
+
+.todoList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #222;
+  transition: 0.1s ease-in;
+  padding: 1vw 2vw;
+  border-radius: 0.6vw;
+}
+
+.todoItem {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1vw;
+}
+
+.todoList .deleteBtn {
+  outline: none;
+  border: none;
+  padding: 0.5vw 0.7vw;
+  font-size: 3vw;
+  border-radius: 1vw;
+  transition: 0.1s ease-in;
+  background-color: #666;
+}
+
+.todoList .deleteBtn:hover {
+  background-color: #e94a4a;
+  color: #fff;
+}
+
+.todoList h3 {
+  font-size: 2.5vw;
+  margin-right: 1vw;
+  font-weight: 500;
+}
+
+.editInput {
+  width: 90%;
+  resize: vertical;
+  outline: none;
+  border: none;
+  font-size: 2vw;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-weight: 500;
+}
+
+.editInput::-webkit-scrollbar {
+  display: none;
+}
+
+.todoOpt {
+  width: 38%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4vw;
+}
+
+.todoOpt h6 {
+  padding: 0.5vw 1vw;
+  border-radius: 1vw;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.red {
+  background-color: #e94a4a;
+}
+
+.orange {
+  background-color: #ffa955;
+}
+
+.green {
+  background-color: #89ac46;
+}
+.editTodo {
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: 0.1s ease-in;
+  background-color: #666;
+  padding: 0.5vw 0.7vw;
+  font-size: 3vw;
+  border-radius: 1vw;
+}
+
+.editTodo:hover {
+background-color: #777;
+}
+}
+/* END: MOBILE VIEW */

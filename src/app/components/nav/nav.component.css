@@ -68,3 +68,17 @@
     color: #89ac46;
   }
   
+
+  @media only screen and (max-width: 768px) {
+
+    .navbar {
+      padding: 0 5vw;
+    }
+     .navbar nav {
+    width: 60%;
+     }
+
+    nav li {
+      font-size: 2.7vw;
+    }
+  }

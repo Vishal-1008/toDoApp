@@ -43,3 +43,9 @@
     font-size: 0.7vw;
   }
   
+
+  @media only screen and (max-width: 768px) {
+    .recent {
+      display: none;
+    }
+  }
