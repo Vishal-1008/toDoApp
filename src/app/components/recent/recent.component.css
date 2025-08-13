@@ -14,11 +14,15 @@
   .recent h4 {
     padding: 1.5vw 0.5vw 0.5vw;
     border-bottom: 1px solid #222;
-    /* border-radius: 0.8vw; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9vw;
+  }
+
+  .recent h4:nth-child(1) {
+    color: #89ac46;
+
   }
   
   .title{

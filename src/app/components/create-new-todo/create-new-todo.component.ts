@@ -68,9 +68,9 @@ export class CreateNewTodoComponent implements OnInit{
       });
       this.selDate = undefined!;
       this.saveToLocalStorage();
-    } else if (this.todoLists.length >= 3) {
+    } else if (this.todoLists.length >= 5) {
       this.errorStatus = true;
-      this.errorMsg = 'Cannot create more than 3 todo lists at an instance! Please try again after saving your active lists.';
+      this.errorMsg = 'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
 
       setTimeout(() => {
         this.errorStatus = false;

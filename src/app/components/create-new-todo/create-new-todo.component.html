@@ -11,6 +11,7 @@
   </div>
 
   <div class="errorMsg" *ngIf="errorStatus">
+    <span class="closeModal" (click)="errorStatus = false">x</span>
     <h4>⚠️ {{ errorMsg }}</h4>
   </div>
 
@@ -25,7 +26,7 @@
         <ng-container *ngIf="list.getConfirmation">
           <div class="confirmation">
             <span class="closeModal" (click)="list.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete this List?</h4>
+            <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
             <div>
               <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
               <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
@@ -69,7 +70,7 @@
           <ng-container *ngIf="todo.getConfirmation">
            <div class="confirmation">
             <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete this Task?</h4>
+            <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:22}}..."</span> task?</h4>
             <div>
               <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
               <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
