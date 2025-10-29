@@ -6,12 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 
 interface TodoItem {
   todo: string;
-  pri: string;
+  pri: any;
   isUpdate: boolean;
   getConfirmation?: boolean;
 }
 
 interface TodoList {
+  type: string;
   title: string;
   date: Date;
   isTitle: boolean;
@@ -34,6 +35,8 @@ export class CreateNewTodoComponent implements OnInit {
   todoLists: TodoList[] = [];
   todoTitles: { title: string }[] = [];
   listType!: string;
+  totalExpenses = 0;
+  isCalculate = true;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -43,27 +46,54 @@ export class CreateNewTodoComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.listType =
         params.get('type')! == 'expense' ? 'expense tracker' : 'todo';
-      //  this.loadDataForType(this.listType);
+      this.loadDataForType(this.listType);
     });
-    
-    
-//   loadDataForType(type: string) {
-//     // Refresh or load relevant data
-//     if (type === 'todo') {
-//       // fetch todo data
-//     } else if (type === 'expense') {
-//       // fetch expense data
-//     }
-//   }
-// }
+  }
 
-    if (this.isBrowser()) {
-      const stored = localStorage.getItem('todoLists');
-      if (stored) {
-        this.todoLists = JSON.parse(stored);
-        this.todoTitles = this.todoLists.map((list) => ({ title: list.title }));
-      }
-    }
+  // loadDataForType(type: string) {
+  //   if (this.isBrowser() && type === 'todo') {
+  //     const stored = localStorage.getItem('todoLists');
+  //     if (stored) {
+  //       const todoLists: TodoList[] = JSON.parse(stored);
+  //       const filterTodoList = todoLists.filter(
+  //         (todoList: TodoList) => todoList.type === 'todo'
+  //       );
+  //       this.todoLists = [...filterTodoList];
+
+  //       this.todoTitles = this.todoLists.map((list) => ({
+  //         title: list.title,
+  //       }));
+  //     }
+  //   } else if (type === 'expense tracker') {
+  //     const stored = localStorage.getItem('todoLists');
+  //     if (stored) {
+  //       const todoLists: TodoList[] = JSON.parse(stored);
+  //       const filterTodoList = todoLists.filter(
+  //         (todoList: TodoList) => todoList.type === 'expense tracker'
+  //       );
+  //       this.todoLists = [...filterTodoList];
+
+  //       this.todoTitles = this.todoLists.map((list) => ({
+  //         title: list.title,
+  //       }));
+  //     }
+  //   }
+  // }
+
+  loadDataForType(type: string) {
+    if (!this.isBrowser()) return;
+
+    const stored = localStorage.getItem('todoLists');
+    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+
+    // Filter lists based on current type
+    const filterTodoList = allLists.filter((list) => list.type === type);
+
+    // Only update display lists, not all data
+    this.todoLists = filterTodoList;
+
+    // Update the title display array
+    this.todoTitles = this.todoLists.map((list) => ({ title: list.title }));
   }
 
   showMenu = false;
@@ -72,49 +102,115 @@ export class CreateNewTodoComponent implements OnInit {
     this.showMenu = !this.showMenu;
   }
 
+  // addTitle(title: string) {
+  //   if (this.todoLists.length < 4 && title && title.trim().length > 0) {
+  //     this.todoLists.unshift({
+  //       type: this.listType,
+  //       title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
+  //       date: this.selDate,
+  //       isTitle: true,
+  //       getConfirmation: false,
+  //       tasks: [
+  //         {
+  //           todo: 'your todos here!',
+  //           pri: 'Medium',
+  //           isUpdate: false,
+  //           getConfirmation: false,
+  //         },
+  //       ],
+  //     });
+  //     this.todoTitles.push({
+  //       title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
+  //     });
+  //     this.selDate = undefined!;
+  //     this.saveToLocalStorage();
+  //   } else if (this.todoLists.length >= 4) {
+  //     this.errorStatus = true;
+  //     this.errorMsg =
+  //       'Cannot create more than 4 todo lists at an instance! Please delete some lists and try again.';
+
+  //     setTimeout(() => {
+  //       this.errorStatus = false;
+  //       this.errorMsg = '';
+  //     }, 4000);
+  //   } else if (!title && this.todoLists.length <= 3) {
+  //     this.errorStatus = true;
+  //     this.errorMsg =
+  //       'Cannot create list without title. Enter list title and try again.';
+
+  //     setTimeout(() => {
+  //       this.errorStatus = false;
+  //       this.errorMsg = '';
+  //     }, 4000);
+  //   }
+  // }
+
   addTitle(title: string) {
-    if (this.todoLists.length < 3 && title && title.trim().length > 0) {
-      this.todoLists.unshift({
-        title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
-        date: this.selDate,
-        isTitle: true,
-        getConfirmation: false,
-        tasks: [
-          {
-            todo: 'your todos here!',
-            pri: 'Medium',
-            isUpdate: false,
-            getConfirmation: false,
-          },
-        ],
-      });
-      this.todoTitles.push({
-        title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
-      });
-      this.selDate = undefined!;
-      this.saveToLocalStorage();
-    } else if (this.todoLists.length >= 5) {
-      this.errorStatus = true;
-      this.errorMsg =
-        'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
-
-      setTimeout(() => {
-        this.errorStatus = false;
-        this.errorMsg = '';
-      }, 4000);
-    } else if (!title && this.todoLists.length <= 3) {
-      this.errorStatus = true;
-      this.errorMsg =
-        'Cannot create list without title. Enter list title and try again.';
-
-      setTimeout(() => {
-        this.errorStatus = false;
-        this.errorMsg = '';
-      }, 4000);
+    // Validate title
+    if (!title || !title.trim()) {
+      this.showError(
+        'Cannot create list without title. Enter list title and try again.'
+      );
+      return;
     }
+
+    if (this.todoLists.length >= 4) {
+      this.showError(
+        'Cannot create more than 4 todo lists at an instance! Please delete some lists and try again.'
+      );
+      return;
+    }
+
+    const formattedTitle =
+      title.trim().charAt(0).toUpperCase() + title.trim().slice(1);
+
+    const newList = {
+      type: this.listType, // "todo" or "expense tracker"
+      title: formattedTitle,
+      date: this.selDate,
+      isTitle: true,
+      getConfirmation: false,
+      tasks: [
+        {
+          todo: 'your todos here!',
+          pri: 'Medium',
+          isUpdate: false,
+          getConfirmation: false,
+        },
+      ],
+    };
+
+    // ✅ Retrieve existing data from localStorage
+    const stored = localStorage.getItem('todoLists');
+    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+
+    // ✅ Add new list to the master array
+    allLists.unshift(newList);
+
+    // ✅ Save everything back
+    localStorage.setItem('todoLists', JSON.stringify(allLists));
+
+    // ✅ Update only the visible type lists on screen
+    this.loadDataForType(this.listType);
+
+    // ✅ Update titles and reset date
+    // this.todoTitles.push({ title: formattedTitle });
+    this.selDate = undefined!;
+  }
+
+  showError(message: string) {
+    this.errorStatus = true;
+    this.errorMsg = message;
+
+    setTimeout(() => {
+      this.errorStatus = false;
+      this.errorMsg = '';
+    }, 4000);
   }
 
   addTodo(listIndex: number, todoText: string, priority: string) {
+    console.log(priority);
+
     if (todoText.trim() && priority !== 'Priority') {
       this.todoLists[listIndex].tasks.unshift({
         todo:
@@ -122,6 +218,8 @@ export class CreateNewTodoComponent implements OnInit {
         pri: priority,
         isUpdate: false,
       });
+      console.log(this.todoLists[listIndex].tasks[0].pri);
+
       this.saveToLocalStorage();
     } else {
       this.errorStatus = true;
@@ -149,11 +247,30 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   deleteList(listIndex: number) {
-    this.todoLists[listIndex].getConfirmation =
-      !this.todoLists[listIndex].getConfirmation;
+    if (!this.isBrowser()) return;
+
+    // Step 1: Get all lists (both todos + expense trackers)
+    const stored = localStorage.getItem('todoLists');
+    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+
+    // Step 2: Identify the current list being deleted
+    const deletedList = this.todoLists[listIndex];
+
+    // Step 3: Remove it from the master list
+    const updatedLists = allLists.filter(
+      (list) =>
+        !(list.title === deletedList.title && list.type === this.listType)
+    );
+
+    // Step 4: Update localStorage
+    localStorage.setItem('todoLists', JSON.stringify(updatedLists));
+
+    // Step 5: Remove from the currently displayed lists
     this.todoLists.splice(listIndex, 1);
     this.todoTitles.splice(listIndex, 1);
-    this.saveToLocalStorage();
+
+    // Step 6: Refresh view
+    this.loadDataForType(this.listType);
   }
 
   moveUp(listIndex: number) {
@@ -177,6 +294,20 @@ export class CreateNewTodoComponent implements OnInit {
     this.todoLists.splice(listIndex + 1, 0, todoList);
     this.todoTitles.splice(listIndex + 1, 0, title);
     this.saveToLocalStorage();
+  }
+
+  calculateExpense() {
+    this.todoLists.forEach((list) => {
+      if (list.type == 'expense tracker' && this.isCalculate) {
+        list.tasks.forEach((expenseAmt) => {
+          const amount = Number(expenseAmt.pri) || 0;
+          this.totalExpenses += amount;
+          this.isCalculate = false;
+        });
+      } else if (!this.isCalculate) {
+        this.showError('Already calculated all above expenses.');
+      }
+    }) 
   }
 
   date(date: Date) {
