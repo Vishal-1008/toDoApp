@@ -8,24 +8,24 @@ import { CreateNewTodoComponent } from './components/create-new-todo/create-new-
 import { RecentComponent } from './components/recent/recent.component';
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: HomeComponent
-       },
-    {
-    path: "about",
-    component: AboutComponent
-   },
-   {
-    path: "contact",
-    component: ContactComponent
-   },  
-   {
-    path: "new-todo",
-    component: CreateNewTodoComponent
-   }, 
-   {
-    path: "**",
-    component: PageNotFoundComponent
-   }
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'add/:type',
+    component: CreateNewTodoComponent,
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];

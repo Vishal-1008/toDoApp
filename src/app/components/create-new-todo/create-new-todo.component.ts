@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RecentComponent } from '../recent/recent.component';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
+import { ActivatedRoute } from '@angular/router';
 
 interface TodoItem {
   todo: string;
@@ -22,30 +23,54 @@ interface TodoList {
 @Component({
   selector: 'app-create-new-todo',
   standalone: true,
-  imports: [
-    CommonModule,
-    RecentComponent,
-    DatePickerComponent
-  ],
+  imports: [CommonModule, RecentComponent, DatePickerComponent],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
 })
-export class CreateNewTodoComponent implements OnInit{
+export class CreateNewTodoComponent implements OnInit {
   selDate!: Date;
   errorStatus = false;
   errorMsg = '';
   todoLists: TodoList[] = [];
   todoTitles: { title: string }[] = [];
+  listType!: string;
+
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-  if (this.isBrowser()) {
-    const stored = localStorage.getItem('todoLists');
-    if (stored) {
-      this.todoLists = JSON.parse(stored);
-      this.todoTitles = this.todoLists.map(list => ({ title: list.title }));
+    // this.listType = this.route.snapshot.paramMap.get('type') == 'expense' ? 'expense tracker' : 'todo';
+    // console.log(this.listType);
+    this.route.paramMap.subscribe((params) => {
+      this.listType =
+        params.get('type')! == 'expense' ? 'expense tracker' : 'todo';
+      //  this.loadDataForType(this.listType);
+    });
+    
+    
+//   loadDataForType(type: string) {
+//     // Refresh or load relevant data
+//     if (type === 'todo') {
+//       // fetch todo data
+//     } else if (type === 'expense') {
+//       // fetch expense data
+//     }
+//   }
+// }
+
+    if (this.isBrowser()) {
+      const stored = localStorage.getItem('todoLists');
+      if (stored) {
+        this.todoLists = JSON.parse(stored);
+        this.todoTitles = this.todoLists.map((list) => ({ title: list.title }));
+      }
     }
   }
-}
+
+  showMenu = false;
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 
   addTitle(title: string) {
     if (this.todoLists.length < 3 && title && title.trim().length > 0) {
@@ -56,7 +81,7 @@ export class CreateNewTodoComponent implements OnInit{
         getConfirmation: false,
         tasks: [
           {
-            todo: 'your todos here!', 
+            todo: 'your todos here!',
             pri: 'Medium',
             isUpdate: false,
             getConfirmation: false,
@@ -64,13 +89,14 @@ export class CreateNewTodoComponent implements OnInit{
         ],
       });
       this.todoTitles.push({
-        title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1)
+        title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
       });
       this.selDate = undefined!;
       this.saveToLocalStorage();
     } else if (this.todoLists.length >= 5) {
       this.errorStatus = true;
-      this.errorMsg = 'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
+      this.errorMsg =
+        'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
 
       setTimeout(() => {
         this.errorStatus = false;
@@ -78,7 +104,8 @@ export class CreateNewTodoComponent implements OnInit{
       }, 4000);
     } else if (!title && this.todoLists.length <= 3) {
       this.errorStatus = true;
-      this.errorMsg = 'Cannot create list without title. Enter list title and try again.';
+      this.errorMsg =
+        'Cannot create list without title. Enter list title and try again.';
 
       setTimeout(() => {
         this.errorStatus = false;
@@ -98,7 +125,8 @@ export class CreateNewTodoComponent implements OnInit{
       this.saveToLocalStorage();
     } else {
       this.errorStatus = true;
-      this.errorMsg = 'Cannot create todo without text or priority. Please enter both and try again.';
+      this.errorMsg =
+        'Cannot create todo without text or priority. Please enter both and try again.';
 
       setTimeout(() => {
         this.errorStatus = false;
@@ -114,15 +142,17 @@ export class CreateNewTodoComponent implements OnInit{
   }
 
   deleteTodo(listIndex: number, taskIndex: number) {
-    this.todoLists[listIndex].tasks[taskIndex].getConfirmation = !this.todoLists[listIndex].tasks[taskIndex].getConfirmation;
+    this.todoLists[listIndex].tasks[taskIndex].getConfirmation =
+      !this.todoLists[listIndex].tasks[taskIndex].getConfirmation;
     this.todoLists[listIndex].tasks.splice(taskIndex, 1);
     this.saveToLocalStorage();
   }
 
   deleteList(listIndex: number) {
-    this.todoLists[listIndex].getConfirmation = !this.todoLists[listIndex].getConfirmation;
-    this.todoLists.splice((listIndex), 1);
-    this.todoTitles.splice((listIndex), 1);
+    this.todoLists[listIndex].getConfirmation =
+      !this.todoLists[listIndex].getConfirmation;
+    this.todoLists.splice(listIndex, 1);
+    this.todoTitles.splice(listIndex, 1);
     this.saveToLocalStorage();
   }
 
@@ -139,7 +169,6 @@ export class CreateNewTodoComponent implements OnInit{
       this.todoTitles.splice(listIndex, 0, title);
       this.saveToLocalStorage();
     }
-
   }
 
   moveDown(listIndex: number) {
@@ -155,14 +184,14 @@ export class CreateNewTodoComponent implements OnInit{
       this.selDate = date;
     }
   }
-  
- saveToLocalStorage() {
-  if (this.isBrowser()) {
-    localStorage.setItem('todoLists', JSON.stringify(this.todoLists));
+
+  saveToLocalStorage() {
+    if (this.isBrowser()) {
+      localStorage.setItem('todoLists', JSON.stringify(this.todoLists));
+    }
   }
-}
 
   isBrowser(): boolean {
-  return typeof window !== 'undefined' && !!window.localStorage;
-}
+    return typeof window !== 'undefined' && !!window.localStorage;
+  }
 }

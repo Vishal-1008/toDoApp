@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./recent.component.css'],
 })
 export class RecentComponent {
-  @Input() data!: number
+  @Input() data!: number;
   @Input() titles: { title: string }[] = [];
+  @Input() type !: string
 
 }

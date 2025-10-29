@@ -7,7 +7,7 @@
   <div class="titleCont top">
     <input type="text" placeholder="Your todo list title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
-    <button (click)="addTitle(title.value); title.value = ''; picker.resetDate()">Create list +</button>
+    <button (click)="addTitle(title.value); title.value = ''; picker.resetDate()">Create {{listType}}</button>
   </div>
 
   <div class="errorMsg" *ngIf="errorStatus">
@@ -15,7 +15,7 @@
     <h4>⚠️ {{ errorMsg }}</h4>
   </div>
 
-  <app-recent [data]="todoLists.length" [titles]="todoTitles"></app-recent>
+  <app-recent [data]="todoLists.length" [titles]="todoTitles" [type]="listType"></app-recent>
   <div class="toDoCont" *ngFor="let list of todoLists; let i = index">
     <div class="titleOpt">
       <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
@@ -23,6 +23,7 @@
         <button class="move" (click)="moveUp(i)" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
         <button class="move" (click)="moveDown(i)" title="move list down" [ngClass]="{ 'opacity-50': i === (todoLists.length - 1) }">👇🏽</button>
         <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
+        <button class="private" title="make it private">🔏</button>
         <ng-container *ngIf="list.getConfirmation">
           <div class="confirmation">
             <span class="closeModal" (click)="list.getConfirmation = false">x</span>

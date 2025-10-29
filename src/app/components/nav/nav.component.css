@@ -9,7 +9,7 @@
     top: 0;
     z-index: 20;
     backdrop-filter: blur(50px);
-    border-bottom: 1px solid #222;
+    /* border-bottom: 1px solid #222; */
     margin-bottom: 3vh;
   }
   
@@ -35,7 +35,7 @@
   
   nav li {
     list-style: none;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 0.8vw;
   }
   

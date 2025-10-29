@@ -1,5 +1,8 @@
 <div class="container">
     <h1 class="tagline">Create <span class="orangeh1">your todos</span> here!</h1>
-    <a class="createBtn" routerLink="/new-todo">Create new todo +</a>
+    <div>
+      <a class="createBtn" [routerLink]="['/add', 'expense']">Create expense tracker +</a>
+      <a class="createBtn" [routerLink]="['/add', 'todo']">Create todo +</a>
+  </div>
   </div>
   

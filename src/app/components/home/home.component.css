@@ -1,5 +1,5 @@
 .container {
-    min-height: 94vh;
+    height: 100vh;
     width: 100vw;
     background-color: #111;
     color: #fff;
@@ -14,6 +14,13 @@
   .container .tagline {
     font-size: 10vw;
     overflow-y: hidden;
+  }
+
+  .container div {
+    display: flex;
+    gap: 3vw;
+    padding: 1vw;
+    padding-left: 0;
   }
   
   .createBtn {
