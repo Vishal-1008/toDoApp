@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 interface TodoItem {
   todo: string;
   pri: any;
+  expenseAmt: number;
   isUpdate: boolean;
   getConfirmation?: boolean;
 }
@@ -174,6 +175,7 @@ export class CreateNewTodoComponent implements OnInit {
         {
           todo: 'your todos here!',
           pri: 'Medium',
+          expenseAmt: 0,
           isUpdate: false,
           getConfirmation: false,
         },
@@ -208,17 +210,18 @@ export class CreateNewTodoComponent implements OnInit {
     }, 4000);
   }
 
-  addTodo(listIndex: number, todoText: string, priority: string) {
+  addTodo(listIndex: number, todoText: string, priority: any) {
     console.log(priority);
 
     if (todoText.trim() && priority !== 'Priority') {
       this.todoLists[listIndex].tasks.unshift({
         todo:
           todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
-        pri: priority,
+        pri: this.listType == 'todo' ? priority : '',
+        expenseAmt: this.listType == 'expense tracker' ? priority :  0,
         isUpdate: false,
       });
-      console.log(this.todoLists[listIndex].tasks[0].pri);
+      console.log(this.todoLists[listIndex].tasks[0]);
 
       this.saveToLocalStorage();
     } else {
@@ -300,9 +303,11 @@ export class CreateNewTodoComponent implements OnInit {
     this.todoLists.forEach((list) => {
       if (list.type == 'expense tracker' && this.isCalculate) {
         list.tasks.forEach((expenseAmt) => {
-          const amount = Number(expenseAmt.pri) || 0;
+          const amount = Number(expenseAmt.expenseAmt) || 0;
           this.totalExpenses += amount;
           this.isCalculate = false;
+          console.log(expenseAmt);
+          
         });
       } else if (!this.isCalculate) {
         this.showError('Already calculated all above expenses.');
