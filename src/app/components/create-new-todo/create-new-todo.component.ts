@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 interface TodoItem {
   todo: string;
   pri: any;
-  expenseAmt: number;
   isUpdate: boolean;
   getConfirmation?: boolean;
 }
@@ -18,8 +17,23 @@ interface TodoList {
   date: Date;
   isTitle: boolean;
   getConfirmation:boolean;
-
   tasks: TodoItem[];
+}
+
+interface ExpenseItem {
+  expense: string;
+  expenseAmt: number;
+  isUpdate: boolean;
+  getConfirmation?: boolean;
+}
+
+interface ExpenseList {
+  type: string;
+  title: string;
+  date: Date;
+  isTitle: boolean;
+  getConfirmation:boolean;
+  tasks: ExpenseItem[];
 }
 
 @Component({
@@ -33,7 +47,7 @@ export class CreateNewTodoComponent implements OnInit {
   selDate!: Date;
   errorStatus = false;
   errorMsg = '';
-  todoLists: TodoList[] = [];
+  todoLists: any = [];
   todoTitles: { title: string }[] = [];
   listType!: string;
   totalExpenses = 0;
@@ -94,7 +108,7 @@ export class CreateNewTodoComponent implements OnInit {
     this.todoLists = filterTodoList;
 
     // Update the title display array
-    this.todoTitles = this.todoLists.map((list) => ({ title: list.title }));
+    this.todoTitles = this.todoLists.map((list:any) => ({ title: list.title }));
   }
 
   showMenu = false;
@@ -171,26 +185,36 @@ export class CreateNewTodoComponent implements OnInit {
       date: this.selDate,
       isTitle: true,
       getConfirmation: false,
-      tasks: [
+      tasks: this.listType == 'todo' ? [
         {
           todo: 'your todos here!',
           pri: 'Medium',
-          expenseAmt: 0,
           isUpdate: false,
           getConfirmation: false,
         },
-      ],
+      ] : [
+        {
+          expense: 'your expense here!',
+          expenseAmt: 0,
+          isUpdate: false,
+          getConfirmation: false,
+        }
+      ]
     };
 
-    // ✅ Retrieve existing data from localStorage
-    const stored = localStorage.getItem('todoLists');
-    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
-
-    // ✅ Add new list to the master array
-    allLists.unshift(newList);
-
-    // ✅ Save everything back
-    localStorage.setItem('todoLists', JSON.stringify(allLists));
+    console.log(newList.type, ':', newList);
+    
+   if (this.listType === 'todo') {
+  const stored = localStorage.getItem('todoLists');
+  const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+  allLists.unshift(newList as TodoList);
+  localStorage.setItem('todoLists', JSON.stringify(allLists));
+} else if (this.listType === 'expense tracker') {
+  const stored = localStorage.getItem('expenseLists');
+  const allLists: ExpenseList[] = stored ? JSON.parse(stored) : [];
+  allLists.unshift(newList as ExpenseList);
+  localStorage.setItem('expenseLists', JSON.stringify(allLists));
+}
 
     // ✅ Update only the visible type lists on screen
     this.loadDataForType(this.listType);
@@ -213,12 +237,11 @@ export class CreateNewTodoComponent implements OnInit {
   addTodo(listIndex: number, todoText: string, priority: any) {
     console.log(priority);
 
-    if (todoText.trim() && priority !== 'Priority') {
+    if (todoText.trim() && priority !== 'Priority' && this.listType == 'todo') {
       this.todoLists[listIndex].tasks.unshift({
         todo:
           todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
-        pri: this.listType == 'todo' ? priority : '',
-        expenseAmt: this.listType == 'expense tracker' ? priority :  0,
+        pri: priority,
         isUpdate: false,
       });
       console.log(this.todoLists[listIndex].tasks[0]);
@@ -300,9 +323,9 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   calculateExpense() {
-    this.todoLists.forEach((list) => {
+    this.todoLists.forEach((list:any) => {
       if (list.type == 'expense tracker' && this.isCalculate) {
-        list.tasks.forEach((expenseAmt) => {
+        list.tasks.forEach((expenseAmt:any) => {
           const amount = Number(expenseAmt.expenseAmt) || 0;
           this.totalExpenses += amount;
           this.isCalculate = false;
