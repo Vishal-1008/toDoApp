@@ -128,7 +128,7 @@
           <ng-container *ngIf="todo.isUpdate; then elseBlock; else thenBlock"></ng-container>
           <ng-template #thenBlock>
              <div>
-            <h3>{{ todo.todo }}</h3>
+            <h3>{{ todo.expense }}</h3>
             
           </div>
           <h6>₹ {{todo.expenseAmt}}</h6>
