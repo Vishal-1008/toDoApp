@@ -57,7 +57,6 @@ export class CreateNewTodoComponent implements OnInit {
 
   ngOnInit() {
     // this.listType = this.route.snapshot.paramMap.get('type') == 'expense' ? 'expense tracker' : 'todo';
-    // console.log(this.listType);
     this.route.paramMap.subscribe((params) => {
       this.listType =
         params.get('type')! == 'expense' ? 'expense tracker' : 'todo';
@@ -94,28 +93,30 @@ export class CreateNewTodoComponent implements OnInit {
   //     }
   //   }
   // }
+loadDataForType(type: string) {
+  if (!this.isBrowser()) return;
 
-  loadDataForType(type: string) {
-    if (!this.isBrowser()) return;
+  let stored: string | null;
+  let allLists: any[] = [];
 
-    const stored = localStorage.getItem('todoLists');
-    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
-
-    // Filter lists based on current type
-    const filterTodoList = allLists.filter((list) => list.type === type);
-
-    // Only update display lists, not all data
-    this.todoLists = filterTodoList;
-
-    // Update the title display array
-    this.todoTitles = this.todoLists.map((list:any) => ({ title: list.title }));
+  if (type === 'todo') {
+    stored = localStorage.getItem('todoLists');
+    allLists = stored ? JSON.parse(stored) : [];
+  } else if (type === 'expense tracker') {
+    stored = localStorage.getItem('expenseLists');
+    allLists = stored ? JSON.parse(stored) : [];
   }
 
-  showMenu = false;
+  // Filter lists based on current type
+  const filteredLists = allLists.filter((list) => list.type === type);
 
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
-  }
+  // Update only the display data
+  this.todoLists = filteredLists;
+
+  // Update title list for UI display
+  this.todoTitles = this.todoLists.map((list: any) => ({ title: list.title }));
+}
+
 
   // addTitle(title: string) {
   //   if (this.todoLists.length < 4 && title && title.trim().length > 0) {
@@ -202,19 +203,17 @@ export class CreateNewTodoComponent implements OnInit {
       ]
     };
 
-    console.log(newList.type, ':', newList);
-    
    if (this.listType === 'todo') {
-  const stored = localStorage.getItem('todoLists');
-  const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
-  allLists.unshift(newList as TodoList);
-  localStorage.setItem('todoLists', JSON.stringify(allLists));
-} else if (this.listType === 'expense tracker') {
-  const stored = localStorage.getItem('expenseLists');
-  const allLists: ExpenseList[] = stored ? JSON.parse(stored) : [];
-  allLists.unshift(newList as ExpenseList);
-  localStorage.setItem('expenseLists', JSON.stringify(allLists));
-}
+     const stored = localStorage.getItem('todoLists');
+     const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+     allLists.unshift(newList as TodoList);
+     localStorage.setItem('todoLists', JSON.stringify(allLists));
+   } else if (this.listType === 'expense tracker') {
+     const stored = localStorage.getItem('expenseLists');
+     const allLists: ExpenseList[] = stored ? JSON.parse(stored) : [];
+     allLists.unshift(newList as ExpenseList);
+     localStorage.setItem('expenseLists', JSON.stringify(allLists));
+   }
 
     // ✅ Update only the visible type lists on screen
     this.loadDataForType(this.listType);
@@ -234,30 +233,52 @@ export class CreateNewTodoComponent implements OnInit {
     }, 4000);
   }
 
-  addTodo(listIndex: number, todoText: string, priority: any) {
-    console.log(priority);
+addTodo(listIndex: number, todoText: string, priorityOrAmount: any) {
+  if (!this.isBrowser()) return;
 
-    if (todoText.trim() && priority !== 'Priority' && this.listType == 'todo') {
-      this.todoLists[listIndex].tasks.unshift({
-        todo:
-          todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
-        pri: priority,
-        isUpdate: false,
-      });
-      console.log(this.todoLists[listIndex].tasks[0]);
+  const currentList = this.todoLists[listIndex];
 
-      this.saveToLocalStorage();
-    } else {
-      this.errorStatus = true;
-      this.errorMsg =
-        'Cannot create todo without text or priority. Please enter both and try again.';
-
-      setTimeout(() => {
-        this.errorStatus = false;
-        this.errorMsg = '';
-      }, 4000);
+  if (this.listType === 'todo') {
+    // Validate input
+    if (!todoText.trim() || priorityOrAmount === 'Priority') {
+      this.showError(
+        'Cannot create todo without text or priority. Please enter both and try again.'
+      );
+      return;
     }
+
+    // Add new todo item
+    currentList.tasks.unshift({
+      todo: todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
+      pri: priorityOrAmount,
+      isUpdate: false,
+      getConfirmation: false,
+    });
   }
+
+  else if (this.listType === 'expense tracker') {
+    // Validate input
+    if (!todoText.trim() || !priorityOrAmount || isNaN(priorityOrAmount)) {
+      this.showError(
+        'Cannot create expense without name and valid amount. Please enter both and try again.'
+      );
+      return;
+    }
+
+    // Add new expense item
+    currentList.tasks.unshift({
+      expense: todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
+      expenseAmt: Number(priorityOrAmount),
+      isUpdate: false,
+      getConfirmation: false,
+    });
+  }
+
+  // ✅ Save the updated list to the correct storage key
+  const storageKey = this.listType === 'todo' ? 'todoLists' : 'expenseLists';
+  localStorage.setItem(storageKey, JSON.stringify(this.todoLists));
+}
+
 
   saveTodo(listIndex: number, taskIndex: number, updatedText: string) {
     this.todoLists[listIndex].tasks[taskIndex].todo = updatedText;
@@ -265,39 +286,54 @@ export class CreateNewTodoComponent implements OnInit {
     this.saveToLocalStorage();
   }
 
-  deleteTodo(listIndex: number, taskIndex: number) {
-    this.todoLists[listIndex].tasks[taskIndex].getConfirmation =
-      !this.todoLists[listIndex].tasks[taskIndex].getConfirmation;
-    this.todoLists[listIndex].tasks.splice(taskIndex, 1);
-    this.saveToLocalStorage();
-  }
+deleteTodo(listIndex: number, taskIndex: number) {
+  if (!this.isBrowser()) return;
 
-  deleteList(listIndex: number) {
-    if (!this.isBrowser()) return;
+  // Toggle confirmation if needed
+  this.todoLists[listIndex].tasks[taskIndex].getConfirmation =
+    !this.todoLists[listIndex].tasks[taskIndex].getConfirmation;
 
-    // Step 1: Get all lists (both todos + expense trackers)
-    const stored = localStorage.getItem('todoLists');
-    const allLists: TodoList[] = stored ? JSON.parse(stored) : [];
+  // Remove the task
+  this.todoLists[listIndex].tasks.splice(taskIndex, 1);
 
-    // Step 2: Identify the current list being deleted
-    const deletedList = this.todoLists[listIndex];
+  // Save changes back to correct localStorage key
+  const storageKey = this.listType === 'todo' ? 'todoLists' : 'expenseLists';
+  localStorage.setItem(storageKey, JSON.stringify(this.todoLists));
+}
 
-    // Step 3: Remove it from the master list
-    const updatedLists = allLists.filter(
-      (list) =>
-        !(list.title === deletedList.title && list.type === this.listType)
-    );
 
-    // Step 4: Update localStorage
-    localStorage.setItem('todoLists', JSON.stringify(updatedLists));
+deleteList(listIndex: number) {
+  console.log('deleted', listIndex);
 
-    // Step 5: Remove from the currently displayed lists
-    this.todoLists.splice(listIndex, 1);
-    this.todoTitles.splice(listIndex, 1);
+  if (!this.isBrowser()) return;
 
-    // Step 6: Refresh view
-    this.loadDataForType(this.listType);
-  }
+  // Step 1: Determine which storage key to use
+  const storageKey = this.listType === 'todo' ? 'todoLists' : 'expenseLists';
+
+  // Step 2: Get all lists for that type
+  const stored = localStorage.getItem(storageKey);
+  const allLists: any[] = stored ? JSON.parse(stored) : [];
+
+  // Step 3: Identify the current list being deleted
+  const deletedList = this.todoLists[listIndex];
+
+  // Step 4: Remove it from the master list
+  const updatedLists = allLists.filter(
+    (list) =>
+      !(list.title === deletedList.title && list.type === this.listType)
+  );
+
+  // Step 5: Update localStorage
+  localStorage.setItem(storageKey, JSON.stringify(updatedLists));
+
+  // Step 6: Remove from displayed lists
+  this.todoLists.splice(listIndex, 1);
+  this.todoTitles.splice(listIndex, 1);
+
+  // Step 7: Refresh view
+  this.loadDataForType(this.listType);
+}
+
 
   moveUp(listIndex: number) {
     const [todoList] = this.todoLists.splice(listIndex, 1);
@@ -329,7 +365,6 @@ export class CreateNewTodoComponent implements OnInit {
           const amount = Number(expenseAmt.expenseAmt) || 0;
           this.totalExpenses += amount;
           this.isCalculate = false;
-          console.log(expenseAmt);
           
         });
       } else if (!this.isCalculate) {
