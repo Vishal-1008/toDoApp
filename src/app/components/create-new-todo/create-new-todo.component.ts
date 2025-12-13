@@ -48,7 +48,7 @@ export class CreateNewTodoComponent implements OnInit{
 }
 
   addTitle(title: string) {
-    if (this.todoLists.length < 3 && title && title.trim().length > 0) {
+    if (this.todoLists.length < 5 && title && title.trim().length > 0) {
       this.todoLists.unshift({
         title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
         date: this.selDate,
