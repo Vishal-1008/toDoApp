@@ -5,7 +5,7 @@
   <div class="overlay4"></div>
   <div class="overlay5"></div> -->
   <div class="titleCont top">
-    <input type="text" placeholder="Your todo list title" #title />
+    <input type="text" placeholder="Your {{listType}} title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
     <button (click)="addTitle(title.value); title.value = ''; picker.resetDate()">Create {{listType}}</button>
   </div>
@@ -62,7 +62,7 @@
             <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
           </ng-template>
           <ng-template #elseBlock>
-            <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
+            <textarea rows="3" [value]="todo.todo" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
             <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
           </ng-template>
         </div>
@@ -135,7 +135,7 @@
             <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
           </ng-template>
           <ng-template #elseBlock>
-            <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
+            <textarea rows="3" [value]="todo.todo" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
             <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
           </ng-template>
         </div>
