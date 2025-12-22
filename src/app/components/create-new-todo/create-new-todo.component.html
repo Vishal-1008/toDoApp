@@ -115,9 +115,9 @@
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select> -->
-      <input type="number" placeholder="Amount" #expenseAmount class="expenseAmount"/>
+      <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput"/>
 
-      <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = '0'">+ Add expense</button>
+      <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+ Add expense</button>
     </div>
 
     <div class="bottom">
@@ -127,19 +127,27 @@
          
           <ng-container *ngIf="expense.isUpdate; then elseBlock; else thenBlock"></ng-container>
           <ng-template #thenBlock>
-             <div>
+             <div class="expenseRow">
             <h3>{{ expense.expense }}</h3>
+          <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount }}</h6>
+
           </div>
-            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo">✏️</span>
+            <!-- <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo">✏️</span> -->
           </ng-template>
           <ng-template #elseBlock>
-            <textarea rows="4" [value]="expense.expense" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
-            <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
+            <div class="expenseRow">
+            <textarea rows="1" [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus spellcheck="false"></textarea>
+            <span>₹</span>&nbsp;
+            <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount" class="expenseAmountEditInput"/>
+            <!-- <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span> -->
+             </div>
           </ng-template>
         </div>
 
         <div class="todoOpt">
-          <h6 class="green">&#8377;{{ expense.expenseAmount }}</h6>
+          <!-- <h6 class="green">&#8377;{{ expense.expenseAmount }}</h6> -->
+            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo" *ngIf="!expense.isUpdate">✏️</span>
+            <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="edit todo" *ngIf="expense.isUpdate">📁</span>
 
           <button (click)="expense.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
           <ng-container *ngIf="expense.getConfirmation">
@@ -153,6 +161,10 @@
            </div>
          </ng-container>
         </div>
+      </div>
+      <div class="totalExpense" *ngIf="expenseMasterList.length > 0">
+        <button (click)="calculateTotalExpense(i)">Add all expense</button>
+        <h3>Total Expense: &#8377;{{list.totalExpense}}</h3>
       </div>
     </div>
   </div>

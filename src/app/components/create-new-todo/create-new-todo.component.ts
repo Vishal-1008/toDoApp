@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RecentComponent } from '../recent/recent.component';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 interface TodoItem {
   todo: string;
@@ -31,6 +32,7 @@ interface ExpenseList {
   date: Date;
   isTitle: boolean;
   getConfirmation:boolean;
+  totalExpense: number;
   expenses: expenseItem[];
 }
 
@@ -40,7 +42,8 @@ interface ExpenseList {
   imports: [
     CommonModule,
     RecentComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    FormsModule
   ],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
@@ -129,6 +132,7 @@ ngOnInit() {
           date: this.selDate,
           isTitle: true,
           getConfirmation: false,
+          totalExpense: 0,
           expenses: [
             {
               expense: 'your expenses here!', 
@@ -164,43 +168,91 @@ ngOnInit() {
 
 }
 
-  addTodo(listIndex: number, todoText: string, priority: string) {
-    if (todoText.trim() && priority !== 'Priority') {
-      this.todoMasterList[listIndex].tasks.unshift({
-        todo:
-          todoText.trim().charAt(0).toUpperCase() + todoText.trim().slice(1),
-        pri: priority,
-        isUpdate: false,
-      });
-      this.saveToLocalStorage();
-    } else {
-      this.errorStatus = true;
-      this.errorMsg = 'Cannot create todo without text or priority. Please enter both and try again.';
+addTodo(listIndex: number, text: string, priorityOrAmount: string) {
+  if (!text.trim() || priorityOrAmount === 'Priority') {
+    this.errorStatus = true;
+    this.errorMsg =
+      'Cannot create item without text or priority/amount. Please enter all fields and try again.';
 
-      setTimeout(() => {
-        this.errorStatus = false;
-        this.errorMsg = '';
-      }, 4000);
-    }
+    setTimeout(() => {
+      this.errorStatus = false;
+      this.errorMsg = '';
+    }, 4000);
+
+    return;
   }
 
-  saveTodo(listIndex: number, taskIndex: number, updatedText: string) {
-    this.todoMasterList[listIndex].tasks[taskIndex].todo = updatedText;
+  const formattedText =
+    text.trim().charAt(0).toUpperCase() + text.trim().slice(1);
+
+  if (this.listType === 'todo') {
+    this.todoMasterList[listIndex].tasks.unshift({
+      todo: formattedText,
+      pri: priorityOrAmount,
+      isUpdate: false,
+      getConfirmation: false,
+    });
+
+    this.saveToLocalStorage('todo');
+  }
+
+  if (this.listType === 'expense') {
+    this.expenseMasterList[listIndex].expenses.unshift({
+      expense: formattedText,
+      expenseAmount: priorityOrAmount,
+      isUpdate: false,
+      getConfirmation: false,
+    });
+
+    this.saveToLocalStorage('expense');
+  }
+}
+
+
+saveTodo(listIndex: number, taskIndex: number, updateTodoOrExpense: string, updateExpenseAmount?: string) {
+
+  if (this.listType === 'todo') {
+    this.todoMasterList[listIndex].tasks[taskIndex].todo = updateTodoOrExpense;
     this.todoMasterList[listIndex].tasks[taskIndex].isUpdate = false;
-    this.saveToLocalStorage();
+    this.saveToLocalStorage('todo');
   }
 
-  deleteTodo(listIndex: number, taskIndex: number) {
-    this.todoMasterList[listIndex].tasks[taskIndex].getConfirmation = !this.todoMasterList[listIndex].tasks[taskIndex].getConfirmation;
-    this.todoMasterList[listIndex].tasks.splice(taskIndex, 1);
-    this.saveToLocalStorage();
+  if (this.listType === 'expense') {
+    this.expenseMasterList[listIndex].expenses[taskIndex].expense = updateTodoOrExpense;
+    this.expenseMasterList[listIndex].expenses[taskIndex].expenseAmount = updateExpenseAmount!;
+    this.expenseMasterList[listIndex].expenses[taskIndex].isUpdate = false;
+    this.saveToLocalStorage('expense');
   }
+}
+
+
+deleteTodo(listIndex: number, itemIndex: number) {
+  if (this.listType === 'todo') {
+    this.todoMasterList[listIndex].tasks[itemIndex].getConfirmation = false;
+    this.todoMasterList[listIndex].tasks.splice(itemIndex, 1);
+    this.saveToLocalStorage('todo');
+  }
+
+  if (this.listType === 'expense') {
+    this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
+    this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
+    this.saveToLocalStorage('expense');
+  }
+}
 
   deleteList(listIndex: number) {
+  if (this.listType === 'todo') {
     this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
     this.todoMasterList.splice((listIndex), 1);
     this.todoTitles.splice((listIndex), 1);
     this.saveToLocalStorage();
+  }
+   if (this.listType === 'expense') {
+    this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
+    this.expenseMasterList.splice((listIndex), 1);
+    this.expenseTitles.splice((listIndex), 1);
+    this.saveToLocalStorage('expense');
+  }
   }
 
   moveUp(listIndex: number) {
@@ -232,7 +284,18 @@ ngOnInit() {
       this.selDate = date;
     }
   }
-  
+
+ calculateTotalExpense(listIndex: number) {
+  const list = this.expenseMasterList[listIndex];
+
+  list.totalExpense = 0;
+
+  list.expenses.forEach(expense => {
+    const amount = Number(expense.expenseAmount || 0);
+    list.totalExpense += amount;
+  });
+}
+
  saveToLocalStorage(type?: string) {
   if (this.isBrowser()) {
     if (type === 'todo' && this.todoMasterList.length > 0) {
