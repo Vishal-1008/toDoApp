@@ -311,6 +311,12 @@
   font-size: 0.7vw;
 }
 
+.globalDate {
+  font-size: 0.7vw;
+  color: #555;
+  margin-right: 3vw;
+}
+
 .red {
   background-color: #e94a4a;
 }
@@ -377,33 +383,20 @@ background-color: #777;
 }
 
 .totalExpense {
-  margin-top: 2vw;
-  width: 100%;
+  /* margin-top: 2vw; */
+  padding:  1vw;
+  width: 66%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.totalExpense button {
-  outline: none;
-  border: none;
-  height: 4vh;
-  padding: 0 1vw;
-  border-radius: 0.4vw;
-  font-size: 0.8vw;
-  font-weight: 600;
-  transition: 0.1s ease-in-out;
-  background-color: #fff;
-  color: #222;
-}
-
-.totalExpense button:hover {
-  background-color: #89ac46;
-  color: #fff;
+  background-color: #222;
+  border-radius: 0.8vw;
+  /* border-top: 2px dotted #333; */
+  border-bottom: 1px solid #222;
 }
 
 .totalExpense h3 {
-  font-size: 0.8vw;
+  font-size: 0.9vw;
   font-weight: 600;
   color: #89ac46;
 }

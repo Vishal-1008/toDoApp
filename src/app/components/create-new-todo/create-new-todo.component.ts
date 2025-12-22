@@ -57,6 +57,7 @@ export class CreateNewTodoComponent implements OnInit{
   todoTitles: { title: string }[] = [];
   expenseTitles: { title: string }[] = [];
   listType: string = '';
+  globalDate: Date = new Date();
 
   constructor(private route: ActivatedRoute) {}
 
@@ -285,15 +286,11 @@ deleteTodo(listIndex: number, itemIndex: number) {
     }
   }
 
- calculateTotalExpense(listIndex: number) {
-  const list = this.expenseMasterList[listIndex];
-
-  list.totalExpense = 0;
-
-  list.expenses.forEach(expense => {
-    const amount = Number(expense.expenseAmount || 0);
-    list.totalExpense += amount;
-  });
+ calculateTotalExpense(listIndex: ExpenseList) {
+   return listIndex.expenses.reduce(
+    (sum, e) => sum + Number(e.expenseAmount || 0),
+    0
+  );
 }
 
  saveToLocalStorage(type?: string) {
