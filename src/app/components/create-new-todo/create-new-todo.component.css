@@ -23,7 +23,7 @@
 
 .titleCont input {
   background-color: #151515 !important;
-  width: 58% !important;
+  width: 60% !important;
   border: 1px solid #222 !important;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .titleOpt .delete,
-.titleOpt .move, .titleOpt .private {
+.titleOpt .move {
   outline: none;
   border: none;
   background-color: transparent;
@@ -68,23 +68,9 @@
   color: #fff;
 }
 
-.titleOpt .move:hover, .titleOpt .private:hover {
+.titleOpt .move:hover {
   background-color: #fff;
 }
-
-/* .private {
-  all: unset;
-  border: 1px solid #fff;
-  font-size: 0.7vw;
-  padding: 0.2vw 0.5vw;
-  border-radius: 0.4vw;
-  opacity: 0.6;
-  transition: ease-in-out 0.12s;
-}
-
-.private:hover {
-  opacity: 1;
-} */
 
 .errorMsg,
 .confirmation {
@@ -242,73 +228,6 @@
   opacity: 0.5;
 }
 
-#expense .todoList {
-  /* background-color: red; */
-}
-
-#expense .todoItem {
-  width: 100%;
-}
-
-#expense .todoItem>div {
-  width: 75%;
-}
-
-#expense .todoItem h6 {
-  font-size: 0.8vw;
-  background-color: #89ac46;
-  padding: 0 0.5vw;
-  border-radius: 0.3vw;
-}
-
-#expense .todoOpt {
-  /* background-color: pink; */
-  width: 8%;
-}
-
-#expense .expenseName {
-  width: 55%;
-}
-
-#expense .expenseAmt{
-width: 25%;
-}
-
-#expense .calculateExpense {
-  margin-top: 3vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#expense .calculateExpense button {
-  border: none;
-  background-color: #fff;
-  color: #151515;
-  padding: 0.2vw 0.5vw;
-  border-radius: 0.5vw;
-  font-weight: 600;
-  transition: 0.1s ease-in-out;
-}
-
-#expense .calculateExpense button:hover {
-  background-color: #89ac46;
-}
-
-#expense .calculateExpense span {
-  color: #89ac46;
-}
-
-.no-spinner::-webkit-inner-spin-button,
-.no-spinner::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.no-spinner {
-  -moz-appearance: textfield;
-}
-
 .bottom {
   width: 100%;
   background-color: #111;
@@ -415,6 +334,10 @@ width: 25%;
 
 .editTodo:hover {
 background-color: #777;
+}
+
+.expenseAmount {
+  width: 17% !important;
 }
 
 
