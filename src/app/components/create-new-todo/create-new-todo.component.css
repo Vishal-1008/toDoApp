@@ -380,10 +380,10 @@ background-color: #777;
   border: 1px solid #89ac46;
   border-radius: 6px;
   background-color: #222;
+  padding: 0.1vw 0.6vw;
 }
 
 .totalExpense {
-  /* margin-top: 2vw; */
   padding:  1vw;
   width: 66%;
   display: flex;
@@ -391,7 +391,6 @@ background-color: #777;
   align-items: center;
   background-color: #222;
   border-radius: 0.8vw;
-  /* border-top: 2px dotted #333; */
   border-bottom: 1px solid #222;
 }
 
@@ -400,6 +399,17 @@ background-color: #777;
   font-weight: 600;
   color: #89ac46;
 }
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 /* START: MOBILE VIEW */
 
@@ -548,7 +558,7 @@ background-color: #777;
 
 .top input {
   height: 100%;
-  width: 60%;
+  width: 55%;
   border-radius: 1.5vw;
   outline: none;
   background-color: #111;
@@ -645,7 +655,7 @@ background-color: #777;
   resize: vertical;
   outline: none;
   border: none;
-  font-size: 2vw;
+  font-size: 2.5vw;
   background-color: transparent;
   border-bottom: 1px solid #fff;
   color: #fff;
@@ -657,7 +667,7 @@ background-color: #777;
 }
 
 .todoOpt {
-  width: 38%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -695,6 +705,30 @@ background-color: #777;
 
 .editTodo:hover {
 background-color: #777;
+}
+
+.expenseAmountInRow {
+  font-size: 2.5vw;
+}
+
+.expenseAmountEditInput {
+  font-size: 2.5vw;
+  border-radius: 6px;
+  padding: 0.4vw 1vw;
+}
+
+.totalExpense {
+  padding:  2vw;
+  width: 75%;
+  border-radius: 1vw;
+}
+
+.totalExpense h3 {
+  font-size: 2.5vw;
+}
+
+.globalDate {
+  display: none;
 }
 }
 /* END: MOBILE VIEW */
