@@ -18,8 +18,8 @@
     <div class="titleOpt">
       <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
       <div class="options">
-        <button class="move" (click)="moveUp(i)" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
-        <button class="move" (click)="moveDown(i)" title="move list down" [ngClass]="{ 'opacity-50': i === (todoMasterList.length - 1) }">👇🏽</button>
+        <button class="move" (click)="moveUp(i, 'todo')" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+        <button class="move" (click)="moveDown(i, 'todo')" title="move list down" [ngClass]="{ 'opacity-50': i === (todoMasterList.length - 1) }">👇🏽</button>
         <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
         <ng-container *ngIf="list.getConfirmation">
           <div class="confirmation">
@@ -87,8 +87,8 @@
     <div class="titleOpt">
       <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
       <div class="options">
-        <button class="move" (click)="moveUp(i)" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
-        <button class="move" (click)="moveDown(i)" title="move list down" [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
+        <button class="move" (click)="moveUp(i, 'expense')" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+        <button class="move" (click)="moveDown(i, 'expense')" title="move list down" [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
         <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
         <ng-container *ngIf="list.getConfirmation">
           <div class="confirmation">

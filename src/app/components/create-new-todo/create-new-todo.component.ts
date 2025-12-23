@@ -256,29 +256,62 @@ deleteTodo(listIndex: number, itemIndex: number) {
   }
   }
 
-  moveUp(listIndex: number) {
+moveUp(listIndex: number, type: 'todo' | 'expense') {
+
+  if (type === 'todo') {
     const [todoList] = this.todoMasterList.splice(listIndex, 1);
     const [title] = this.todoTitles.splice(listIndex, 1);
 
-    if (listIndex - 1 >= 0) {
+    if (listIndex > 0) {
       this.todoMasterList.splice(listIndex - 1, 0, todoList);
       this.todoTitles.splice(listIndex - 1, 0, title);
-      this.saveToLocalStorage();
     } else {
       this.todoMasterList.splice(listIndex, 0, todoList);
       this.todoTitles.splice(listIndex, 0, title);
-      this.saveToLocalStorage();
     }
 
+  } else {
+    const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
+    const [title] = this.expenseTitles.splice(listIndex, 1);
+
+    if (listIndex > 0) {
+      this.expenseMasterList.splice(listIndex - 1, 0, expenseList);
+      this.expenseTitles.splice(listIndex - 1, 0, title);
+    } else {
+      this.expenseMasterList.splice(listIndex, 0, expenseList);
+      this.expenseTitles.splice(listIndex, 0, title);
+    }
   }
 
-  moveDown(listIndex: number) {
+  this.saveToLocalStorage();
+}
+
+
+
+moveDown(listIndex: number, type: 'todo' | 'expense') {
+
+  if (type === 'todo') {
+    if (listIndex === this.todoMasterList.length - 1) return;
+
     const [todoList] = this.todoMasterList.splice(listIndex, 1);
     const [title] = this.todoTitles.splice(listIndex, 1);
+
     this.todoMasterList.splice(listIndex + 1, 0, todoList);
     this.todoTitles.splice(listIndex + 1, 0, title);
-    this.saveToLocalStorage();
+
+  } else {
+    if (listIndex === this.expenseMasterList.length - 1) return;
+
+    const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
+    const [title] = this.expenseTitles.splice(listIndex, 1);
+
+    this.expenseMasterList.splice(listIndex + 1, 0, expenseList);
+    this.expenseTitles.splice(listIndex + 1, 0, title);
   }
+
+  this.saveToLocalStorage();
+}
+
 
   date(date: Date) {
     if (date) {
