@@ -416,7 +416,7 @@ input[type=number] {
 @media only screen and (max-width: 768px) {
 
 .newToDoContainer {
-  min-height: 93vh;
+  height: 100vh;
   width: 100%;
   background-color: #111;
   color: #fff;
