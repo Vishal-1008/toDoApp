@@ -554,12 +554,11 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   margin-top: 3vh;
-  background-color: red;
 }
 
 .top input {
   height: 100%;
-  width: 55%;
+  width: 52%;
   border-radius: 1.5vw;
   outline: none;
   background-color: #111;
@@ -575,7 +574,7 @@ input[type=number] {
   outline: none;
   border: none;
   height: 100%;
-  padding: 0 2vw;
+  padding: 0 1.7vw;
   border-radius: 1.5vw;
   font-size: 2.2vw;
   font-weight: bold;
@@ -717,6 +716,11 @@ background-color: #777;
   font-size: 2.5vw;
   border-radius: 6px;
   padding: 0.4vw 1vw;
+}
+
+.expenseAmountInput {
+  text-align: center;
+  width: 21% !important;
 }
 
 .totalExpense {
