@@ -549,11 +549,12 @@ input[type=number] {
 }
 
 .top {
-  height: 4vh;
+  height: 5vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 3vh;
+  background-color: red;
 }
 
 .top input {
