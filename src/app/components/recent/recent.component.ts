@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './recent.component.html',
   styleUrls: ['./recent.component.css'],
 })
+
 export class RecentComponent {
   @Input() todoCount!: number;
   @Input() expenseCount!: number;
   @Input() todoTitles: { title: string }[] = [];
   @Input() expenseTitles: { title: string }[] = [];
   @Input() type !: string
-
 }

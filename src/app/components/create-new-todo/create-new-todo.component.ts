@@ -16,7 +16,7 @@ interface TodoList {
   title: string;
   date: Date;
   isTitle: boolean;
-  getConfirmation:boolean;
+  getConfirmation: boolean;
   tasks: TodoItem[];
 }
 
@@ -31,7 +31,7 @@ interface ExpenseList {
   title: string;
   date: Date;
   isTitle: boolean;
-  getConfirmation:boolean;
+  getConfirmation: boolean;
   totalExpense: number;
   expenses: expenseItem[];
 }
@@ -48,7 +48,8 @@ interface ExpenseList {
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
 })
-export class CreateNewTodoComponent implements OnInit{
+
+export class CreateNewTodoComponent implements OnInit {
   selDate!: Date;
   errorStatus = false;
   errorMsg = '';
@@ -59,32 +60,31 @@ export class CreateNewTodoComponent implements OnInit{
   listType: string = '';
   globalDate: Date = new Date();
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
-ngOnInit() {
-  this.route.paramMap.subscribe(params => {
-    this.listType = params.get('type')!;
-  });
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.listType = params.get('type')!;
+    });
 
-  if (!this.isBrowser()) return;
+    if (!this.isBrowser()) return;
 
-  const storedTodo = localStorage.getItem('todoMasterList');
-  if (storedTodo) {
-    this.todoMasterList = JSON.parse(storedTodo);
-    this.todoTitles = this.todoMasterList.map(list => ({
-      title: list.title
-    }));
+    const storedTodo = localStorage.getItem('todoMasterList');
+    if (storedTodo) {
+      this.todoMasterList = JSON.parse(storedTodo);
+      this.todoTitles = this.todoMasterList.map(list => ({
+        title: list.title
+      }));
+    }
+
+    const storedExpense = localStorage.getItem('expenseMasterList');
+    if (storedExpense) {
+      this.expenseMasterList = JSON.parse(storedExpense);
+      this.expenseTitles = this.expenseMasterList.map(list => ({
+        title: list.title
+      }));
+    }
   }
-
-  const storedExpense = localStorage.getItem('expenseMasterList');
-  if (storedExpense) {
-    this.expenseMasterList = JSON.parse(storedExpense);
-    this.expenseTitles = this.expenseMasterList.map(list => ({
-      title: list.title
-    }));
-  }
-}
-
 
   addTitle(title: string, type: string) {
 
@@ -97,7 +97,7 @@ ngOnInit() {
           getConfirmation: false,
           tasks: [
             {
-              todo: 'your todos here!', 
+              todo: 'your todos here!',
               pri: 'Medium',
               isUpdate: false,
               getConfirmation: false,
@@ -126,7 +126,7 @@ ngOnInit() {
           this.errorMsg = '';
         }, 4000);
       }
-  } else if (type == 'expense') {
+    } else if (type == 'expense') {
       if (this.expenseMasterList.length < 5 && title && title.trim().length > 0) {
         this.expenseMasterList.unshift({
           title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
@@ -136,7 +136,7 @@ ngOnInit() {
           totalExpense: 0,
           expenses: [
             {
-              expense: 'your expenses here!', 
+              expense: 'your expenses here!',
               expenseAmount: '0',
               isUpdate: false,
               getConfirmation: false,
@@ -165,153 +165,148 @@ ngOnInit() {
           this.errorMsg = '';
         }, 4000);
       }
+    }
+
   }
 
-}
+  addTodo(listIndex: number, text: string, priorityOrAmount: string) {
+    if (!text.trim() || priorityOrAmount === 'Priority') {
+      this.errorStatus = true;
+      this.errorMsg =
+        'Cannot create item without text or priority/amount. Please enter all fields and try again.';
 
-addTodo(listIndex: number, text: string, priorityOrAmount: string) {
-  if (!text.trim() || priorityOrAmount === 'Priority') {
-    this.errorStatus = true;
-    this.errorMsg =
-      'Cannot create item without text or priority/amount. Please enter all fields and try again.';
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+      }, 4000);
 
-    setTimeout(() => {
-      this.errorStatus = false;
-      this.errorMsg = '';
-    }, 4000);
+      return;
+    }
 
-    return;
+    const formattedText =
+      text.trim().charAt(0).toUpperCase() + text.trim().slice(1);
+
+    if (this.listType === 'todo') {
+      this.todoMasterList[listIndex].tasks.unshift({
+        todo: formattedText,
+        pri: priorityOrAmount,
+        isUpdate: false,
+        getConfirmation: false,
+      });
+
+      this.saveToLocalStorage('todo');
+    }
+
+    if (this.listType === 'expense') {
+      this.expenseMasterList[listIndex].expenses.unshift({
+        expense: formattedText,
+        expenseAmount: priorityOrAmount,
+        isUpdate: false,
+        getConfirmation: false,
+      });
+
+      this.saveToLocalStorage('expense');
+    }
   }
 
-  const formattedText =
-    text.trim().charAt(0).toUpperCase() + text.trim().slice(1);
+  saveTodo(listIndex: number, taskIndex: number, updateTodoOrExpense: string, updateExpenseAmount?: string) {
 
-  if (this.listType === 'todo') {
-    this.todoMasterList[listIndex].tasks.unshift({
-      todo: formattedText,
-      pri: priorityOrAmount,
-      isUpdate: false,
-      getConfirmation: false,
-    });
+    if (this.listType === 'todo') {
+      this.todoMasterList[listIndex].tasks[taskIndex].todo = updateTodoOrExpense;
+      this.todoMasterList[listIndex].tasks[taskIndex].isUpdate = false;
+      this.saveToLocalStorage('todo');
+    }
 
-    this.saveToLocalStorage('todo');
+    if (this.listType === 'expense') {
+      this.expenseMasterList[listIndex].expenses[taskIndex].expense = updateTodoOrExpense;
+      this.expenseMasterList[listIndex].expenses[taskIndex].expenseAmount = updateExpenseAmount!;
+      this.expenseMasterList[listIndex].expenses[taskIndex].isUpdate = false;
+      this.saveToLocalStorage('expense');
+    }
   }
 
-  if (this.listType === 'expense') {
-    this.expenseMasterList[listIndex].expenses.unshift({
-      expense: formattedText,
-      expenseAmount: priorityOrAmount,
-      isUpdate: false,
-      getConfirmation: false,
-    });
+  deleteTodo(listIndex: number, itemIndex: number) {
+    if (this.listType === 'todo') {
+      this.todoMasterList[listIndex].tasks[itemIndex].getConfirmation = false;
+      this.todoMasterList[listIndex].tasks.splice(itemIndex, 1);
+      this.saveToLocalStorage('todo');
+    }
 
-    this.saveToLocalStorage('expense');
+    if (this.listType === 'expense') {
+      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
+      this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
+      this.saveToLocalStorage('expense');
+    }
   }
-}
-
-
-saveTodo(listIndex: number, taskIndex: number, updateTodoOrExpense: string, updateExpenseAmount?: string) {
-
-  if (this.listType === 'todo') {
-    this.todoMasterList[listIndex].tasks[taskIndex].todo = updateTodoOrExpense;
-    this.todoMasterList[listIndex].tasks[taskIndex].isUpdate = false;
-    this.saveToLocalStorage('todo');
-  }
-
-  if (this.listType === 'expense') {
-    this.expenseMasterList[listIndex].expenses[taskIndex].expense = updateTodoOrExpense;
-    this.expenseMasterList[listIndex].expenses[taskIndex].expenseAmount = updateExpenseAmount!;
-    this.expenseMasterList[listIndex].expenses[taskIndex].isUpdate = false;
-    this.saveToLocalStorage('expense');
-  }
-}
-
-
-deleteTodo(listIndex: number, itemIndex: number) {
-  if (this.listType === 'todo') {
-    this.todoMasterList[listIndex].tasks[itemIndex].getConfirmation = false;
-    this.todoMasterList[listIndex].tasks.splice(itemIndex, 1);
-    this.saveToLocalStorage('todo');
-  }
-
-  if (this.listType === 'expense') {
-    this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
-    this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
-    this.saveToLocalStorage('expense');
-  }
-}
 
   deleteList(listIndex: number) {
-  if (this.listType === 'todo') {
-    this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
-    this.todoMasterList.splice((listIndex), 1);
-    this.todoTitles.splice((listIndex), 1);
+    if (this.listType === 'todo') {
+      this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
+      this.todoMasterList.splice((listIndex), 1);
+      this.todoTitles.splice((listIndex), 1);
+      this.saveToLocalStorage();
+    }
+    if (this.listType === 'expense') {
+      this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
+      this.expenseMasterList.splice((listIndex), 1);
+      this.expenseTitles.splice((listIndex), 1);
+      this.saveToLocalStorage('expense');
+    }
+  }
+
+  moveUp(listIndex: number, type: 'todo' | 'expense') {
+
+    if (type === 'todo') {
+      const [todoList] = this.todoMasterList.splice(listIndex, 1);
+      const [title] = this.todoTitles.splice(listIndex, 1);
+
+      if (listIndex > 0) {
+        this.todoMasterList.splice(listIndex - 1, 0, todoList);
+        this.todoTitles.splice(listIndex - 1, 0, title);
+      } else {
+        this.todoMasterList.splice(listIndex, 0, todoList);
+        this.todoTitles.splice(listIndex, 0, title);
+      }
+
+    } else {
+      const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
+      const [title] = this.expenseTitles.splice(listIndex, 1);
+
+      if (listIndex > 0) {
+        this.expenseMasterList.splice(listIndex - 1, 0, expenseList);
+        this.expenseTitles.splice(listIndex - 1, 0, title);
+      } else {
+        this.expenseMasterList.splice(listIndex, 0, expenseList);
+        this.expenseTitles.splice(listIndex, 0, title);
+      }
+    }
+
     this.saveToLocalStorage();
   }
-   if (this.listType === 'expense') {
-    this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
-    this.expenseMasterList.splice((listIndex), 1);
-    this.expenseTitles.splice((listIndex), 1);
-    this.saveToLocalStorage('expense');
-  }
-  }
 
-moveUp(listIndex: number, type: 'todo' | 'expense') {
+  moveDown(listIndex: number, type: 'todo' | 'expense') {
 
-  if (type === 'todo') {
-    const [todoList] = this.todoMasterList.splice(listIndex, 1);
-    const [title] = this.todoTitles.splice(listIndex, 1);
+    if (type === 'todo') {
+      if (listIndex === this.todoMasterList.length - 1) return;
 
-    if (listIndex > 0) {
-      this.todoMasterList.splice(listIndex - 1, 0, todoList);
-      this.todoTitles.splice(listIndex - 1, 0, title);
+      const [todoList] = this.todoMasterList.splice(listIndex, 1);
+      const [title] = this.todoTitles.splice(listIndex, 1);
+
+      this.todoMasterList.splice(listIndex + 1, 0, todoList);
+      this.todoTitles.splice(listIndex + 1, 0, title);
+
     } else {
-      this.todoMasterList.splice(listIndex, 0, todoList);
-      this.todoTitles.splice(listIndex, 0, title);
+      if (listIndex === this.expenseMasterList.length - 1) return;
+
+      const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
+      const [title] = this.expenseTitles.splice(listIndex, 1);
+
+      this.expenseMasterList.splice(listIndex + 1, 0, expenseList);
+      this.expenseTitles.splice(listIndex + 1, 0, title);
     }
 
-  } else {
-    const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
-    const [title] = this.expenseTitles.splice(listIndex, 1);
-
-    if (listIndex > 0) {
-      this.expenseMasterList.splice(listIndex - 1, 0, expenseList);
-      this.expenseTitles.splice(listIndex - 1, 0, title);
-    } else {
-      this.expenseMasterList.splice(listIndex, 0, expenseList);
-      this.expenseTitles.splice(listIndex, 0, title);
-    }
+    this.saveToLocalStorage();
   }
-
-  this.saveToLocalStorage();
-}
-
-
-
-moveDown(listIndex: number, type: 'todo' | 'expense') {
-
-  if (type === 'todo') {
-    if (listIndex === this.todoMasterList.length - 1) return;
-
-    const [todoList] = this.todoMasterList.splice(listIndex, 1);
-    const [title] = this.todoTitles.splice(listIndex, 1);
-
-    this.todoMasterList.splice(listIndex + 1, 0, todoList);
-    this.todoTitles.splice(listIndex + 1, 0, title);
-
-  } else {
-    if (listIndex === this.expenseMasterList.length - 1) return;
-
-    const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
-    const [title] = this.expenseTitles.splice(listIndex, 1);
-
-    this.expenseMasterList.splice(listIndex + 1, 0, expenseList);
-    this.expenseTitles.splice(listIndex + 1, 0, title);
-  }
-
-  this.saveToLocalStorage();
-}
-
 
   date(date: Date) {
     if (date) {
@@ -319,24 +314,24 @@ moveDown(listIndex: number, type: 'todo' | 'expense') {
     }
   }
 
- calculateTotalExpense(listIndex: ExpenseList) {
-   return listIndex.expenses.reduce(
-    (sum, e) => sum + Number(e.expenseAmount || 0),
-    0
-  );
-}
+  calculateTotalExpense(listIndex: ExpenseList) {
+    return listIndex.expenses.reduce(
+      (sum, e) => sum + Number(e.expenseAmount || 0),
+      0
+    );
+  }
 
- saveToLocalStorage(type?: string) {
-  if (this.isBrowser()) {
-    if (type === 'todo' && this.todoMasterList.length > 0) {
-      localStorage.setItem('todoMasterList', JSON.stringify(this.todoMasterList));
-    } else if (type === 'expense' && this.expenseMasterList.length > 0) {
-      localStorage.setItem('expenseMasterList', JSON.stringify(this.expenseMasterList));
+  saveToLocalStorage(type?: string) {
+    if (this.isBrowser()) {
+      if (type === 'todo' && this.todoMasterList.length > 0) {
+        localStorage.setItem('todoMasterList', JSON.stringify(this.todoMasterList));
+      } else if (type === 'expense' && this.expenseMasterList.length > 0) {
+        localStorage.setItem('expenseMasterList', JSON.stringify(this.expenseMasterList));
+      }
     }
   }
-}
 
   isBrowser(): boolean {
-  return typeof window !== 'undefined' && !!window.localStorage;
-}
+    return typeof window !== 'undefined' && !!window.localStorage;
+  }
 }

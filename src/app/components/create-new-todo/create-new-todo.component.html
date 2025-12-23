@@ -2,7 +2,8 @@
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
-    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create {{listType}} +</button>
+    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create {{listType}}
+      +</button>
   </div>
 
   <div class="errorMsg" *ngIf="errorStatus">
@@ -10,159 +11,163 @@
     <h4>⚠️ {{ errorMsg }}</h4>
   </div>
 
-  <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles" [expenseTitles]="expenseTitles" [type]="listType"></app-recent>
+  <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles"
+    [expenseTitles]="expenseTitles" [type]="listType"></app-recent>
 
   <!----------------------------------------------------- TODO ----------------------------------------------------->
   <ng-container *ngIf="listType == 'todo'">
-  <div class="toDoCont" *ngFor="let list of todoMasterList; let i = index">
-    <div class="titleOpt">
-      <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
-      <div class="options">
-        <button class="move" (click)="moveUp(i, 'todo')" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
-        <button class="move" (click)="moveDown(i, 'todo')" title="move list down" [ngClass]="{ 'opacity-50': i === (todoMasterList.length - 1) }">👇🏽</button>
-        <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
-        <ng-container *ngIf="list.getConfirmation">
-          <div class="confirmation">
-            <span class="closeModal" (click)="list.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
-            <div>
-              <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
-              <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+    <div class="toDoCont" *ngFor="let list of todoMasterList; let i = index">
+      <div class="titleOpt">
+        <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
+        <div class="options">
+          <button class="move" (click)="moveUp(i, 'todo')" title="move list up"
+            [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+          <button class="move" (click)="moveDown(i, 'todo')" title="move list down"
+            [ngClass]="{ 'opacity-50': i === (todoMasterList.length - 1) }">👇🏽</button>
+          <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
+          <ng-container *ngIf="list.getConfirmation">
+            <div class="confirmation">
+              <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+              <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
+              <div>
+                <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
+                <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+              </div>
             </div>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-    <div class="top">
-      <input type="text" placeholder="Enter your task" #todo />
-      <select name="priority" #priority>
-        <option value="Priority" disabled selected>Priority ◢</option>
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low">Low</option>
-      </select>
-      <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+ Add task</button>
-    </div>
-
-    <div class="bottom">
-      <div class="todoList" *ngFor="let todo of list.tasks; let j = index">
-        <h3>{{ j + 1 }}.</h3>
-        <div class="todoItem">
-         
-          <ng-container *ngIf="todo.isUpdate; then elseBlock; else thenBlock"></ng-container>
-          <ng-template #thenBlock>
-             <div>
-            <h3>{{ todo.todo }}</h3>
-          </div>
-            <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
-          </ng-template>
-          <ng-template #elseBlock>
-            <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus spellcheck="false"></textarea>
-            <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
-          </ng-template>
-        </div>
-
-        <div class="todoOpt">
-          <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{ todo.pri }}</h6>
-          <button (click)="todo.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
-          <ng-container *ngIf="todo.getConfirmation">
-           <div class="confirmation">
-            <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:22}}..."</span> task?</h4>
-            <div>
-              <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
-              <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
-            </div>
-           </div>
-         </ng-container>
+          </ng-container>
         </div>
       </div>
+      <div class="top">
+        <input type="text" placeholder="Enter your task" #todo />
+        <select name="priority" #priority>
+          <option value="Priority" disabled selected>Priority ◢</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+        <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+ Add
+          task</button>
+      </div>
+
+      <div class="bottom">
+        <div class="todoList" *ngFor="let todo of list.tasks; let j = index">
+          <h3>{{ j + 1 }}.</h3>
+          <div class="todoItem">
+
+            <ng-container *ngIf="todo.isUpdate; then elseBlock; else thenBlock"></ng-container>
+            <ng-template #thenBlock>
+              <div>
+                <h3>{{ todo.todo }}</h3>
+              </div>
+              <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
+            </ng-template>
+            <ng-template #elseBlock>
+              <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus
+                spellcheck="false"></textarea>
+              <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
+            </ng-template>
+          </div>
+
+          <div class="todoOpt">
+            <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
+              todo.pri }}</h6>
+            <button (click)="todo.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
+            <ng-container *ngIf="todo.getConfirmation">
+              <div class="confirmation">
+                <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
+                <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:22}}..."</span> task?</h4>
+                <div>
+                  <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
+                  <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
 
   <!----------------------------------------------------- EXPENSE ----------------------------------------------------->
   <ng-container *ngIf="listType == 'expense'">
-  <div class="toDoCont" *ngFor="let list of expenseMasterList; let i = index">
-    <div class="titleOpt">
-      <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
-      <div class="options">
-        <button class="move" (click)="moveUp(i, 'expense')" title="move list up" [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
-        <button class="move" (click)="moveDown(i, 'expense')" title="move list down" [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
-        <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
-        <ng-container *ngIf="list.getConfirmation">
-          <div class="confirmation">
-            <span class="closeModal" (click)="list.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
-            <div>
-              <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
-              <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+    <div class="toDoCont" *ngFor="let list of expenseMasterList; let i = index">
+      <div class="titleOpt">
+        <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
+        <div class="options">
+          <button class="move" (click)="moveUp(i, 'expense')" title="move list up"
+            [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+          <button class="move" (click)="moveDown(i, 'expense')" title="move list down"
+            [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
+          <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
+          <ng-container *ngIf="list.getConfirmation">
+            <div class="confirmation">
+              <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+              <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
+              <div>
+                <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
+                <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+              </div>
             </div>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-    <div class="top">
-      <input type="text" placeholder="Enter your expense" #expense />
-      <!-- <select name="priority" #priority>
-        <option value="Priority" disabled selected>Priority ◢</option>
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low">Low</option>
-      </select> -->
-      <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput"/>
-
-      <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+ Add expense</button>
-    </div>
-
-    <div class="bottom">
-      <div class="todoList" *ngFor="let expense of list.expenses; let j = index">
-        <h3>{{ j + 1 }}.</h3>
-        <div class="todoItem">
-         
-          <ng-container *ngIf="expense.isUpdate; then elseBlock; else thenBlock"></ng-container>
-          <ng-template #thenBlock>
-             <div class="expenseRow">
-            <h3>{{ expense.expense }}</h3>
-          <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount }}</h6>
-
-          </div>
-            <!-- <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo">✏️</span> -->
-          </ng-template>
-          <ng-template #elseBlock>
-            <div class="expenseRow">
-            <textarea rows="1" [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus spellcheck="false"></textarea>
-            <span>₹</span>&nbsp;
-            <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount" class="expenseAmountEditInput"/>
-            <!-- <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span> -->
-             </div>
-          </ng-template>
-        </div>
-
-        <div class="todoOpt">
-          <!-- <h6 class="green">&#8377;{{ expense.expenseAmount }}</h6> -->
-           <p class="globalDate">{{ globalDate ? (globalDate | date:'dd/MM/yy') : '' }}</p>
-            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo" *ngIf="!expense.isUpdate">✏️</span>
-            <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="edit todo" *ngIf="expense.isUpdate">📁</span>
-
-          <button (click)="expense.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
-          <ng-container *ngIf="expense.getConfirmation">
-           <div class="confirmation">
-            <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
-            <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:22}}..."</span> expense?</h4>
-            <div>
-              <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
-              <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
-            </div>
-           </div>
-         </ng-container>
+          </ng-container>
         </div>
       </div>
-      <div class="totalExpense" *ngIf="list.expenses.length > 1">
-        <h3>Total Expense: </h3>
-        <h3>&#8377;{{ calculateTotalExpense(list) }}</h3>
+      <div class="top">
+        <input type="text" placeholder="Enter your expense" #expense />
+        <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput" />
+        <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+
+          Add expense</button>
+      </div>
+
+      <div class="bottom">
+        <div class="todoList" *ngFor="let expense of list.expenses; let j = index">
+          <h3>{{ j + 1 }}.</h3>
+          <div class="todoItem">
+
+            <ng-container *ngIf="expense.isUpdate; then elseBlock; else thenBlock"></ng-container>
+            <ng-template #thenBlock>
+              <div class="expenseRow">
+                <h3>{{ expense.expense }}</h3>
+                <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount }}</h6>
+
+              </div>
+            </ng-template>
+            <ng-template #elseBlock>
+              <div class="expenseRow">
+                <textarea rows="1" [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
+                  spellcheck="false"></textarea>
+                <span>₹</span>&nbsp;
+                <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount"
+                  class="expenseAmountEditInput" />
+              </div>
+            </ng-template>
+          </div>
+
+          <div class="todoOpt">
+            <p class="globalDate">{{ globalDate ? (globalDate | date:'dd/MM/yy') : '' }}</p>
+            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo"
+              *ngIf="!expense.isUpdate">✏️</span>
+            <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="edit todo"
+              *ngIf="expense.isUpdate">📁</span>
+
+            <button (click)="expense.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
+            <ng-container *ngIf="expense.getConfirmation">
+              <div class="confirmation">
+                <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
+                <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:22}}..."</span>
+                  expense?</h4>
+                <div>
+                  <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
+                  <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="totalExpense" *ngIf="list.expenses.length > 1">
+          <h3>Total Expense: </h3>
+          <h3>&#8377;{{ calculateTotalExpense(list) }}</h3>
+        </div>
       </div>
     </div>
-  </div>
   </ng-container>
 </div>
