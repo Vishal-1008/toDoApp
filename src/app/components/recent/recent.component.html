@@ -1,8 +1,20 @@
 <div class="recent">
-  <h4>
-    All {{type}}s <span>{{ data }}</span>
-  </h4>
-  <h4 class="title" *ngFor="let item of titles; let i = index">
-     >&nbsp;{{ item.title }}
-  </h4>
+  <ng-container *ngIf="type == 'todo'">
+    <h4>
+      All {{ type }}s <span>{{ todoCount }}</span>
+    </h4>
+
+    <h4 class="title" *ngFor="let item of todoTitles; let i = index">
+      >&nbsp;{{ item.title }}
+    </h4>
+  </ng-container>
+
+  <ng-container *ngIf="type == 'expense'">
+    <h4>
+      All {{ type }}s <span>{{ expenseCount }}</span>
+    </h4>
+    <h4 class="title" *ngFor="let item of expenseTitles; let i = index">
+      >&nbsp;{{ item.title }}
+    </h4>
+  </ng-container>
 </div>

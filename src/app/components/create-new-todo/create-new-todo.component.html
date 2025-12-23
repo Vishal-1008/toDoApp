@@ -1,9 +1,4 @@
 <div class="newToDoContainer">
-  <!-- <div class="overlay1"></div>
-  <div class="overlay2"></div>
-  <div class="overlay3"></div>
-  <div class="overlay4"></div>
-  <div class="overlay5"></div> -->
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
@@ -15,7 +10,7 @@
     <h4>⚠️ {{ errorMsg }}</h4>
   </div>
 
-  <app-recent [data]="todoMasterList.length" [titles]="todoTitles" [type]="listType"></app-recent>
+  <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles" [expenseTitles]="expenseTitles" [type]="listType"></app-recent>
 
   <!----------------------------------------------------- TODO ----------------------------------------------------->
   <ng-container *ngIf="listType == 'todo'">
