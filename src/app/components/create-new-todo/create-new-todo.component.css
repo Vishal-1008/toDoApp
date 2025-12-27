@@ -292,8 +292,6 @@
   color: #fff;
   font-weight: 500;
   margin-right: 1vw;
-  box-sizing: content-box;  
-  min-height: 0 !important;
 }
 
 .editInput::-webkit-scrollbar {
