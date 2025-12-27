@@ -58,11 +58,11 @@
               <div>
                 <h3>{{ todo.todo }}</h3>
               </div>
-              <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
+              <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo">✏️</span>
             </ng-template>
             <ng-template #elseBlock>
-              <textarea [value]="todo.todo" #updateTodo class="editInput" autofocus
-                spellcheck="false"></textarea>
+              <textarea [value]="todo.todo" #updateTodo #ta class="editInput" autofocus
+                spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)"></textarea>
               <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
             </ng-template>
           </div>
@@ -132,8 +132,8 @@
             </ng-template>
             <ng-template #elseBlock>
               <div class="expenseRow">
-                <textarea [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
-                  spellcheck="false"></textarea>
+                <textarea #ta [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
+                  spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)"></textarea>
                 <span>₹</span>&nbsp;
                 <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount"
                   class="expenseAmountEditInput" />
@@ -143,7 +143,7 @@
 
           <div class="todoOpt">
             <p class="globalDate">{{ globalDate ? (globalDate | date:'dd/MM/yy') : '' }}</p>
-            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo"
+            <span class="editTodo" (click)="expense.isUpdate = true; enterEditMode()" title="edit todo"
               *ngIf="!expense.isUpdate">✏️</span>
             <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="edit todo"
               *ngIf="expense.isUpdate">📁</span>

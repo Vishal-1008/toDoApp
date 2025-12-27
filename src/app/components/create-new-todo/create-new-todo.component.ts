@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { RecentComponent } from '../recent/recent.component';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { text } from 'node:stream/consumers';
 
 interface TodoItem {
   todo: string;
@@ -39,16 +40,10 @@ interface ExpenseList {
 @Component({
   selector: 'app-create-new-todo',
   standalone: true,
-  imports: [
-    CommonModule,
-    RecentComponent,
-    DatePickerComponent,
-    FormsModule
-  ],
+  imports: [CommonModule, RecentComponent, DatePickerComponent, FormsModule],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
 })
-
 export class CreateNewTodoComponent implements OnInit {
   selDate!: Date;
   errorStatus = false;
@@ -60,10 +55,12 @@ export class CreateNewTodoComponent implements OnInit {
   listType: string = '';
   globalDate: Date = new Date();
 
-  constructor(private route: ActivatedRoute) { }
+  @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
+
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.listType = params.get('type')!;
     });
 
@@ -72,22 +69,21 @@ export class CreateNewTodoComponent implements OnInit {
     const storedTodo = localStorage.getItem('todoMasterList');
     if (storedTodo) {
       this.todoMasterList = JSON.parse(storedTodo);
-      this.todoTitles = this.todoMasterList.map(list => ({
-        title: list.title
+      this.todoTitles = this.todoMasterList.map((list) => ({
+        title: list.title,
       }));
     }
 
     const storedExpense = localStorage.getItem('expenseMasterList');
     if (storedExpense) {
       this.expenseMasterList = JSON.parse(storedExpense);
-      this.expenseTitles = this.expenseMasterList.map(list => ({
-        title: list.title
+      this.expenseTitles = this.expenseMasterList.map((list) => ({
+        title: list.title,
       }));
     }
   }
 
   addTitle(title: string, type: string) {
-
     if (type == 'todo') {
       if (this.todoMasterList.length < 5 && title && title.trim().length > 0) {
         this.todoMasterList.unshift({
@@ -105,13 +101,14 @@ export class CreateNewTodoComponent implements OnInit {
           ],
         });
         this.todoTitles.push({
-          title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1)
+          title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
         });
         this.selDate = undefined!;
         this.saveToLocalStorage('todo');
       } else if (this.todoMasterList.length >= 5) {
         this.errorStatus = true;
-        this.errorMsg = 'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
+        this.errorMsg =
+          'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;
@@ -119,7 +116,8 @@ export class CreateNewTodoComponent implements OnInit {
         }, 4000);
       } else if (!title && this.todoMasterList.length <= 5) {
         this.errorStatus = true;
-        this.errorMsg = 'Cannot create list without title. Enter list title and try again.';
+        this.errorMsg =
+          'Cannot create list without title. Enter list title and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;
@@ -127,7 +125,11 @@ export class CreateNewTodoComponent implements OnInit {
         }, 4000);
       }
     } else if (type == 'expense') {
-      if (this.expenseMasterList.length < 5 && title && title.trim().length > 0) {
+      if (
+        this.expenseMasterList.length < 5 &&
+        title &&
+        title.trim().length > 0
+      ) {
         this.expenseMasterList.unshift({
           title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
           date: this.selDate,
@@ -144,13 +146,14 @@ export class CreateNewTodoComponent implements OnInit {
           ],
         });
         this.expenseTitles.push({
-          title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1)
+          title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
         });
         this.selDate = undefined!;
         this.saveToLocalStorage('expense');
       } else if (this.expenseMasterList.length >= 5) {
         this.errorStatus = true;
-        this.errorMsg = 'Cannot create more than 5 expense lists at an instance! Please delete some lists and try again.';
+        this.errorMsg =
+          'Cannot create more than 5 expense lists at an instance! Please delete some lists and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;
@@ -158,7 +161,8 @@ export class CreateNewTodoComponent implements OnInit {
         }, 4000);
       } else if (!title && this.expenseMasterList.length <= 5) {
         this.errorStatus = true;
-        this.errorMsg = 'Cannot create list without title. Enter list title and try again.';
+        this.errorMsg =
+          'Cannot create list without title. Enter list title and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;
@@ -166,7 +170,21 @@ export class CreateNewTodoComponent implements OnInit {
         }, 4000);
       }
     }
+  }
 
+  autoResize(textarea: HTMLTextAreaElement) {
+    textarea.style.height = 'auto'; // reset
+    textarea.style.height = textarea.scrollHeight + 'px';
+  }
+
+  enterEditMode() {
+    console.log('hello');
+    
+     if (this.ta) {
+      console.log('hey');
+      
+      setTimeout(() => this.autoResize(this.ta.nativeElement));
+    }
   }
 
   addTodo(listIndex: number, text: string, priorityOrAmount: string) {
@@ -209,17 +227,24 @@ export class CreateNewTodoComponent implements OnInit {
     }
   }
 
-  saveTodo(listIndex: number, taskIndex: number, updateTodoOrExpense: string, updateExpenseAmount?: string) {
-
+  saveTodo(
+    listIndex: number,
+    taskIndex: number,
+    updateTodoOrExpense: string,
+    updateExpenseAmount?: string
+  ) {
     if (this.listType === 'todo') {
-      this.todoMasterList[listIndex].tasks[taskIndex].todo = updateTodoOrExpense;
+      this.todoMasterList[listIndex].tasks[taskIndex].todo =
+        updateTodoOrExpense;
       this.todoMasterList[listIndex].tasks[taskIndex].isUpdate = false;
       this.saveToLocalStorage('todo');
     }
 
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].expenses[taskIndex].expense = updateTodoOrExpense;
-      this.expenseMasterList[listIndex].expenses[taskIndex].expenseAmount = updateExpenseAmount!;
+      this.expenseMasterList[listIndex].expenses[taskIndex].expense =
+        updateTodoOrExpense;
+      this.expenseMasterList[listIndex].expenses[taskIndex].expenseAmount =
+        updateExpenseAmount!;
       this.expenseMasterList[listIndex].expenses[taskIndex].isUpdate = false;
       this.saveToLocalStorage('expense');
     }
@@ -233,7 +258,8 @@ export class CreateNewTodoComponent implements OnInit {
     }
 
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
+      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation =
+        false;
       this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
       this.saveToLocalStorage('expense');
     }
@@ -241,21 +267,22 @@ export class CreateNewTodoComponent implements OnInit {
 
   deleteList(listIndex: number) {
     if (this.listType === 'todo') {
-      this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
-      this.todoMasterList.splice((listIndex), 1);
-      this.todoTitles.splice((listIndex), 1);
+      this.todoMasterList[listIndex].getConfirmation =
+        !this.todoMasterList[listIndex].getConfirmation;
+      this.todoMasterList.splice(listIndex, 1);
+      this.todoTitles.splice(listIndex, 1);
       this.saveToLocalStorage();
     }
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
-      this.expenseMasterList.splice((listIndex), 1);
-      this.expenseTitles.splice((listIndex), 1);
+      this.expenseMasterList[listIndex].getConfirmation =
+        !this.expenseMasterList[listIndex].getConfirmation;
+      this.expenseMasterList.splice(listIndex, 1);
+      this.expenseTitles.splice(listIndex, 1);
       this.saveToLocalStorage('expense');
     }
   }
 
   moveUp(listIndex: number, type: 'todo' | 'expense') {
-
     if (type === 'todo') {
       const [todoList] = this.todoMasterList.splice(listIndex, 1);
       const [title] = this.todoTitles.splice(listIndex, 1);
@@ -267,7 +294,6 @@ export class CreateNewTodoComponent implements OnInit {
         this.todoMasterList.splice(listIndex, 0, todoList);
         this.todoTitles.splice(listIndex, 0, title);
       }
-
     } else {
       const [expenseList] = this.expenseMasterList.splice(listIndex, 1);
       const [title] = this.expenseTitles.splice(listIndex, 1);
@@ -285,7 +311,6 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   moveDown(listIndex: number, type: 'todo' | 'expense') {
-
     if (type === 'todo') {
       if (listIndex === this.todoMasterList.length - 1) return;
 
@@ -294,7 +319,6 @@ export class CreateNewTodoComponent implements OnInit {
 
       this.todoMasterList.splice(listIndex + 1, 0, todoList);
       this.todoTitles.splice(listIndex + 1, 0, title);
-
     } else {
       if (listIndex === this.expenseMasterList.length - 1) return;
 
@@ -324,9 +348,15 @@ export class CreateNewTodoComponent implements OnInit {
   saveToLocalStorage(type?: string) {
     if (this.isBrowser()) {
       if (type === 'todo' && this.todoMasterList.length > 0) {
-        localStorage.setItem('todoMasterList', JSON.stringify(this.todoMasterList));
+        localStorage.setItem(
+          'todoMasterList',
+          JSON.stringify(this.todoMasterList)
+        );
       } else if (type === 'expense' && this.expenseMasterList.length > 0) {
-        localStorage.setItem('expenseMasterList', JSON.stringify(this.expenseMasterList));
+        localStorage.setItem(
+          'expenseMasterList',
+          JSON.stringify(this.expenseMasterList)
+        );
       }
     }
   }

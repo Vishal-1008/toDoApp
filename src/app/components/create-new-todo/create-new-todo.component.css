@@ -283,7 +283,7 @@
 
 .editInput {
   width: 80%;
-  resize: vertical;
+  resize: none;
   outline: none;
   border: none;
   font-size: 0.8vw;
@@ -656,8 +656,7 @@ input[type=number] {
   }
 
   .editInput {
-    width: 75%;
-    resize: vertical;
+    resize: none;
     outline: none;
     border: none;
     font-size: 3vw;
@@ -667,6 +666,10 @@ input[type=number] {
     font-weight: 500;
     padding-right: 2px;
     /* transition: 0.15s ease-in-out; */
+  }
+
+  .todoItem .expenseRow .editInput {
+    width: 75%;
   }
 
   .editInput:focus {
@@ -771,6 +774,10 @@ input[type=number] {
 
   .globalDate {
     display: none;
+  }
+
+  .todoItem textarea {
+    width: 82%;
   }
 }
 
