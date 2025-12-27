@@ -174,7 +174,9 @@ export class CreateNewTodoComponent implements OnInit {
 
   autoResize(textarea: HTMLTextAreaElement) {
     textarea.style.height = 'auto'; // reset
-    textarea.style.height = `${textarea.scrollHeight}px`;
+    requestAnimationFrame(() => {
+      textarea.style.height = textarea.scrollHeight + 'px';
+    });
   }
 
   enterEditMode() {
