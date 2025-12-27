@@ -61,7 +61,7 @@
               <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
             </ng-template>
             <ng-template #elseBlock>
-              <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus
+              <textarea rows="1" [value]="todo.todo" #updateTodo class="editInput" autofocus
                 spellcheck="false"></textarea>
               <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
             </ng-template>
