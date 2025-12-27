@@ -61,7 +61,7 @@
               <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
             </ng-template>
             <ng-template #elseBlock>
-              <textarea rows="1" [value]="todo.todo" #updateTodo class="editInput" autofocus
+              <textarea [value]="todo.todo" #updateTodo class="editInput" autofocus
                 spellcheck="false"></textarea>
               <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
             </ng-template>
@@ -132,7 +132,7 @@
             </ng-template>
             <ng-template #elseBlock>
               <div class="expenseRow">
-                <textarea rows="1" [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
+                <textarea [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
                   spellcheck="false"></textarea>
                 <span>₹</span>&nbsp;
                 <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount"
