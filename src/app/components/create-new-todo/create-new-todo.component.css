@@ -306,11 +306,12 @@
   gap: 1vw;
 }
 
-.todoOpt h6 {
+.todoItem h6 {
   padding: 0.1vw 0.3vw;
   border-radius: 0.25vw;
   font-weight: 600;
   font-size: 0.7vw;
+  min-width: fit-content;
 }
 
 .globalDate {
@@ -699,7 +700,7 @@ input[type=number] {
     gap: 4vw;
   }
 
-  .todoOpt h6 {
+  .todoItem h6 {
     padding: 0.5vw 1vw;
     border-radius: 1vw;
     font-weight: 600;
