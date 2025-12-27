@@ -63,7 +63,7 @@
               <!-- <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo">✏️</span> -->
             </ng-template>
             <ng-template #elseBlock>
-              <textarea [value]="todo.todo" #updateTodo #ta class="editInput"
+              <textarea [value]="todo.todo" [(ngModel)]="todo.todo" #updateTodo #ta class="editInput"
                 spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
                 <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
                   todo.pri }}</h6>
