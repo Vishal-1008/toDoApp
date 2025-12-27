@@ -178,13 +178,7 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   enterEditMode() {
-    console.log('hello');
-    
-     if (this.ta) {
-      console.log('hey');
-      
       setTimeout(() => this.autoResize(this.ta.nativeElement));
-    }
   }
 
   addTodo(listIndex: number, text: string, priorityOrAmount: string) {
