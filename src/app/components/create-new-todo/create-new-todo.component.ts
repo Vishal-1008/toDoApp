@@ -97,7 +97,7 @@ export class CreateNewTodoComponent implements OnInit {
           getConfirmation: false,
           tasks: [
             {
-              todo: 'your todos here!',
+              todo: 'your todo here!',
               pri: 'Medium',
               isUpdate: false,
               getConfirmation: false,
@@ -136,7 +136,7 @@ export class CreateNewTodoComponent implements OnInit {
           totalExpense: 0,
           expenses: [
             {
-              expense: 'your expenses here!',
+              expense: 'your expense here!',
               expenseAmount: '0',
               isUpdate: false,
               getConfirmation: false,

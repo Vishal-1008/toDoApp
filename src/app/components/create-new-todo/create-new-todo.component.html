@@ -2,8 +2,7 @@
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
-    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create {{listType}}
-      +</button>
+    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create list</button>
   </div>
 
   <div class="errorMsg" *ngIf="errorStatus">
@@ -45,8 +44,8 @@
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-        <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+ Add
-          task</button>
+        <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+
+          Task</button>
       </div>
 
       <div class="bottom">
@@ -115,7 +114,7 @@
         <input type="text" placeholder="Enter your expense" #expense />
         <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput" />
         <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+
-          Add expense</button>
+           Expense</button>
       </div>
 
       <div class="bottom">
