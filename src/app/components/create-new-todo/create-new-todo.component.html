@@ -64,7 +64,7 @@
             </ng-template>
             <ng-template #elseBlock>
               <textarea [value]="todo.todo" #updateTodo #ta class="editInput"
-                spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)"></textarea>
+                spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
                 <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
                   todo.pri }}</h6>
               <!-- <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span> -->
@@ -141,7 +141,7 @@
             <ng-template #elseBlock>
               <div class="expenseRow">
                 <textarea #ta [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput"
-                  spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)"></textarea>
+                  spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
                 <span>₹</span>&nbsp;
                 <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount"
                   class="expenseAmountEditInput" />

@@ -56,9 +56,9 @@ export class CreateNewTodoComponent implements OnInit {
   globalDate: Date = new Date();
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
-
+  
   constructor(private route: ActivatedRoute) {}
-
+  
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.listType = params.get('type')!;
@@ -174,7 +174,7 @@ export class CreateNewTodoComponent implements OnInit {
 
   autoResize(textarea: HTMLTextAreaElement) {
     textarea.style.height = 'auto'; // reset
-    textarea.style.height = textarea.scrollHeight + 'px';
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
   enterEditMode() {
