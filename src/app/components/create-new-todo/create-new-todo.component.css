@@ -447,6 +447,7 @@ input[type=number] {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1vw;
+    padding: 0 3vw;
   }
 
   .titleOpt h1 {
@@ -550,7 +551,7 @@ input[type=number] {
     background-color: #151515;
     border-radius: 2.5vw;
     border: 1px solid #222;
-    padding: 3vw;
+    padding: 3vw 0;
   }
 
   .top {
@@ -559,6 +560,10 @@ input[type=number] {
     display: flex;
     justify-content: space-between;
     margin-top: 3vh;
+  }
+
+  .toDoCont .top {
+    padding: 0 3vw;
   }
 
   .top input {
@@ -607,12 +612,14 @@ input[type=number] {
   .bottom {
     width: 100%;
     background-color: #111;
-    border: 1px solid #222;
+    border: none;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
     margin-top: 3%;
     display: flex;
     flex-direction: column;
-    padding: 2vw 1vw;
-    border-radius: 1vw;
+    padding: 3vw 1vw;
+    border-radius: 0;
     gap: 1vw;
   }
 
@@ -620,10 +627,10 @@ input[type=number] {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    border-bottom: 1px solid #222;
+    border-bottom: 2px dotted #222;
     transition: 0.1s ease-in;
-    padding: 1vw 2vw;
-    border-radius: 0.6vw;
+    padding: 2vw;
+    border-radius: 0;
   }
 
   .todoItem {
@@ -637,7 +644,7 @@ input[type=number] {
   .todoList .deleteBtn {
     outline: none;
     border: none;
-    padding: 0.4vw 0.7vw;
+    padding: 0.6vw;
     font-size: 3vw;
     border-radius: 1vw;
     transition: 0.1s ease-in;
@@ -651,7 +658,7 @@ input[type=number] {
 
   .todoList h3 {
     font-size: 3vw;
-    margin-right: 1vw;
+    margin-right: 1.5vw;
     font-weight: 500;
   }
 
@@ -661,11 +668,9 @@ input[type=number] {
     border: none;
     font-size: 3vw;
     background-color: transparent;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #89ac46;
     color: #fff;
     font-weight: 500;
-    padding-right: 2px;
-    /* transition: 0.15s ease-in-out; */
   }
 
   .todoItem .expenseRow .editInput {
@@ -682,7 +687,7 @@ input[type=number] {
   }
 
   .todoOpt {
-    width: 25%;
+    width: 22%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -714,7 +719,7 @@ input[type=number] {
     cursor: pointer;
     transition: 0.1s ease-in;
     background-color: #666;
-    padding: 0.4vw 0.7vw;
+    padding: 0.6vw;
     font-size: 3vw;
     border-radius: 1vw;
     min-width: fit-content;
@@ -748,7 +753,6 @@ input[type=number] {
     font-size: 3vw;
     border-radius: 6px;
     padding: 0.4vw 1vw;
-    /* transition: 0.15s ease-in-out; */
   }
   
   .expenseAmountEditInput:focus {
@@ -764,8 +768,10 @@ input[type=number] {
 
   .totalExpense {
     padding: 2vw;
-    width: 75%;
-    border-radius: 1vw;
+    width: 80%;
+    border-radius: 0;
+    background-color: unset;
+    border-bottom: 2px dotted #222;
   }
 
   .totalExpense h3 {
