@@ -644,7 +644,7 @@ input[type=number] {
   .todoList .deleteBtn {
     outline: none;
     border: none;
-    padding: 0.6vw;
+    padding: 0.4vw 0.6vw;
     font-size: 3vw;
     border-radius: 1vw;
     transition: 0.1s ease-in;
@@ -719,7 +719,7 @@ input[type=number] {
     cursor: pointer;
     transition: 0.1s ease-in;
     background-color: #666;
-    padding: 0.6vw;
+    padding: 0.4vw 0.6vw;
     font-size: 3vw;
     border-radius: 1vw;
     min-width: fit-content;
