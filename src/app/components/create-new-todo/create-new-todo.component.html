@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="top">
-        <input type="text" placeholder="Enter your task" #todo />
+        <input type="text" placeholder="Enter your todo" #todo />
         <select name="priority" #priority>
           <option value="Priority" disabled selected>Priority ◢</option>
           <option value="High">High</option>
@@ -78,7 +78,7 @@
               <span class="editTodo" (click)="saveTodo(i, j, todo.todo, todo.pri)" title="save todo"
                 *ngIf="todo.isUpdate">📁</span>
 
-            <button (click)="todo.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
+            <button (click)="todo.getConfirmation = true" title="delete todo" class="deleteBtn">🗑️</button>
             <ng-container *ngIf="todo.getConfirmation">
               <div class="confirmation">
                 <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
