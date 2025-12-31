@@ -2,8 +2,7 @@
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list title" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
-    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create {{listType}}
-      +</button>
+    <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create list</button>
   </div>
 
   <div class="errorMsg" *ngIf="errorStatus">
@@ -38,15 +37,15 @@
         </div>
       </div>
       <div class="top">
-        <input type="text" placeholder="Enter your task" #todo />
+        <input type="text" placeholder="Enter your todo" #todo />
         <select name="priority" #priority>
           <option value="Priority" disabled selected>Priority ◢</option>
           <option value="High">High</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
         </select>
-        <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+ Add
-          task</button>
+        <button (click)="addTodo(i, todo.value, priority.value); todo.value = ''; priority.value = 'Priority'">+
+          Task</button>
       </div>
 
       <div class="bottom">
@@ -59,19 +58,27 @@
               <div>
                 <h3>{{ todo.todo }}</h3>
               </div>
-              <span class="editTodo" (click)="todo.isUpdate = true" title="edit todo">✏️</span>
+              <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
+                todo.pri }}</h6>
+              <!-- <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo">✏️</span> -->
             </ng-template>
             <ng-template #elseBlock>
-              <textarea rows="4" [value]="todo.todo" #updateTodo class="editInput" autofocus
-                spellcheck="false"></textarea>
-              <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span>
+              <textarea [value]="todo.todo" [(ngModel)]="todo.todo" #updateTodo #ta class="editInput"
+                spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
+                <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
+                  todo.pri }}</h6>
+              <!-- <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span> -->
             </ng-template>
           </div>
 
           <div class="todoOpt">
-            <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
-              todo.pri }}</h6>
-            <button (click)="todo.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
+            <!-- <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
+              todo.pri }}</h6> -->
+              <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo" *ngIf="!todo.isUpdate">✏️</span>
+              <span class="editTodo" (click)="saveTodo(i, j, todo.todo, todo.pri)" title="save todo"
+                *ngIf="todo.isUpdate">📁</span>
+
+            <button (click)="todo.getConfirmation = true" title="delete todo" class="deleteBtn">🗑️</button>
             <ng-container *ngIf="todo.getConfirmation">
               <div class="confirmation">
                 <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
@@ -115,7 +122,7 @@
         <input type="text" placeholder="Enter your expense" #expense />
         <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput" />
         <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+
-          Add expense</button>
+           Expense</button>
       </div>
 
       <div class="bottom">
@@ -133,8 +140,8 @@
             </ng-template>
             <ng-template #elseBlock>
               <div class="expenseRow">
-                <textarea rows="1" [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput" autofocus
-                  spellcheck="false"></textarea>
+                <textarea #ta [value]="expense.expense" [(ngModel)]="expense.expense" class="editInput"
+                  spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
                 <span>₹</span>&nbsp;
                 <input type="number" [value]="expense.expenseAmount" [(ngModel)]="expense.expenseAmount"
                   class="expenseAmountEditInput" />
@@ -144,12 +151,12 @@
 
           <div class="todoOpt">
             <p class="globalDate">{{ globalDate ? (globalDate | date:'dd/MM/yy') : '' }}</p>
-            <span class="editTodo" (click)="expense.isUpdate = true" title="edit todo"
+            <span class="editTodo" (click)="expense.isUpdate = true; enterEditMode()" title="edit expense"
               *ngIf="!expense.isUpdate">✏️</span>
-            <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="edit todo"
+            <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="save expense"
               *ngIf="expense.isUpdate">📁</span>
 
-            <button (click)="expense.getConfirmation = true" title="delete task" class="deleteBtn">🗑️</button>
+            <button (click)="expense.getConfirmation = true" title="delete expense" class="deleteBtn">🗑️</button>
             <ng-container *ngIf="expense.getConfirmation">
               <div class="confirmation">
                 <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
