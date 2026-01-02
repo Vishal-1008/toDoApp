@@ -175,8 +175,10 @@
 }
 
 .top {
-  margin-top: 6vh;
-  height: 5vh;
+  /* margin-top: 6vh; */
+  margin-top: 50px;
+  /* height: 5vh; */
+  height: 40px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -558,11 +560,12 @@ input[type=number] {
   }
 
   .top {
-    height: 5vh;
+    /* height: 5vh; */
+    height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 3vh;
+    margin-top: 35px;
   }
 
   .toDoCont .top {

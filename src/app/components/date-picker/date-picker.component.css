@@ -7,7 +7,8 @@
 
 ::ng-deep .p-calendar {
     border-radius: 0.6vw;
-    height: 5vh; 
+    /* height: 5vh;  */
+    height: 40px; 
   }
   
   ::ng-deep p-calendar input {

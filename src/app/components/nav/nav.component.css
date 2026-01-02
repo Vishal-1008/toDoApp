@@ -1,5 +1,6 @@
 .navbar {
-    height: 7vh;
+    /* height: 7vh; */
+    height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
