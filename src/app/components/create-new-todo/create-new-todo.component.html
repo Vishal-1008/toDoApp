@@ -150,7 +150,7 @@
           </div>
 
           <div class="todoOpt">
-            <p class="globalDate">{{ globalDate ? (globalDate | date:'dd/MM/yy') : '' }}</p>
+            <p class="globalDate">{{ expense.date ? (expense.date | date:'dd/MM/yy') : '' }}</p>
             <span class="editTodo" (click)="expense.isUpdate = true; enterEditMode()" title="edit expense"
               *ngIf="!expense.isUpdate">✏️</span>
             <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="save expense"

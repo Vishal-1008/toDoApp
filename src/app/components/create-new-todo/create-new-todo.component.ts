@@ -26,6 +26,7 @@ interface expenseItem {
   expenseAmount: string;
   isUpdate: boolean;
   getConfirmation?: boolean;
+  date?: number;
 }
 
 interface ExpenseList {
@@ -215,6 +216,7 @@ export class CreateNewTodoComponent implements OnInit {
         expenseAmount: priorityOrAmount,
         isUpdate: false,
         getConfirmation: false,
+        date: Date.now(),
       });
 
       this.saveToLocalStorage('expense');
