@@ -661,7 +661,7 @@ input[type=number] {
     font-size: 3vw;
     border-radius: 1vw;
     transition: 0.1s ease-in;
-    background-color: #666;
+    background-color: transparent;
   }
 
   .todoList .deleteBtn:hover {
@@ -704,7 +704,8 @@ input[type=number] {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 4vw;
+    gap: 3px;
+    margin-left: 4px;
   }
 
   .todoItem h6 {
@@ -731,7 +732,7 @@ input[type=number] {
     place-content: center;
     cursor: pointer;
     transition: 0.1s ease-in;
-    background-color: #666;
+    background-color: transparent;
     padding: 0.4vw 0.8vw;
     font-size: 3vw;
     border-radius: 1vw;
@@ -792,13 +793,9 @@ input[type=number] {
   }
 
   .globalDate {
-    /* display: none; */
-    position: absolute;
-    z-index: 100;
-    top: -11px;
-    left: -242px;
     font-size: 2.6vw;
     font-weight: 600;
+    margin-right: 0;
   }
 
   .todoItem textarea {
