@@ -433,7 +433,7 @@ input[type=number] {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 10vw;
+    gap: 7vw;
   }
 
   .titleCont {
@@ -565,7 +565,7 @@ input[type=number] {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 35px;
+    margin-top: 18px;
   }
 
   .toDoCont .top {
