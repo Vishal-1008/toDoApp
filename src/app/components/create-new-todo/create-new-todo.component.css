@@ -565,7 +565,7 @@ input[type=number] {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 18px;
+    margin-top: 10px;
   }
 
   .toDoCont .top {
