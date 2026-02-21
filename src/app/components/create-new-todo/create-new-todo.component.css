@@ -165,7 +165,7 @@
 
 .toDoCont {
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   height: auto;
   width: 60%;
   background-color: #151515;
@@ -428,6 +428,21 @@ input[type=number] {
   display: none;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  background-color: transparent;
+  backdrop-filter: blur(6px);
+  transition: 0.2s ease-in-out;
+}
+
 /* START: MOBILE VIEW */
 
 @media only screen and (max-width: 768px) {
@@ -559,7 +574,7 @@ input[type=number] {
 
   .toDoCont {
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
     height: auto;
     width: 100%;
     background-color: #151515;

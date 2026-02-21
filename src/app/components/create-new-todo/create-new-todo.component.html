@@ -5,9 +5,11 @@
     <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create list</button>
   </div>
 
-  <div class="errorMsg" *ngIf="errorStatus">
-    <span class="closeModal" (click)="errorStatus = false">x</span>
-    <h4>⚠️ {{ errorMsg }}</h4>
+  <div class="overlay" *ngIf="errorStatus">
+    <div class="errorMsg">
+      <span class="closeModal" (click)="errorStatus = false">x</span>
+      <h4>⚠️ {{ errorMsg }}</h4>
+    </div>
   </div>
 
   <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles"
@@ -25,12 +27,14 @@
             [ngClass]="{ 'opacity-50': i === (todoMasterList.length - 1) }">👇🏽</button>
           <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
           <ng-container *ngIf="list.getConfirmation">
-            <div class="confirmation">
-              <span class="closeModal" (click)="list.getConfirmation = false">x</span>
-              <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
-              <div>
-                <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
-                <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+            <div class="overlay">
+              <div class="confirmation">
+                <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+                <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list????</h4>
+                <div>
+                  <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
+                  <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+                </div>
               </div>
             </div>
           </ng-container>
@@ -80,12 +84,14 @@
 
             <button (click)="todo.getConfirmation = true" title="delete todo" class="deleteBtn">🗑️</button>
             <ng-container *ngIf="todo.getConfirmation">
-              <div class="confirmation">
-                <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
-                <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:22}}..."</span> task?</h4>
-                <div>
-                  <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
-                  <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+              <div class="overlay">
+                <div class="confirmation">
+                  <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
+                  <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:22}}..."</span> task?</h4>
+                  <div>
+                    <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
+                    <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+                  </div>
                 </div>
               </div>
             </ng-container>
@@ -107,12 +113,14 @@
             [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
           <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
           <ng-container *ngIf="list.getConfirmation">
-            <div class="confirmation">
-              <span class="closeModal" (click)="list.getConfirmation = false">x</span>
-              <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
-              <div>
-                <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
-                <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+            <div class="overlay">
+              <div class="confirmation">
+                <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+                <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
+                <div>
+                  <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
+                  <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
+                </div>
               </div>
             </div>
           </ng-container>
@@ -159,13 +167,15 @@
 
             <button (click)="expense.getConfirmation = true" title="delete expense" class="deleteBtn">🗑️</button>
             <ng-container *ngIf="expense.getConfirmation">
-              <div class="confirmation">
-                <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
-                <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:22}}..."</span>
-                  expense?</h4>
-                <div>
-                  <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
-                  <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+              <div class="overlay">
+                <div class="confirmation">
+                  <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
+                  <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:22}}..."</span>
+                    expense?</h4>
+                  <div>
+                    <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
+                    <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
+                  </div>
                 </div>
               </div>
             </ng-container>
