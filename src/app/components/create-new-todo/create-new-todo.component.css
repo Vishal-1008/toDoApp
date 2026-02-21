@@ -117,7 +117,7 @@
   position: absolute;
   top: 0.5vw;
   right: 0.5vw;
-  font-size: 0.9vw;
+  /* font-size: 0.9vw; */
   cursor: pointer;
   color: #ffa955;
   border-radius: 100px;
@@ -126,13 +126,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #333;
+  background-color: #e94a4a;
   transition: 0.1s ease-in-out;
 }
 
 .confirmation .closeModal:hover,
 .errorMsg .closeModal:hover {
-  background-color: #444;
+  background-color: #c03a3a;
 }
 
 .confirmation button {
@@ -540,11 +540,11 @@ input[type=number] {
 
   .errorMsg .closeModal,
   .confirmation .closeModal {
-    top: 1.5vw;
-    right: 1.5vw;
-    font-size: 2.5vw;
-    height: 4vw;
-    width: 4vw;
+    top: 1.9vw;
+    right: 1.9vw;
+    height: 3.2vw;
+    width: 3.2vw;
+    background-color: #e94a4a;
   }
 
 

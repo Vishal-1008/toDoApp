@@ -7,7 +7,7 @@
 
   <div class="overlay" *ngIf="errorStatus">
     <div class="errorMsg">
-      <span class="closeModal" (click)="errorStatus = false">x</span>
+      <span class="closeModal" (click)="errorStatus = false"></span>
       <h4>⚠️ {{ errorMsg }}</h4>
     </div>
   </div>
@@ -29,7 +29,7 @@
           <ng-container *ngIf="list.getConfirmation">
             <div class="overlay">
               <div class="confirmation">
-                <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+                <span class="closeModal" (click)="list.getConfirmation = false"></span>
                 <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
                 <div>
                   <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
@@ -86,7 +86,7 @@
             <ng-container *ngIf="todo.getConfirmation">
               <div class="overlay">
                 <div class="confirmation">
-                  <span class="closeModal" (click)="todo.getConfirmation = false">x</span>
+                  <span class="closeModal" (click)="todo.getConfirmation = false"></span>
                   <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:20}}"</span> task from <span class="bold">"{{list.title | slice:0:20}}"</span> list?</h4>
                   <div>
                     <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
@@ -115,7 +115,7 @@
           <ng-container *ngIf="list.getConfirmation">
             <div class="overlay">
               <div class="confirmation">
-                <span class="closeModal" (click)="list.getConfirmation = false">x</span>
+                <span class="closeModal" (click)="list.getConfirmation = false"></span>
                 <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
                 <div>
                   <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
@@ -169,7 +169,7 @@
             <ng-container *ngIf="expense.getConfirmation">
               <div class="overlay">
                 <div class="confirmation">
-                  <span class="closeModal" (click)="expense.getConfirmation = false">x</span>
+                  <span class="closeModal" (click)="expense.getConfirmation = false"></span>
                   <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:20}}"</span> expense from <span class="bold">"{{list.title | slice:0:20}}"</span> list?</h4>
                   <div>
                     <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
