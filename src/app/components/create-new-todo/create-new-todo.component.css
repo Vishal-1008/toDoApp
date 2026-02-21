@@ -420,6 +420,13 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.desktopDate {
+  display: block;
+}
+
+.mobileDate {
+  display: none;
+}
 
 /* START: MOBILE VIEW */
 
@@ -647,7 +654,7 @@ input[type=number] {
   }
 
   .todoItem {
-    width: 80%;
+    width: 75%;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -657,7 +664,7 @@ input[type=number] {
   .todoList .deleteBtn {
     outline: none;
     border: none;
-    padding: 0.4vw 0.8vw;
+    padding: 0;
     font-size: 3vw;
     border-radius: 1vw;
     transition: 0.1s ease-in;
@@ -665,8 +672,7 @@ input[type=number] {
   }
 
   .todoList .deleteBtn:hover {
-    background-color: #e94a4a;
-    color: #fff;
+    background-color: transparent;
   }
 
   .todoList h3 {
@@ -700,11 +706,11 @@ input[type=number] {
   }
 
   .todoOpt {
-    width: 22%;
+    width: 25%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
-    gap: 3px;
+    gap: 7px;
     margin-left: 4px;
   }
 
@@ -733,18 +739,19 @@ input[type=number] {
     cursor: pointer;
     transition: 0.1s ease-in;
     background-color: transparent;
-    padding: 0.4vw 0.8vw;
+    padding: 0;
     font-size: 3vw;
     border-radius: 1vw;
     min-width: fit-content;
   }
 
   .editTodo:hover {
-    background-color: #777;
+    background-color: transparent;
   }
 
   .expenseRow{
     align-items: flex-start;
+    /* width: 95%; */
   }
 
   .expenseRow h3 {
@@ -782,7 +789,7 @@ input[type=number] {
 
   .totalExpense {
     padding: 2vw;
-    width: 76.5%;
+    width: 75%;
     border-radius: 0;
     background-color: unset;
     border-bottom: 2px dotted #222;
@@ -800,6 +807,14 @@ input[type=number] {
 
   .todoItem textarea {
     width: 82%;
+  }
+
+  .desktopDate {
+    display: none;
+  }
+
+  .mobileDate {
+    display: block;
   }
 }
 
