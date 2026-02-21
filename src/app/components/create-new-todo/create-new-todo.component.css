@@ -515,18 +515,18 @@ input[type=number] {
     top: 24%;
     left: 50%;
     transform: translate(-50%, -20%);
-    width: 65%;
+    width: 68%;
     padding: 5vw;
-    border-radius: 3vw;
+    border-radius: 4vw;
   }
 
   .errorMsg h4,
   .confirmation h4 {
-    font-size: 2.5vw;
+    font-size: 3vw;
   }
 
   .confirmation .bold {
-    font-size: 2.5vw;
+    font-size: 3vw;
 
   }
 
@@ -549,10 +549,10 @@ input[type=number] {
 
 
   .confirmation button {
-    width: 15vw;
+    width: auto;
     padding: 1vw 2vw;
     border-radius: 1.5vw;
-    font-size: 2.5vw;
+    font-size: 3vw;
   }
 
   .cancelBtn {
