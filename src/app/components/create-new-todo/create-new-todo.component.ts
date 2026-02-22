@@ -255,7 +255,7 @@ export class CreateNewTodoComponent implements OnInit {
       this.deleteSuccess = true;
 
       this.errorStatus = true;
-      this.errorMsg = `Task ${deletedTask} has been deleted successfully from ${this.todoMasterList[listIndex].title} list!`;
+      this.errorMsg = `${deletedTask} has been deleted successfully from ${this.todoMasterList[listIndex].title} list!`;
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
@@ -271,7 +271,7 @@ export class CreateNewTodoComponent implements OnInit {
       this.deleteSuccess = true;
 
       this.errorStatus = true;
-      this.errorMsg = `Expense ${deletedExpense} has been deleted successfully from ${this.expenseMasterList[listIndex].title} list!`;
+      this.errorMsg = `${deletedExpense} has been deleted successfully from ${this.expenseMasterList[listIndex].title} list!`;
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
@@ -289,7 +289,7 @@ export class CreateNewTodoComponent implements OnInit {
       this.deleteSuccess = true;
 
       this.errorStatus = true;
-      this.errorMsg = `List ${deletedList} has been deleted successfully!`;
+      this.errorMsg = `${deletedList} has been deleted successfully!`;
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
@@ -306,7 +306,7 @@ export class CreateNewTodoComponent implements OnInit {
       this.deleteSuccess = true;
 
       this.errorStatus = true;
-      this.errorMsg = `List ${deletedList} has been deleted successfully!`;
+      this.errorMsg = `${deletedList} has been deleted successfully!`;
       setTimeout(() => {
         this.errorStatus = false;
         this.errorMsg = '';
