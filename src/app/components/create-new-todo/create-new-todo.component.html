@@ -30,7 +30,7 @@
             <div class="overlay">
               <div class="confirmation">
                 <span class="closeModal" (click)="list.getConfirmation = false"></span>
-                <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
+                <h4>Are you sure you want to delete <span class="bold">{{ list.title }}</span> list?</h4>
                 <div>
                   <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
                   <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
@@ -87,7 +87,7 @@
               <div class="overlay">
                 <div class="confirmation">
                   <span class="closeModal" (click)="todo.getConfirmation = false"></span>
-                  <h4>Are you sure you want to delete <span class="bold">"{{todo.todo | slice:0:20}}"</span> task from <span class="bold">"{{list.title | slice:0:20}}"</span> list?</h4>
+                  <h4>Are you sure you want to delete <span class="bold">{{todo.todo | slice:0:20}}</span> task from <span class="bold">{{list.title | slice:0:20}}</span> list?</h4>
                   <div>
                     <button class="cancelBtn" (click)="todo.getConfirmation = false">Cancel</button>
                     <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>
@@ -116,7 +116,7 @@
             <div class="overlay">
               <div class="confirmation">
                 <span class="closeModal" (click)="list.getConfirmation = false"></span>
-                <h4>Are you sure you want to delete <span class="bold">"{{ list.title }}"</span> list?</h4>
+                <h4>Are you sure you want to delete <span class="bold">{{ list.title }}</span> list?</h4>
                 <div>
                   <button class="cancelBtn" (click)="list.getConfirmation = false"> Cancel</button>
                   <button class="confirmBtn" (click)="deleteList(i)">Confirm</button>
@@ -170,7 +170,7 @@
               <div class="overlay">
                 <div class="confirmation">
                   <span class="closeModal" (click)="expense.getConfirmation = false"></span>
-                  <h4>Are you sure you want to delete <span class="bold">"{{expense.expense | slice:0:20}}"</span> expense from <span class="bold">"{{list.title | slice:0:20}}"</span> list?</h4>
+                  <h4>Are you sure you want to delete <span class="bold">{{expense.expense | slice:0:20}}</span> expense from <span class="bold">{{list.title | slice:0:20}}</span> list?</h4>
                   <div>
                     <button class="cancelBtn" (click)="expense.getConfirmation = false">Cancel</button>
                     <button class="confirmBtn" (click)="deleteTodo(i, j)">Confirm</button>

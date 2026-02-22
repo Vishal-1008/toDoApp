@@ -57,9 +57,9 @@ export class CreateNewTodoComponent implements OnInit {
   globalDate: Date = new Date();
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
-  
+
   constructor(private route: ActivatedRoute) {}
-  
+
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.listType = params.get('type')!;
@@ -179,7 +179,7 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   enterEditMode() {
-      setTimeout(() => this.autoResize(this.ta.nativeElement));
+    setTimeout(() => this.autoResize(this.ta.nativeElement));
   }
 
   addTodo(listIndex: number, text: string, priorityOrAmount: string) {
@@ -227,7 +227,7 @@ export class CreateNewTodoComponent implements OnInit {
     listIndex: number,
     taskIndex: number,
     updateTodoOrExpense: string,
-    updateExpenseAmount?: string
+    updateExpenseAmount?: string,
   ) {
     if (this.listType === 'todo') {
       this.todoMasterList[listIndex].tasks[taskIndex].todo =
@@ -337,7 +337,7 @@ export class CreateNewTodoComponent implements OnInit {
   calculateTotalExpense(listIndex: ExpenseList) {
     return listIndex.expenses.reduce(
       (sum, e) => sum + Number(e.expenseAmount || 0),
-      0
+      0,
     );
   }
 
@@ -346,12 +346,12 @@ export class CreateNewTodoComponent implements OnInit {
       if (type === 'todo' && this.todoMasterList.length > 0) {
         localStorage.setItem(
           'todoMasterList',
-          JSON.stringify(this.todoMasterList)
+          JSON.stringify(this.todoMasterList),
         );
       } else if (type === 'expense' && this.expenseMasterList.length > 0) {
         localStorage.setItem(
           'expenseMasterList',
-          JSON.stringify(this.expenseMasterList)
+          JSON.stringify(this.expenseMasterList),
         );
       }
     }

@@ -90,6 +90,10 @@
   border: 1px solid #ffa955;
 }
 
+.confirmation {
+  border: 1px solid #e94a4a;
+}
+
 .errorMsg h4,
 .confirmation h4 {
   font-weight: 500;
@@ -99,7 +103,7 @@
 
 .confirmation .bold {
   font-weight: 600;
-  color: #ffa955;
+  color: #e94a4a;
   font-size: 0.8vw;
 
 }
@@ -158,9 +162,9 @@
 }
 
 .confirmation button:hover {
-  background-color: #89ac46;
+  background-color: #e94a4a;
   color: #fff;
-  border: 2px solid #89ac46;
+  border: 2px solid #e94a4a;
 }
 
 .toDoCont {
@@ -567,9 +571,9 @@ input[type=number] {
   }
 
   .confirmation button:hover {
-    background-color: #89ac46;
+    background-color: #e94a4a;
     color: #fff;
-    border: 2px solid #89ac46;
+    border: 2px solid #e94a4a;
   }
 
   .toDoCont {
