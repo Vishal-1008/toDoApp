@@ -1,6 +1,6 @@
 <div class="newToDoContainer">
   <div class="titleCont top">
-    <input type="text" placeholder="Your {{listType}} list title" #title />
+    <input type="text" placeholder="Your {{listType}} list" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
     <button (click)="addTitle(title.value, listType); title.value = ''; picker.resetDate()">Create list</button>
   </div>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="top">
-        <input type="text" placeholder="Enter your todo" #todo />
+        <input type="text" placeholder="Your todo" #todo />
         <select name="priority" #priority>
           <option value="Priority" disabled selected>Priority ◢</option>
           <option value="High">High</option>
@@ -127,7 +127,7 @@
         </div>
       </div>
       <div class="top">
-        <input type="text" placeholder="Enter your expense" #expense />
+        <input type="text" placeholder="Your expense" #expense />
         <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput" />
         <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+
            Expense</button>
