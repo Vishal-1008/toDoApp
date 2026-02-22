@@ -468,7 +468,7 @@ input[type=number] {
   .titleCont input {
     font-weight: normal !important;
     background-color: #151515 !important;
-    width: 60% !important;
+    width: 50% !important;
   }
 
   .titleOpt {
@@ -798,7 +798,7 @@ input[type=number] {
   }
 
   .expenseAmountInput {
-    text-align: left;
+    text-align: center;
     width: 22% !important;
   }
 
