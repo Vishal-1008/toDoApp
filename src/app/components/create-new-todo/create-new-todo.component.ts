@@ -55,6 +55,7 @@ export class CreateNewTodoComponent implements OnInit {
   expenseTitles: { title: string }[] = [];
   listType: string = '';
   globalDate: Date = new Date();
+  deleteSuccess: boolean = false;
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
 
@@ -249,31 +250,68 @@ export class CreateNewTodoComponent implements OnInit {
   deleteTodo(listIndex: number, itemIndex: number) {
     if (this.listType === 'todo') {
       this.todoMasterList[listIndex].tasks[itemIndex].getConfirmation = false;
+      const deletedTask = this.todoMasterList[listIndex].tasks[itemIndex].todo;
       this.todoMasterList[listIndex].tasks.splice(itemIndex, 1);
+      this.deleteSuccess = true;
+
+      this.errorStatus = true;
+      this.errorMsg = `Task ${deletedTask} has been deleted successfully from ${this.todoMasterList[listIndex].title} list!`;
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+        this.deleteSuccess = false;
+      }, 4000);
       this.saveToLocalStorage('todo');
     }
 
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation =
-        false;
+      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
+      const deletedExpense = this.expenseMasterList[listIndex].expenses[itemIndex].expense;
       this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
+      this.deleteSuccess = true;
+
+      this.errorStatus = true;
+      this.errorMsg = `Expense ${deletedExpense} has been deleted successfully from ${this.expenseMasterList[listIndex].title} list!`;
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+        this.deleteSuccess = false;
+      }, 4000);
       this.saveToLocalStorage('expense');
     }
   }
 
   deleteList(listIndex: number) {
     if (this.listType === 'todo') {
-      this.todoMasterList[listIndex].getConfirmation =
-        !this.todoMasterList[listIndex].getConfirmation;
+      this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
+      const deletedList = this.todoMasterList[listIndex].title;
       this.todoMasterList.splice(listIndex, 1);
+      this.deleteSuccess = true;
+
+      this.errorStatus = true;
+      this.errorMsg = `List ${deletedList} has been deleted successfully!`;
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+        this.deleteSuccess = false;
+      }, 4000);
       this.todoTitles.splice(listIndex, 1);
       this.saveToLocalStorage();
     }
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].getConfirmation =
-        !this.expenseMasterList[listIndex].getConfirmation;
+      this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
+      const deletedList = this.expenseMasterList[listIndex].title;
       this.expenseMasterList.splice(listIndex, 1);
       this.expenseTitles.splice(listIndex, 1);
+      this.deleteSuccess = true;
+
+      this.errorStatus = true;
+      this.errorMsg = `List ${deletedList} has been deleted successfully!`;
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+        this.deleteSuccess = false;
+      }, 4000);
       this.saveToLocalStorage('expense');
     }
   }

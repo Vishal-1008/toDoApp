@@ -90,6 +90,10 @@
   border: 1px solid #ffa955;
 }
 
+.deleteSuccessMsg {
+    border: 1px solid #89ac46 !important;
+}
+
 .confirmation {
   border: 1px solid #e94a4a;
 }

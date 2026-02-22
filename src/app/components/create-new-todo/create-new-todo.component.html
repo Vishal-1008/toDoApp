@@ -6,9 +6,9 @@
   </div>
 
   <div class="overlay" *ngIf="errorStatus">
-    <div class="errorMsg">
-      <span class="closeModal" (click)="errorStatus = false"></span>
-      <h4>⚠️ {{ errorMsg }}</h4>
+    <div class="errorMsg" [ngClass]="{'deleteSuccessMsg': deleteSuccess}">
+      <span *ngIf="!deleteSuccess" class="closeModal" (click)="errorStatus = false"></span>
+      <h4><span *ngIf="!deleteSuccess">⚠️</span><span *ngIf="deleteSuccess">✅</span> {{ errorMsg }}</h4>
     </div>
   </div>
 
