@@ -81,15 +81,14 @@
     ::ng-deep p-calendar input {
       /* display: none; */
       font-size: 3vw;
-      width: 16vw;
+      width: 20vw;
       padding-left: 1.7vw;
       border-radius: 1.5vw 0 0 1.5vw;
-      pointer-events: none;
     }
 
-    /* ::ng-deep p-calendar input:focus {
+    ::ng-deep p-calendar input:focus {
       font-size: 1rem;
-    } */
+    }
 
     ::ng-deep .p-calendar {
     border-radius: 1.5vw;
