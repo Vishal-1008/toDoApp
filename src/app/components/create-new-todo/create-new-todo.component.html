@@ -7,7 +7,7 @@
 
   <div class="overlay" *ngIf="errorStatus">
     <div class="errorMsg" [ngClass]="{'deleteSuccessMsg': deleteSuccess}">
-      <span *ngIf="!deleteSuccess" class="closeModal" (click)="errorStatus = false"></span>
+      <span class="closeModal" (click)="errorStatus = false"></span>
       <h4><span *ngIf="!deleteSuccess">⚠️</span><span *ngIf="deleteSuccess">✅</span> {{ errorMsg }}</h4>
     </div>
   </div>
@@ -15,7 +15,7 @@
   <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles"
     [expenseTitles]="expenseTitles" [type]="listType"></app-recent>
 
-  <!----------------------------------------------------- TODO ----------------------------------------------------->
+  <!--------------------------------------- START: TODO --------------------------------------->
   <ng-container *ngIf="listType == 'todo'">
     <div class="toDoCont" *ngFor="let list of todoMasterList; let i = index">
       <div class="titleOpt">
@@ -100,13 +100,16 @@
       </div>
     </div>
   </ng-container>
+  <!--------------------------------------- END: TODO --------------------------------------->
 
-  <!----------------------------------------------------- EXPENSE ----------------------------------------------------->
+
+  <!--------------------------------------- START: EXPENSE --------------------------------------->
   <ng-container *ngIf="listType == 'expense'">
     <div class="toDoCont" *ngFor="let list of expenseMasterList; let i = index">
       <div class="titleOpt">
         <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
         <div class="options">
+          <!-- <input type="number" placeholder="Max. amount" #maxExpenseAmount class="maxExpenseAmount" /> -->
           <button class="move" (click)="moveUp(i, 'expense')" title="move list up"
             [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
           <button class="move" (click)="moveDown(i, 'expense')" title="move list down"
@@ -129,8 +132,7 @@
       <div class="top">
         <input type="text" placeholder="Your expense" #expense />
         <input type="number" placeholder="Amount" #expenseAmount class="expenseAmountInput" />
-        <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+
-           Expense</button>
+        <button (click)="addTodo(i, expense.value, expenseAmount.value); expense.value = ''; expenseAmount.value = ''">+ Expense</button>
       </div>
 
       <div class="bottom">
@@ -182,9 +184,14 @@
         </div>
         <div class="totalExpense" *ngIf="list.expenses.length > 1">
           <h3>Total Expense: </h3>
-          <h3>&#8377;{{ calculateTotalExpense(list) }}</h3>
+          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > 33500}">&#8377;{{ calculateTotalExpense(list) }}
+            <br>
+              <span class="maxAmountWarningMsg" *ngIf="calculateTotalExpense(list) > 33500">You have exceeded the maximum expense limit of
+                ₹33500.</span>
+          </h3>
         </div>
       </div>
     </div>
   </ng-container>
+  <!--------------------------------------- END: EXPENSE --------------------------------------->
 </div>

@@ -46,7 +46,9 @@
 
 .titleOpt .options {
   display: flex;
-  gap: 0.5vw;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.6vw;
 }
 
 .titleOpt .delete,
@@ -336,6 +338,19 @@
   background-color: #e94a4a;
 }
 
+.maxAmountWarning {
+  color: #e94a4a !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.maxAmountWarningMsg {
+  font-size: 0.62vw;
+  color: #555;
+  margin-top: 0.4vw;
+}
+
 .orange {
   background-color: #ffa955;
 }
@@ -363,6 +378,16 @@
 .expenseAmountInput {
   width: 17% !important;
   padding: 0 1vw !important;
+}
+
+.maxExpenseAmount {
+  outline: none;
+  width: 43% !important;
+  padding: 0.55vw 1vw;
+  border-radius: 0.7vw;
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #222;
 }
 
 .expenseRow {
@@ -405,7 +430,7 @@
   width: 66%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   background-color: #222;
   border-radius: 0.8vw;
   border-bottom: 1px solid #222;
@@ -499,6 +524,7 @@ input[type=number] {
 
   .titleOpt .options {
     display: flex;
+    justify-content: flex-end;
     gap: 2vw;
   }
 
@@ -812,20 +838,25 @@ input[type=number] {
 
   .totalExpense {
     padding: 2vw;
-    width: 75%;
+    width: 100%;
     border-radius: 0;
     background-color: unset;
     border-bottom: 2px dotted #222;
   }
 
   .totalExpense h3 {
-    font-size: 3.5vw;
+    font-size: 3.25vw;
   }
 
   .globalDate {
     font-size: 2.6vw;
     font-weight: 600;
     margin-right: 0;
+  }
+
+  .maxAmountWarningMsg {
+    font-size: 2.1vw;
+    margin-top: 1vw;
   }
 
   .todoItem textarea {

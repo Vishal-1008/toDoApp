@@ -56,6 +56,7 @@ export class CreateNewTodoComponent implements OnInit {
   listType: string = '';
   globalDate: Date = new Date();
   deleteSuccess: boolean = false;
+  maxExpenseAmount: number = 0;
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
 
@@ -265,8 +266,10 @@ export class CreateNewTodoComponent implements OnInit {
     }
 
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation = false;
-      const deletedExpense = this.expenseMasterList[listIndex].expenses[itemIndex].expense;
+      this.expenseMasterList[listIndex].expenses[itemIndex].getConfirmation =
+        false;
+      const deletedExpense =
+        this.expenseMasterList[listIndex].expenses[itemIndex].expense;
       this.expenseMasterList[listIndex].expenses.splice(itemIndex, 1);
       this.deleteSuccess = true;
 
@@ -283,7 +286,8 @@ export class CreateNewTodoComponent implements OnInit {
 
   deleteList(listIndex: number) {
     if (this.listType === 'todo') {
-      this.todoMasterList[listIndex].getConfirmation = !this.todoMasterList[listIndex].getConfirmation;
+      this.todoMasterList[listIndex].getConfirmation =
+        !this.todoMasterList[listIndex].getConfirmation;
       const deletedList = this.todoMasterList[listIndex].title;
       this.todoMasterList.splice(listIndex, 1);
       this.deleteSuccess = true;
@@ -299,7 +303,8 @@ export class CreateNewTodoComponent implements OnInit {
       this.saveToLocalStorage();
     }
     if (this.listType === 'expense') {
-      this.expenseMasterList[listIndex].getConfirmation = !this.expenseMasterList[listIndex].getConfirmation;
+      this.expenseMasterList[listIndex].getConfirmation =
+        !this.expenseMasterList[listIndex].getConfirmation;
       const deletedList = this.expenseMasterList[listIndex].title;
       this.expenseMasterList.splice(listIndex, 1);
       this.expenseTitles.splice(listIndex, 1);
