@@ -998,6 +998,12 @@ input[type=number] {
   .mobileDate {
     display: block;
   }
+
+  @media (hover: none) {
+  *:hover {
+    background-color: transparent !important;
+  }
+}
 }
 
 /* END: MOBILE VIEW */
