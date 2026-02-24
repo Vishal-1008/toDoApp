@@ -404,7 +404,6 @@
   font-size: 0.8vw;
 }
 
-
 .setMaxExpense {
   all: unset;
   padding: 0.5vw 0.8vw;
@@ -419,8 +418,27 @@
   font-weight: 1000;
 }
 
+.resetMaxExpense {
+   all: unset;
+  padding: 0.5vw 0.8vw;
+  background-color: #111;
+  font-size: 0.8vw;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #222;
+  border-left: none;
+  border-right: none;
+  transition: 0.1s ease-in-out;
+  font-weight: 1000;
+}
+
 .setMaxExpense:hover {
   background-color: #89ac46;
+}
+
+.resetMaxExpense:hover {
+  background-color: #e94a4a;
+  border-radius: 0.3vw;
 }
 
 .expenseRow {
@@ -613,7 +631,21 @@ input[type=number] {
   font-weight: 1000;
 }
 
-.setMaxExpense:hover {
+.resetMaxExpense {
+   all: unset;
+  padding: 0 2.2vw;
+  background-color: #111;
+  font-size: 3vw;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #222;
+  border-left: none;
+  border-right: none;
+  transition: 0.1s ease-in-out;
+  font-weight: 1000;
+}
+
+.setMaxExpense:hover, .resetMaxExpense:hover {
   background-color: #111;
   color: #fff;
 }

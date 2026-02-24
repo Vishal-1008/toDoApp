@@ -199,7 +199,7 @@ export class CreateNewTodoComponent implements OnInit {
     setTimeout(() => this.autoResize(this.ta.nativeElement));
   }
 
-  setMaxExpense(listIndex: number, maxExpenseAmount: string) {
+  setMaxExpense(listIndex: number, maxExpenseAmount: string|number) {
     if (this.listType === 'expense' && maxExpenseAmount && Number(maxExpenseAmount) >= 0) {
       this.expenseMasterList[listIndex].maxExpenseAmount =
         Number(maxExpenseAmount);
@@ -213,7 +213,20 @@ export class CreateNewTodoComponent implements OnInit {
         this.errorStatus = false;
         this.errorMsg = '';
       }, 3000);
-    } else {
+    } else if (maxExpenseAmount === 0) {
+       this.expenseMasterList[listIndex].maxExpenseAmount = 0;
+       this.expenseMasterList[listIndex].maxExpenseEditable = false;
+       this.expenseMasterList[listIndex].getConfirmation = false;
+       this.errorStatus = true;
+       this.deleteSuccess = true;
+       this.errorMsg = `Max. expense amount reset successfully for ${this.expenseMasterList[listIndex].title}!`;
+       setTimeout(() => {
+         this.errorStatus = false;
+         this.errorMsg = '';
+         this.deleteSuccess = false;
+       }, 3000);
+    }
+    else {
       this.errorStatus = true;
       this.errorMsg = 'Max. expense amount cannot be empty or negative.';
       setTimeout(() => {
