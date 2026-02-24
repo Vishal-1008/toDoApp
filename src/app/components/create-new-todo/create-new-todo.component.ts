@@ -6,6 +6,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { text } from 'node:stream/consumers';
 import { ButtonDirective } from "primeng/button";
+import { registerLocaleData } from '@angular/common';
+import localeIn from '@angular/common/locales/en-IN';
+
+registerLocaleData(localeIn);
 
 interface TodoItem {
   todo: string;
@@ -217,8 +221,6 @@ export class CreateNewTodoComponent implements OnInit {
         this.errorMsg = '';
       }, 3000);
     }
-    console.log(this.expenseMasterList[listIndex].maxExpenseAmount);
-    
   }
 
   addTodo(listIndex: number, text: string, priorityOrAmount: string) {

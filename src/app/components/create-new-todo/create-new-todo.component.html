@@ -115,7 +115,7 @@
               <button class="setMaxExpense" (click)="setMaxExpense(i, maxExpenseAmount.value)">✓</button>
             </ng-container>
             <ng-container *ngIf="list.maxExpenseEditable">
-              <p class="maxExpenseAmount maxExpenseAmountP">Max. amount: ₹{{ list.maxExpenseAmount }}</p>
+              <p class="maxExpenseAmount maxExpenseAmountP">Max. amount: ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}</p>
               <button class="setMaxExpense maxExpenseAmountP" (click)="list.maxExpenseEditable = false">✏️</button>
             </ng-container>
           </div>
@@ -155,7 +155,7 @@
             <ng-template #thenBlock>
               <div class="expenseRow">
                 <h3>{{ expense.expense }}</h3>
-                <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount }}</h6>
+                <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount | number:'1.0-0':'en-IN' }}</h6>
 
               </div>
             </ng-template>
@@ -195,10 +195,10 @@
         </div>
         <div class="totalExpense">
           <h3>Total Expense: </h3>
-          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > list.maxExpenseAmount}">&#8377;{{ calculateTotalExpense(list) }}
+          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > list.maxExpenseAmount}">&#8377;{{ calculateTotalExpense(list) | number:'1.0-0':'en-IN' }}
             <br>
               <span class="maxAmountWarningMsg" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
-                ₹{{ list.maxExpenseAmount }}.</span>
+                ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</span>
           </h3>
         </div>
       </div>
