@@ -999,11 +999,6 @@ input[type=number] {
     display: block;
   }
 
-  @media (hover: none) {
-  *:hover {
-    background-color: transparent !important;
-  }
-}
 }
 
 /* END: MOBILE VIEW */
