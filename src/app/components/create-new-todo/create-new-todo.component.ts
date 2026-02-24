@@ -5,6 +5,7 @@ import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { text } from 'node:stream/consumers';
+import { ButtonDirective } from "primeng/button";
 
 interface TodoItem {
   todo: string;
@@ -35,13 +36,21 @@ interface ExpenseList {
   isTitle: boolean;
   getConfirmation: boolean;
   totalExpense: number;
+  maxExpenseAmount: any;
+  maxExpenseEditable?: boolean;
   expenses: expenseItem[];
 }
 
 @Component({
   selector: 'app-create-new-todo',
   standalone: true,
-  imports: [CommonModule, RecentComponent, DatePickerComponent, FormsModule],
+  imports: [
+    CommonModule,
+    RecentComponent,
+    DatePickerComponent,
+    FormsModule,
+    ButtonDirective,
+  ],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
 })
@@ -56,7 +65,8 @@ export class CreateNewTodoComponent implements OnInit {
   listType: string = '';
   globalDate: Date = new Date();
   deleteSuccess: boolean = false;
-  maxExpenseAmount: number = 0;
+  maxExpense: number = 0;
+  maxExpenseEditable: boolean = true;
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
 
@@ -139,6 +149,7 @@ export class CreateNewTodoComponent implements OnInit {
           isTitle: true,
           getConfirmation: false,
           totalExpense: 0,
+          maxExpenseAmount: 'Set max. amount',
           expenses: [
             {
               expense: 'your expense here!',
@@ -182,6 +193,32 @@ export class CreateNewTodoComponent implements OnInit {
 
   enterEditMode() {
     setTimeout(() => this.autoResize(this.ta.nativeElement));
+  }
+
+  setMaxExpense(listIndex: number, maxExpenseAmount: string) {
+    if (this.listType === 'expense' && maxExpenseAmount && Number(maxExpenseAmount) >= 0) {
+      this.expenseMasterList[listIndex].maxExpenseAmount =
+        Number(maxExpenseAmount);
+        this.expenseMasterList[listIndex].maxExpenseEditable = true;
+      this.saveToLocalStorage('expense');
+      this.deleteSuccess = true;
+      this.errorStatus = true;
+      this.errorMsg = 'Max. expense amount set successfully!';
+      setTimeout(() => {
+        this.deleteSuccess = false;
+        this.errorStatus = false;
+        this.errorMsg = '';
+      }, 3000);
+    } else {
+      this.errorStatus = true;
+      this.errorMsg = 'Max. expense amount cannot be empty or negative.';
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+      }, 3000);
+    }
+    console.log(this.expenseMasterList[listIndex].maxExpenseAmount);
+    
   }
 
   addTodo(listIndex: number, text: string, priorityOrAmount: string) {

@@ -8,7 +8,7 @@
   <div class="overlay" *ngIf="errorStatus">
     <div class="errorMsg" [ngClass]="{'deleteSuccessMsg': deleteSuccess}">
       <span class="closeModal" (click)="errorStatus = false"></span>
-      <h4><span *ngIf="!deleteSuccess">⚠️</span><span *ngIf="deleteSuccess">✅</span> {{ errorMsg }}</h4>
+      <h4><span *ngIf="!deleteSuccess">⚠️</span><span *ngIf="deleteSuccess" class="textGreen">✓</span> {{ errorMsg }}</h4>
     </div>
   </div>
 
@@ -108,13 +108,24 @@
     <div class="toDoCont" *ngFor="let list of expenseMasterList; let i = index">
       <div class="titleOpt">
         <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
-        <div class="options">
-          <!-- <input type="number" placeholder="Max. amount" #maxExpenseAmount class="maxExpenseAmount" /> -->
-          <button class="move" (click)="moveUp(i, 'expense')" title="move list up"
-            [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
-          <button class="move" (click)="moveDown(i, 'expense')" title="move list down"
-            [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
-          <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
+        <div class="options mobileFlexColumn">
+          <div>
+            <ng-container *ngIf="!list.maxExpenseEditable">
+              <input type="number" placeholder="Set max. amount" #maxExpenseAmount class="maxExpenseAmount" [value]="list.maxExpenseAmount"/>
+              <button class="setMaxExpense" (click)="setMaxExpense(i, maxExpenseAmount.value)">✓</button>
+            </ng-container>
+            <ng-container *ngIf="list.maxExpenseEditable">
+              <p class="maxExpenseAmount">Max. amount: ₹{{ list.maxExpenseAmount }}</p>
+              <button class="setMaxExpense" (click)="list.maxExpenseEditable = false">✏️</button>
+            </ng-container>
+          </div>
+          <div>
+            <button class="move" (click)="moveUp(i, 'expense')" title="move list up"
+              [ngClass]="{ 'opacity-50': i === 0 }">☝🏽</button>
+            <button class="move" (click)="moveDown(i, 'expense')" title="move list down"
+              [ngClass]="{ 'opacity-50': i === (expenseMasterList.length - 1) }">👇🏽</button>
+            <button class="delete" (click)="list.getConfirmation = true" title="delete list">🗑️</button>
+          </div>
           <ng-container *ngIf="list.getConfirmation">
             <div class="overlay">
               <div class="confirmation">
@@ -182,12 +193,12 @@
             </ng-container>
           </div>
         </div>
-        <div class="totalExpense" *ngIf="list.expenses.length > 1">
+        <div class="totalExpense">
           <h3>Total Expense: </h3>
-          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > 33500}">&#8377;{{ calculateTotalExpense(list) }}
+          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > list.maxExpenseAmount}">&#8377;{{ calculateTotalExpense(list) }}
             <br>
-              <span class="maxAmountWarningMsg" *ngIf="calculateTotalExpense(list) > 33500">You have exceeded the maximum expense limit of
-                ₹33500.</span>
+              <span class="maxAmountWarningMsg" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
+                ₹{{ list.maxExpenseAmount }}.</span>
           </h3>
         </div>
       </div>
