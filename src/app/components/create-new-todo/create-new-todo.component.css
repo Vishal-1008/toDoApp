@@ -587,9 +587,9 @@ input[type=number] {
   display: none;
 }
 
-/* .maxExpenseAmount:focus {
+.maxExpenseAmount:focus {
   font-size: 1rem;
-} */
+}
 
 .mobileFlexColumn>h1{
   display: flex;
