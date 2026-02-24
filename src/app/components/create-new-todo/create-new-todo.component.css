@@ -613,6 +613,11 @@ input[type=number] {
   font-weight: 1000;
 }
 
+.setMaxExpense:hover {
+  background-color: #111;
+  color: #fff;
+}
+
 .maxExpenseAmountP {
   display: flex;
   align-items: center;
