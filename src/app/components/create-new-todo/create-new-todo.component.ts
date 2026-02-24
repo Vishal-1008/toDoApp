@@ -214,7 +214,7 @@ export class CreateNewTodoComponent implements OnInit {
         this.errorMsg = '';
       }, 3000);
     } else if (maxExpenseAmount === 0) {
-       this.expenseMasterList[listIndex].maxExpenseAmount = 0;
+       this.expenseMasterList[listIndex].maxExpenseAmount = 'Set max. amount';
        this.expenseMasterList[listIndex].maxExpenseEditable = false;
        this.expenseMasterList[listIndex].getConfirmation = false;
        this.errorStatus = true;
