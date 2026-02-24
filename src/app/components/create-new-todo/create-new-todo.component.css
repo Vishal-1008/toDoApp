@@ -573,7 +573,7 @@ input[type=number] {
 
   .maxExpenseAmount {
   padding: 0 2.2vw;
-  height: 5.5vh;
+  height: 36px;
   border-radius: 1.5vw 0 0 1.5vw;
   background-color: #111;
   color: #fff;
