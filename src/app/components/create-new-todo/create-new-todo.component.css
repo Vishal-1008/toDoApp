@@ -572,29 +572,25 @@ input[type=number] {
   }
 
   .maxExpenseAmount {
-  padding: 1vw 2vw;
+  padding: 0 2.2vw;
+  height: 6vh;
   border-radius: 1.5vw 0 0 1.5vw;
   background-color: #111;
   color: #fff;
   border: 1px solid #222;
   border-right: none;
   white-space: nowrap;
-  font-size: 1rem;
-  width: 100%;
-  /* transform: scale(0.7); 
-  transform-origin: left center; */
-  /* padding: 4px 8px;  
-  line-height: 1.2; */
-zoom: 0.7;
+  font-size: 2.8vw;
+  width: 60vw;
 }
 
 .removeBr {
   display: none;
 }
 
-/* .maxExpenseAmount:focus {
+.maxExpenseAmount:focus {
   font-size: 1rem;
-} */
+}
 
 .mobileFlexColumn>h1{
   display: flex;
@@ -605,22 +601,21 @@ zoom: 0.7;
 
 .setMaxExpense {
   all: unset;
-  padding: 1vw 2vw;
+  padding: 0 2.2vw;
   background-color: #111;
   border-radius: 0 1.5vw 1.5vw 0;
-  font-size: 2.8vw;
+  font-size: 3vw;
   color: #fff;
   cursor: pointer;
   border: 1px solid #222;
   border-left: none;
   transition: 0.1s ease-in-out;
   font-weight: 1000;
-  font-size: 1rem;
-  /* transform: scale(0.7); 
-  transform-origin: left center; */
-  /* padding: 4px 8px; 
-  line-height: 1.2; */
-  zoom: 0.7;
+}
+
+.maxExpenseAmountP {
+  display: flex;
+  align-items: center;
 }
 
   .titleOpt .delete,
