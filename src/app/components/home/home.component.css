@@ -12,7 +12,7 @@
   }
   
   .container .tagline {
-    font-size: 10vw;
+    font-size: 7vw;
     overflow-y: hidden;
   }
 
@@ -45,6 +45,10 @@
   .orangeh1 {
     color: #ffa955;
   }
+
+  .greenh1 {
+    color: #89ac46;
+  }
   
 
   @media only screen and (max-width: 768px) {
@@ -61,10 +65,11 @@
     }
 
     .container .tagline {
-      font-size: 16vw;
+      font-size: 13vw;
     }
       
   .createBtn {
+    transform: translate(0);
     font-size: 3.5vw;
     padding: 3vw;
     border-radius: 2vw;
