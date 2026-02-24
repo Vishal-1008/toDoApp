@@ -106,9 +106,9 @@
   <!--------------------------------------- START: EXPENSE --------------------------------------->
   <ng-container *ngIf="listType == 'expense'">
     <div class="toDoCont" *ngFor="let list of expenseMasterList; let i = index">
-      <div class="titleOpt">
-        <h1>{{ list.title }}<br /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
-        <div class="options mobileFlexColumn">
+      <div class="titleOpt mobileFlexColumn">
+        <h1>{{ list.title }}<br class="removeBr" /><span>{{ list.date | date : "dd/MM/yyyy" }}</span></h1>
+        <div class="options">
           <div>
             <ng-container *ngIf="!list.maxExpenseEditable">
               <input type="number" placeholder="Set max. amount" #maxExpenseAmount class="maxExpenseAmount" [value]="list.maxExpenseAmount"/>
