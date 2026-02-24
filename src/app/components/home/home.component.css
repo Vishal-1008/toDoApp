@@ -69,7 +69,7 @@
     }
       
   .createBtn {
-    transform: translate(0);
+    transform: none !important;
     font-size: 3.5vw;
     padding: 3vw;
     border-radius: 2vw;
