@@ -199,10 +199,13 @@
           <h3>Total Expense: </h3>
           <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > list.maxExpenseAmount}">&#8377;{{ calculateTotalExpense(list) | number:'1.0-0':'en-IN' }}
             <br>
-              <span class="maxAmountWarningMsg" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
+              <span class="maxAmountWarningMsg maxAmountWarningMsgDesktop" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
                 ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</span>
           </h3>
         </div>
+        <span class="maxAmountWarningMsg maxAmountWarningMsgMobile" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the
+          maximum expense limit of
+          ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</span>
       </div>
     </div>
   </ng-container>
