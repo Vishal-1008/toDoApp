@@ -1,4 +1,5 @@
 <div class="newToDoContainer">
+  <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Share your feedback ↗</button>
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
@@ -15,7 +16,7 @@
   <app-recent [todoCount]="todoMasterList.length" [expenseCount]="expenseMasterList.length" [todoTitles]="todoTitles"
     [expenseTitles]="expenseTitles" [type]="listType"></app-recent>
 
-    <app-feedback></app-feedback>
+    <app-feedback [showMobileFeedbackForm]="showMobileFeedbackForm"></app-feedback>
 
   <!--------------------------------------- START: TODO --------------------------------------->
   <ng-container *ngIf="listType == 'todo'">

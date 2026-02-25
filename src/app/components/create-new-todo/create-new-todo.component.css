@@ -21,6 +21,10 @@
   all: unset;
 }
 
+.mobileFeedbackBtn {
+  display: none;
+}
+
 .titleCont input {
   background-color: #151515 !important;
   width: 60% !important;
@@ -585,6 +589,19 @@ footer {
 /* START: MOBILE VIEW */
 
 @media only screen and (max-width: 768px) {
+
+  .mobileFeedbackBtn {
+    display: block;
+    outline: none;
+    border: 1px solid #222;
+    background-color: #89ac46;
+    color: #fff;
+    padding: 1vw 2vw;
+    border-radius: 1.5vw;
+    font-size: 2.8vw;
+    font-weight: 500;
+    margin-left: auto;
+  }
 
   .newToDoContainer {
     min-height: 100vh;

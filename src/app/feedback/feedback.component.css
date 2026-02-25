@@ -16,7 +16,6 @@
     color: #777;
     padding-bottom: 0.5vw;
     font-size: 0.9vw;
-    border-bottom: 1px solid #222;
     display: flex;
     justify-content: space-between;
     align-items: flex-start; 
@@ -24,10 +23,13 @@
 
 .feedbackForm h4 button {
     all: unset;
-    font-size: 0.8vw;
+    font-size: 1vw;
     color: #555;
     cursor: pointer;
     transition: 0.1s ease-in-out;
+    padding: 4px 8px;
+    padding-top: 0;
+    text-align: center;
 }
 
 .fedbackForm h4 button:hover {
@@ -35,20 +37,22 @@
 }
 
 form p {
+    border-top: 1px solid #222;
     font-size: 0.7vw;
     color: #555;
     padding: 0.5vw 0;
 }
 
 .feedbackSentMsg p {
-    font-size: 0.75vw;
+    font-size: 0.7vw;
     color: #777;
 }
 
 .feedbackSentMsg h3{
-    font-size: 0.75vw;
+    border-top: 1px solid #222;
+    font-size: 0.8vw;
     color: #89ac46;
-    margin: 12px 0 4px 0;
+    padding: 12px 0 4px 0;
 }
 
 .feedbackForm h4 button:hover {
@@ -108,3 +112,115 @@ textarea {
     max-height: 300px;
     overflow: hidden;
 }
+
+.closeModal {
+    display: none;
+}
+
+.mobileOverlay {
+    display: none;
+}
+
+.validationMsg {
+    color: #e94a4a !important;
+    border-top: none !important;
+    margin-bottom: 5px !important;
+}
+
+ @media only screen and (max-width: 768px) {
+    .desktopOverlay {
+        display: none;
+    }
+
+    .mobileOverlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        backdrop-filter: blur(4px);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+    }
+
+    .feedbackForm {
+        width: 90%;
+        z-index: 10000;
+        border-radius: 20px;
+        right: unset;
+        top: 12vh;
+        padding: 7vw 6vw;
+    }
+
+    .feedbackForm h4 {
+    padding-bottom: 2.5vw;
+    font-size: 4vw;
+}
+
+.hide {
+   display: none;
+}
+
+.closeModal {
+    padding: 0 !important;
+    display: block !important;
+    height: 3.5vw !important;
+    width: 3.5vw !important;
+    background-color: #e94a4a !important;
+    border-radius: 100px !important;
+}
+
+.feedbackForm h4 {
+    overflow: visible;
+}
+
+.feedbackForm h4 button {
+    transform: translateY(-10px);
+    padding-right: 0;
+}
+
+form p {
+    font-size: 3.4vw;
+    padding: 2.5vw 0;
+}
+
+.feedbackSentMsg p {
+    font-size: 3.3vw;
+}
+
+.feedbackSentMsg h3{
+    font-size: 3.5vw;
+    color: #89ac46;
+    margin: 12px 0 4px 0;
+}
+
+textarea, input {
+    font-size: 3.4vw;
+    margin: 8px 0;
+}
+
+.formBtns {
+    gap: 14px;
+}
+
+button {
+    font-size: 3.4vw;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 50px;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.validationMsg {
+    color: #e94a4a !important;
+    border-top: none !important;
+    margin-bottom: 8px !important;
+}
+
+  }

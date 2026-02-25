@@ -54,7 +54,7 @@ interface ExpenseList {
     RecentComponent,
     FeedbackComponent,
     DatePickerComponent,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
@@ -72,6 +72,7 @@ export class CreateNewTodoComponent implements OnInit {
   deleteSuccess: boolean = false;
   maxExpense: number = 0;
   maxExpenseEditable: boolean = true;
+  showMobileFeedbackForm: boolean = false;
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
 
@@ -99,6 +100,14 @@ export class CreateNewTodoComponent implements OnInit {
         title: list.title,
       }));
     }
+  }
+
+  openMobileFeedbackForm() {
+    this.showMobileFeedbackForm = false; // reset first
+
+    setTimeout(() => {
+      this.showMobileFeedbackForm = true; // then reopen
+    });
   }
 
   addTitle(title: string, type: string) {
@@ -200,11 +209,15 @@ export class CreateNewTodoComponent implements OnInit {
     setTimeout(() => this.autoResize(this.ta.nativeElement));
   }
 
-  setMaxExpense(listIndex: number, maxExpenseAmount: string|number) {
-    if (this.listType === 'expense' && maxExpenseAmount && Number(maxExpenseAmount) >= 0) {
+  setMaxExpense(listIndex: number, maxExpenseAmount: string | number) {
+    if (
+      this.listType === 'expense' &&
+      maxExpenseAmount &&
+      Number(maxExpenseAmount) >= 0
+    ) {
       this.expenseMasterList[listIndex].maxExpenseAmount =
         Number(maxExpenseAmount);
-        this.expenseMasterList[listIndex].maxExpenseEditable = true;
+      this.expenseMasterList[listIndex].maxExpenseEditable = true;
       this.saveToLocalStorage('expense');
       this.deleteSuccess = true;
       this.errorStatus = true;
@@ -215,19 +228,18 @@ export class CreateNewTodoComponent implements OnInit {
         this.errorMsg = '';
       }, 3000);
     } else if (maxExpenseAmount === 0) {
-       this.expenseMasterList[listIndex].maxExpenseAmount = 'Set max. amount';
-       this.expenseMasterList[listIndex].maxExpenseEditable = false;
-       this.expenseMasterList[listIndex].getConfirmation = false;
-       this.errorStatus = true;
-       this.deleteSuccess = true;
-       this.errorMsg = `Max. expense amount reset successfully for ${this.expenseMasterList[listIndex].title}!`;
-       setTimeout(() => {
-         this.errorStatus = false;
-         this.errorMsg = '';
-         this.deleteSuccess = false;
-       }, 3000);
-    }
-    else {
+      this.expenseMasterList[listIndex].maxExpenseAmount = 'Set max. amount';
+      this.expenseMasterList[listIndex].maxExpenseEditable = false;
+      this.expenseMasterList[listIndex].getConfirmation = false;
+      this.errorStatus = true;
+      this.deleteSuccess = true;
+      this.errorMsg = `Max. expense amount reset successfully for ${this.expenseMasterList[listIndex].title}!`;
+      setTimeout(() => {
+        this.errorStatus = false;
+        this.errorMsg = '';
+        this.deleteSuccess = false;
+      }, 3000);
+    } else {
       this.errorStatus = true;
       this.errorMsg = 'Max. expense amount cannot be empty or negative.';
       setTimeout(() => {
