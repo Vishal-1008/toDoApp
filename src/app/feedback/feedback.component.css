@@ -62,13 +62,6 @@ form p {
 form {
     width: 100%;
     transition: 0.2s ease-in-out;
-    opacity: 0.6;
-    /* height: 0; */
-}
-
-.feedbackForm:hover form {
-    height: fit-content;
-    opacity: 1;
 }
 
 textarea, input {
