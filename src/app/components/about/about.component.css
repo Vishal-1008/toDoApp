@@ -149,7 +149,7 @@ p{
   }
 
   footer a span {
-    display: none;
+    display: none !important;
   }
 
 }
