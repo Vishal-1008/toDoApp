@@ -79,6 +79,7 @@ textarea, input {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    margin-top: 23px;
 }
 
 button {
@@ -122,9 +123,10 @@ textarea {
 }
 
 .validationMsg {
+    position: absolute;
     color: #e94a4a !important;
     border-top: none !important;
-    margin-bottom: 5px !important;
+    padding: 0 !important;
 }
 
  @media only screen and (max-width: 768px) {
@@ -204,6 +206,7 @@ textarea, input {
 
 .formBtns {
     gap: 14px;
+    margin-top: 30px;
 }
 
 button {
@@ -218,9 +221,7 @@ textarea {
 }
 
 .validationMsg {
-    color: #e94a4a !important;
-    border-top: none !important;
-    margin-bottom: 8px !important;
+   font-size: 3vw !important;
 }
 
   }
