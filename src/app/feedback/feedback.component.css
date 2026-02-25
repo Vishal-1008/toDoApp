@@ -1,0 +1,121 @@
+.feedbackForm {
+    width: 18%;
+    background-color: #151515;
+    border: 1px solid #222;
+    position: fixed;
+    right: 5%;
+    top: 7.5vw;
+    border-radius: 1.7vw;
+    padding: 1.5vw 1.7vw;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s linear;
+}
+
+.feedbackForm h4 {
+    color: #777;
+    padding-bottom: 0.5vw;
+    font-size: 0.9vw;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+}
+
+.feedbackForm h4 button {
+    all: unset;
+    font-size: 0.8vw;
+    color: #555;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+/* .rotate90 {
+    transform: rotate(90deg);
+} */
+
+.fedbackForm h4 button:hover {
+    color: #89ac46;
+}
+
+form p {
+    font-size: 0.7vw;
+    color: #555;
+    padding: 0.5vw 0;
+}
+
+.feedbackSentMsg p {
+    font-size: 0.75vw;
+    color: #777;
+}
+
+.feedbackSentMsg h3{
+    font-size: 0.75vw;
+    color: #89ac46;
+    margin: 12px 0 4px 0;
+}
+
+.feedbackForm h4 button:hover {
+    color: #89ac46;
+}
+
+form {
+    width: 100%;
+    transition: 0.2s ease-in-out;
+    opacity: 0.6;
+    /* height: 0; */
+}
+
+.feedbackForm:hover form {
+    height: fit-content;
+    opacity: 1;
+}
+
+textarea, input {
+    outline: none;
+    width: 100%;
+    margin: 5px 0;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #222;
+    background-color: #111;
+    font-size: 0.75vw;
+}
+
+.formBtns {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    all: unset;
+    width: 48%;
+    padding: 7px 8px;
+    font-size: 0.8vw;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #222;
+    background-color: #111;
+    color: #555;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    text-align: center;
+}
+
+.feedbackCancelBtn:hover {
+    background-color: #e94a4a;
+    color: #fff;
+}
+
+.feedbackSubmitBtn:hover {
+    background-color: #89ac46;
+    color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 50px;
+    max-height: 300px;
+    overflow: hidden;
+}

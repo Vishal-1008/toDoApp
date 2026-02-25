@@ -4,7 +4,7 @@
     border: 1px solid #222;
     position: fixed;
     left: 5%;
-    top: 127px;
+    top: 7.5vw;
     border-radius: 1.7vw;
     padding: 1.5vw 1.7vw;
     display: flex;
@@ -13,6 +13,7 @@
   
   .recent h4 {
     padding: 1.5vw 0.5vw 0.5vw;
+    padding-left: 0;
     border-bottom: 1px solid #222;
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,20 @@
+<div class="feedbackForm">
+    <h4>Have suggestions? Let us know. <button (click)="showFeedbackForm = !showFeedbackForm">▼</button></h4>
+    @if (!feedbackSent && showFeedbackForm) {
+        <form (submit)="submitFeedback()">
+            <p>Don't worry, your identity is anonymous.</p>
+            <input #feedbackTitle (input)="autoResize(feedbackTitle)" type="text" name="feedback" id="feedbackInput" placeholder="Subject" autofocus required autocomplete="off">
+            <textarea #feedbackDescription name="feedbackDetails" id="feedbackDetails" placeholder="Description" (input)="autoResize(feedbackDescription)" required></textarea>    
+            <div class="formBtns">
+                <button class="feedbackCancelBtn">Cancel</button>
+                <button type="submit" class="feedbackSubmitBtn">Submit</button>
+            </div>
+        </form>
+    }
+    @else if (feedbackSent && !showFeedbackForm) {
+        <div class="feedbackSentMsg">
+            <h3>✓ Feedback submitted!</h3>
+            <p>We appreciate you taking the time to help us improve our app.</p>
+        </div>
+    }
+</div>
