@@ -204,6 +204,11 @@ textarea, input {
     margin: 8px 0;
 }
 
+textarea:focus, input:focus {
+    font-size: 1rem;
+}
+
+
 .formBtns {
     gap: 14px;
     margin-top: 30px;
@@ -213,9 +218,13 @@ button {
     font-size: 3.4vw;
 }
 
+input {
+    height: 38px;
+}
+
 textarea {
     resize: vertical;
-    min-height: 50px;
+    height: 50px;
     max-height: 300px;
     overflow: hidden;
 }
