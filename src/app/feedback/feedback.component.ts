@@ -1,14 +1,16 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-feedback',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './feedback.component.html',
   styleUrl: './feedback.component.css',
 })
 export class FeedbackComponent {
-  @ViewChild('feedbackDescription') feedbackDescription!: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('feedbackDescription')
+  feedbackDescription!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('feedbackTitle') feedbackTitle!: ElementRef<HTMLInputElement>;
 
   feedbackSent: boolean = false;

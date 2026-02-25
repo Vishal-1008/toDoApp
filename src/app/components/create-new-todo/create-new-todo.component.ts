@@ -54,8 +54,7 @@ interface ExpenseList {
     RecentComponent,
     FeedbackComponent,
     DatePickerComponent,
-    FormsModule,
-    ButtonDirective,
+    FormsModule
   ],
   templateUrl: './create-new-todo.component.html',
   styleUrls: ['./create-new-todo.component.css'],
