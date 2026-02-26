@@ -1010,7 +1010,7 @@ footer {
   .todoOpt {
     width: auto;
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     justify-content: flex-end;
     gap: 10px;
     margin-left: 10px;
