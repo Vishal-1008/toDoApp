@@ -958,7 +958,7 @@ footer {
   .todoItem {
     width: 75%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 1vw;
   }
