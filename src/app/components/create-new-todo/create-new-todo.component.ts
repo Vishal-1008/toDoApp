@@ -328,19 +328,12 @@ export class CreateNewTodoComponent implements OnInit {
         !this.todoMasterList[listIndex].tasks[taskIndex].done;
 
       this.saveToLocalStorage('todo');
-      console.log('TODO:', listIndex, taskIndex, this.todoMasterList[listIndex].tasks[taskIndex].done);
     }
 
     if (this.listType === 'expense') {
       this.expenseMasterList[listIndex].expenses[taskIndex].done =
         !this.expenseMasterList[listIndex].expenses[taskIndex].done;
        this.saveToLocalStorage('expense')
-      console.log(
-        'EXPENSE:',
-        listIndex,
-        taskIndex,
-        this.expenseMasterList[listIndex].expenses[taskIndex].done,
-      );
     }
   }
 
