@@ -935,7 +935,7 @@ footer {
     flex-direction: column;
     padding: 3vw 1vw;
     border-radius: 0;
-    gap: 1vw;
+    gap: 3vw;
   }
 
   .todoList {
@@ -1054,6 +1054,17 @@ footer {
     align-items: flex-start;
     /* width: 95%; */
   }
+
+  .doneBadge {
+  top: -9px;
+  left: -5px;
+  color: #000;
+  background-color: #89ac46;
+  border-radius:0 1vw 1vw 0;
+  padding: 0.3vw 1.2vw;
+  font-size: 2.3vw;
+  font-weight: 600;
+}
 
   .expenseRow h3 {
     width: fit-content !important;
