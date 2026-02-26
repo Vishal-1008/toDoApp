@@ -78,6 +78,42 @@
   background-color: #fff;
 }
 
+.markAsDone {
+  cursor: pointer;
+  height: 1.3vw;
+  width: 1.3vw;
+  border: 1px solid #222;
+  border-radius: 0.25vw;
+  background-color: #000;
+  color: #fff;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.disable {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.doneBadge {
+  position: absolute;
+  top: -13px;
+  left: -15px;
+  color: #000;
+  background-color: #89ac46;
+  border-radius:0 0.25vw 0.25vw 0;
+  padding: 0 1vw;
+  font-size: 0.7vw;
+  font-weight: 600;
+}
+
+.markAsDone:checked {
+  accent-color: #89ac46;
+}
+
 .errorMsg,
 .confirmation {
   position: fixed;
@@ -255,7 +291,7 @@
   flex-direction: column;
   padding: 2vw 1vw;
   border-radius: 1vw;
-  gap: 1vw;
+  gap: 2vw;
 }
 
 .todoList {
@@ -266,6 +302,9 @@
   transition: 0.1s ease-in;
   padding: 0.5vw 1vw;
   border-radius: 0.6vw;
+  overflow: visible;
+  position: relative;
+
 }
 
 .todoItem {
@@ -274,6 +313,8 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1vw;
+  /* position: relative; */
+  /* overflow: visible; */
 }
 
 .todoList .deleteBtn {
@@ -335,7 +376,7 @@
 .globalDate {
   font-size: 0.7vw;
   color: #555;
-  margin-right: 3vw;
+  /* margin-right: 3vw; */
 }
 
 .red {
@@ -472,6 +513,11 @@
 .expenseAmountInRow {
   font-size: 0.8vw;
   font-weight: 600;
+  /* color: #89ac46; */
+  color: #e94a4a;
+}
+
+.savingAmount {
   color: #89ac46;
 }
 
@@ -502,7 +548,7 @@
 .totalExpense h3 {
   font-size: 0.9vw;
   font-weight: 600;
-  color: #89ac46;
+  color: #e94a4a;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -903,6 +949,11 @@ footer {
     overflow: visible;
   }
 
+  .markAsDone {
+    height: 4vw;
+    width: 4vw;
+}
+
   .todoItem {
     width: 75%;
     display: flex;
@@ -956,12 +1007,12 @@ footer {
   }
 
   .todoOpt {
-    width: 25%;
+    width: auto;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    gap: 7px;
-    margin-left: 4px;
+    gap: 10px;
+    margin-left: 10px;
   }
 
   .todoItem h6 {
@@ -1052,7 +1103,7 @@ footer {
   .globalDate {
     font-size: 2.6vw;
     font-weight: 600;
-    margin-right: 0;
+    /* margin-right: 0; */
   }
 
   .maxAmountWarningMsg {

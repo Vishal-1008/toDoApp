@@ -17,6 +17,7 @@ interface TodoItem {
   pri: string;
   isUpdate: boolean;
   getConfirmation?: boolean;
+  done:boolean;
 }
 
 interface TodoList {
@@ -33,6 +34,7 @@ interface expenseItem {
   isUpdate: boolean;
   getConfirmation?: boolean;
   date?: number;
+  done:boolean;
 }
 
 interface ExpenseList {
@@ -86,6 +88,8 @@ export class CreateNewTodoComponent implements OnInit {
     if (!this.isBrowser()) return;
 
     const storedTodo = localStorage.getItem('todoMasterList');
+    console.log('Stored todo:', storedTodo);
+    
     if (storedTodo) {
       this.todoMasterList = JSON.parse(storedTodo);
       this.todoTitles = this.todoMasterList.map((list) => ({
@@ -94,6 +98,8 @@ export class CreateNewTodoComponent implements OnInit {
     }
 
     const storedExpense = localStorage.getItem('expenseMasterList');
+    console.log('Stored expense:', storedTodo);
+
     if (storedExpense) {
       this.expenseMasterList = JSON.parse(storedExpense);
       this.expenseTitles = this.expenseMasterList.map((list) => ({
@@ -124,6 +130,7 @@ export class CreateNewTodoComponent implements OnInit {
               pri: 'Medium',
               isUpdate: false,
               getConfirmation: false,
+              done: false,
             },
           ],
         });
@@ -170,6 +177,8 @@ export class CreateNewTodoComponent implements OnInit {
               expenseAmount: '0',
               isUpdate: false,
               getConfirmation: false,
+              date: Date.now(),
+              done: false,
             },
           ],
         });
@@ -272,6 +281,7 @@ export class CreateNewTodoComponent implements OnInit {
         pri: priorityOrAmount,
         isUpdate: false,
         getConfirmation: false,
+        done: false,
       });
 
       this.saveToLocalStorage('todo');
@@ -284,6 +294,7 @@ export class CreateNewTodoComponent implements OnInit {
         isUpdate: false,
         getConfirmation: false,
         date: Date.now(),
+        done: false,
       });
 
       this.saveToLocalStorage('expense');
@@ -310,6 +321,28 @@ export class CreateNewTodoComponent implements OnInit {
         updateExpenseAmount!;
       this.expenseMasterList[listIndex].expenses[taskIndex].isUpdate = false;
       this.saveToLocalStorage('expense');
+    }
+  }
+
+  markAsDone(listIndex: number, taskIndex: number) {
+    if (this.listType === 'todo') {
+      this.todoMasterList[listIndex].tasks[taskIndex].done =
+        !this.todoMasterList[listIndex].tasks[taskIndex].done;
+
+      this.saveToLocalStorage('todo');
+      console.log('TODO:', listIndex, taskIndex, this.todoMasterList[listIndex].tasks[taskIndex].done);
+    }
+
+    if (this.listType === 'expense') {
+      this.expenseMasterList[listIndex].expenses[taskIndex].done =
+        !this.expenseMasterList[listIndex].expenses[taskIndex].done;
+       this.saveToLocalStorage('expense')
+      console.log(
+        'EXPENSE:',
+        listIndex,
+        taskIndex,
+        this.expenseMasterList[listIndex].expenses[taskIndex].done,
+      );
     }
   }
 

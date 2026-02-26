@@ -57,31 +57,28 @@
 
       <div class="bottom">
         <div class="todoList" *ngFor="let todo of list.tasks; let j = index">
-          <h3>{{ j + 1 }}.</h3>
+          <h3 [ngClass]="{done : todo.done}">{{ j + 1 }}.</h3>
           <div class="todoItem">
-
+            <span *ngIf="todo.done" class="doneBadge">Done</span>
             <ng-container *ngIf="todo.isUpdate; then elseBlock; else thenBlock"></ng-container>
             <ng-template #thenBlock>
               <div>
-                <h3>{{ todo.todo }}</h3>
+                <h3 [ngClass]="{done : todo.done}">{{ todo.todo }}</h3>
               </div>
-              <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
+              <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low', done : todo.done}">{{
                 todo.pri }}</h6>
-              <!-- <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo">✏️</span> -->
             </ng-template>
             <ng-template #elseBlock>
               <textarea [value]="todo.todo" [(ngModel)]="todo.todo" #updateTodo #ta class="editInput"
                 spellcheck="false" (input)="autoResize(ta)" (focus)="autoResize(ta)" (blur)="autoResize(ta)" autofocus></textarea>
                 <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
                   todo.pri }}</h6>
-              <!-- <span class="editTodo" (click)="saveTodo(i, j, updateTodo.value)" title="save todo">📁</span> -->
             </ng-template>
           </div>
 
           <div class="todoOpt">
-            <!-- <h6 [ngClass]="{red: todo.pri === 'High', green: todo.pri === 'Medium', orange: todo.pri === 'Low'}">{{
-              todo.pri }}</h6> -->
-              <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo" *ngIf="!todo.isUpdate">✏️</span>
+              <input type="checkbox" name="markAsDone" id="markAsDone" class="markAsDone" title="mark as done" (input)="markAsDone(i, j)" [(ngModel)]="todo.done"  [ngClass]="{disable : todo.isUpdate}">
+              <span class="editTodo" (click)="todo.isUpdate = true; enterEditMode()" title="edit todo" *ngIf="!todo.isUpdate" [ngClass]="{disable : todo.done}">✏️</span>
               <span class="editTodo" (click)="saveTodo(i, j, todo.todo, todo.pri)" title="save todo"
                 *ngIf="todo.isUpdate">📁</span>
 
@@ -153,6 +150,7 @@
 
       <div class="bottom">
         <div class="todoList" *ngFor="let expense of list.expenses; let j = index">
+          <span *ngIf="expense.done" class="doneBadge">Saving</span>
           <h3>{{ j + 1 }}.</h3>
           <div class="todoItem">
 
@@ -160,7 +158,7 @@
             <ng-template #thenBlock>
               <div class="expenseRow">
                 <h3>{{ expense.expense }}</h3>
-                <h6 class="expenseAmountInRow">&#8377;{{ expense.expenseAmount | number:'1.0-0':'en-IN' }}</h6>
+                <h6 class="expenseAmountInRow" [ngClass]="{savingAmount : expense.done}">&#8377;{{ expense.expenseAmount | number:'1.0-0':'en-IN' }}</h6>
 
               </div>
             </ng-template>
@@ -178,6 +176,7 @@
           <div class="todoOpt">
             <p class="globalDate desktopDate">{{ expense.date ? (expense.date | date:'dd/MM/yy') : '' }}</p>
             <p class="globalDate mobileDate">{{ expense.date ? (expense.date | date:'dd/MM') : '' }}</p>
+            <input type="checkbox" name="markAsDone" id="markAsDone" class="markAsDone" title="mark as saving, this expense will be excluded from total expense" (input)="markAsDone(i, j)" [(ngModel)]="expense.done">
             <span class="editTodo" (click)="expense.isUpdate = true; enterEditMode()" title="edit expense"
               *ngIf="!expense.isUpdate">✏️</span>
             <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="save expense"
