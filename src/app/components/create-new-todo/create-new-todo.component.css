@@ -643,7 +643,7 @@ footer {
     background-color: #89ac46;
     color: #fff;
     padding: 1vw 2vw;
-    border-radius: 1.5vw;
+    border-radius: 1.7vw;
     font-size: 2.8vw;
     font-weight: 500;
     margin-left: auto;
@@ -711,7 +711,7 @@ footer {
   .maxExpenseAmount {
   padding: 0 2.2vw;
   height: 36px;
-  border-radius: 1.5vw 0 0 1.5vw;
+  border-radius: 2vw 0 0 2vw;
   background-color: #111;
   color: #fff;
   border: 1px solid #222;
@@ -740,7 +740,7 @@ footer {
   all: unset;
   padding: 0 2.2vw;
   background-color: #111;
-  border-radius: 0 1.5vw 1.5vw 0;
+  border-radius: 0 2vw 2vw 0;
   font-size: 3vw;
   color: #fff;
   cursor: pointer;
@@ -832,7 +832,7 @@ footer {
   .confirmation button {
     width: auto;
     padding: 1vw 2vw;
-    border-radius: 1.5vw;
+    border-radius: 1.6vw;
     font-size: 3vw;
   }
 
@@ -859,9 +859,10 @@ footer {
     height: auto;
     width: 100%;
     background-color: #151515;
-    border-radius: 2.5vw;
+    border-radius: 4vw;
     border: 1px solid #222;
     padding: 3vw 0;
+    padding-bottom: 0;
   }
 
   .top {
@@ -880,7 +881,7 @@ footer {
   .top input {
     height: 100%;
     width: 52%;
-    border-radius: 1.5vw;
+    border-radius: 2vw;
     outline: none;
     background-color: #111;
     border: 1px solid #222;
@@ -900,7 +901,7 @@ footer {
     border: none;
     height: 100%;
     padding: 0 1.7vw;
-    border-radius: 1.5vw;
+    border-radius: 2vw;
     font-size: 3vw;
     font-weight: bold;
     transition: 0.1s ease-in-out;
@@ -929,7 +930,7 @@ footer {
     background-color: #111;
     border: none;
     border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+    /* border-bottom: 1px solid #222; */
     margin-top: 3%;
     display: flex;
     flex-direction: column;
@@ -967,7 +968,7 @@ footer {
     border: none;
     padding: 0;
     font-size: 3vw;
-    border-radius: 1vw;
+    border-radius: 1.3vw;
     transition: 0.1s ease-in;
     background-color: transparent;
   }
@@ -1017,7 +1018,7 @@ footer {
 
   .todoItem h6 {
     padding: 0.5vw 1vw;
-    border-radius: 1vw;
+    border-radius: 1.3vw;
     font-weight: 600;
     font-size: 2vw;
   }
@@ -1042,7 +1043,7 @@ footer {
     background-color: transparent;
     padding: 0;
     font-size: 3vw;
-    border-radius: 1vw;
+    border-radius: 1.3vw;
     min-width: fit-content;
   }
 
@@ -1086,6 +1087,7 @@ footer {
     font-size: 3vw;
     border-radius: 6px;
     padding: 0.4vw 1vw;
+    text-align: center;
   }
   
   .expenseAmountEditInput:focus {
