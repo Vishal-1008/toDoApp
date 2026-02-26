@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { name, email, message } = req.body;
+  const { title, message } = req.body;
 
   try {
     const transporter = nodemailer.createTransport({
@@ -19,12 +19,11 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: process.env.EMAIL,
       to: process.env.EMAIL,
-      subject: "New Feedback",
+      subject: "New feedback received for one of your user!",
       html: `
-        <h3>Feedback Received</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <h3>Feedback Received ✓</h3>
+        <p><strong>Title:</strong> ${title}</p>
+        <p><strong>Feedback:</strong> ${message}</p>
       `,
     });
 
