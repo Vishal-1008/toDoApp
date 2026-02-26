@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-feedback',
@@ -14,6 +15,8 @@ export class FeedbackComponent {
   feedbackDescription!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('feedbackTitle') feedbackTitle!: ElementRef<HTMLInputElement>;
   @Input() showMobileFeedbackForm: boolean = false;
+  constructor(private http: HttpClient) {}
+  private apiUrl = '/api/userFeedback';
 
   feedbackSent: boolean = false;
   showFeedbackForm: boolean = false;
@@ -28,22 +31,40 @@ export class FeedbackComponent {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-  submitFeedback(feedbackTitle: string, feedbackDescription: string, isMobile?: boolean) {
-    // this.showFeedbackForm = isMobile ? true : false;
+  submitFeedback(
+    feedbackTitle: string,
+    feedbackDescription: string,
+    isMobile?: boolean,
+  ) {
     const title = feedbackTitle.trim();
     const feedback = feedbackDescription.trim();
-    if (feedback && title) {
-      console.log(title, feedback);
-    this.showFeedbackForm = isMobile ? true : false;
 
-      this.feedbackSent = true;
-      this.feedbackTitle.nativeElement.value = '';
-      this.feedbackDescription.nativeElement.value = '';
-      this.autoResize(this.feedbackDescription.nativeElement);
-      setTimeout(() => {
-        this.feedbackSent = false;
-        this.showFeedbackForm = false;
-      }, 4000);
+    if (feedback && title) {
+      const formData = {
+        title: title,
+        message: feedback,
+      };
+
+      this.http.post(this.apiUrl, formData).subscribe({
+        next: (res) => {
+          console.log('Email sent successfully', res);
+
+          this.showFeedbackForm = isMobile ? true : false;
+          this.feedbackSent = true;
+
+          this.feedbackTitle.nativeElement.value = '';
+          this.feedbackDescription.nativeElement.value = '';
+          this.autoResize(this.feedbackDescription.nativeElement);
+
+          setTimeout(() => {
+            this.feedbackSent = false;
+            this.showFeedbackForm = false;
+          }, 4000);
+        },
+        error: (err) => {
+          console.error('Email sending failed', err);
+        },
+      });
     } else {
       this.emptySubjectOrDescription = true;
       setTimeout(() => {
