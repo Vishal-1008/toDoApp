@@ -21,6 +21,10 @@ export class FeedbackComponent {
   feedbackSent: boolean = false;
   showFeedbackForm: boolean = false;
   emptySubjectOrDescription: boolean = false;
+  formSubmitBtnLabel: string = 'Submit';
+  forSubmitHeading: string = '';
+  formSubmitTagline: string = '';
+  formSubmittedSuccess: boolean = false;
 
   ngOnChanges() {
     this.showFeedbackForm = this.showMobileFeedbackForm;
@@ -45,12 +49,15 @@ export class FeedbackComponent {
         message: feedback,
       };
 
+      this.formSubmitBtnLabel = 'Sending...';
       this.http.post(this.apiUrl, formData).subscribe({
         next: (res) => {
-          console.log('Email sent successfully', res);
-
           this.showFeedbackForm = isMobile ? true : false;
           this.feedbackSent = true;
+          this.forSubmitHeading = '✓ Feedback submitted!';
+          this.formSubmitTagline =
+            'We appreciate you taking the time to help us improve our app.';
+          this.formSubmittedSuccess = true;
 
           this.feedbackTitle.nativeElement.value = '';
           this.feedbackDescription.nativeElement.value = '';
@@ -59,10 +66,29 @@ export class FeedbackComponent {
           setTimeout(() => {
             this.feedbackSent = false;
             this.showFeedbackForm = false;
+            this.formSubmitBtnLabel = 'Submit';
+            this.forSubmitHeading = '';
+            this.formSubmitTagline = '';
+            this.formSubmittedSuccess = false;
           }, 4000);
         },
         error: (err) => {
+          this.showFeedbackForm = isMobile ? true : false;
+          this.feedbackSent = true;
+          this.formSubmittedSuccess = false;
+
+          this.forSubmitHeading = '⚠️ Error submitting feedback!';
+          this.formSubmitTagline =
+            'We apologize for the inconvenience, Please try again after some time!';
           console.error('Email sending failed', err);
+
+          setTimeout(() => {
+            this.feedbackSent = false;
+            this.showFeedbackForm = false;
+            this.formSubmitBtnLabel = 'Submit';
+            this.forSubmitHeading = '';
+            this.formSubmitTagline = '';
+          }, 4000);
         },
       });
     } else {

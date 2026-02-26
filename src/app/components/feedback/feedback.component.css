@@ -129,6 +129,10 @@ textarea {
     padding: 0 !important;
 }
 
+.formNotSubmit {
+    color: #e94a4a !important;
+}
+
  @media only screen and (max-width: 768px) {
     .desktopOverlay {
         display: none;
@@ -231,6 +235,10 @@ textarea {
 
 .validationMsg {
    font-size: 3vw !important;
+}
+
+.formNotSubmit {
+    color: #e94a4a !important;
 }
 
   }
