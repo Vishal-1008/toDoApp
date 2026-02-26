@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { RecentComponent } from '../recent/recent.component';
-import { FeedbackComponent } from '../../feedback/feedback.component';
+import { FeedbackComponent } from '../feedback/feedback.component';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
