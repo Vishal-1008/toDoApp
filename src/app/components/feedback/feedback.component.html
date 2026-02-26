@@ -1,0 +1,51 @@
+<div class="desktopOverlay">
+    <div class="feedbackForm">
+        <h4>Have suggestions? Let us know. <button (click)="showFeedbackForm = !showFeedbackForm;  emptySubjectOrDescription = false;">▼</button></h4>
+        @if (!feedbackSent && showFeedbackForm) {
+        <form (submit)="submitFeedback(feedbackTitle.value, feedbackDescription.value, false)">
+            <p>Don't worry, your identity is anonymous.</p>
+            <input #feedbackTitle (input)="autoResize(feedbackTitle)" type="text" name="feedback" id="feedbackInput"
+                placeholder="* Subject" autofocus required autocomplete="off">
+            <textarea #feedbackDescription name="feedbackDetails" id="feedbackDetails" placeholder="* Description"
+                (input)="autoResize(feedbackDescription)" required></textarea>
+                <p *ngIf="emptySubjectOrDescription" class="validationMsg">Subject and Description can't be empty.</p>
+            <div class="formBtns">
+                <button class="feedbackCancelBtn" (click)="$event.preventDefault(); showFeedbackForm = false; feedbackTitle.value= ''; feedbackDescription.value = '';  emptySubjectOrDescription = false;">Cancel</button>
+                <button type="submit" class="feedbackSubmitBtn">Submit</button>
+            </div>
+        </form>
+        }
+        @else if (feedbackSent && !showFeedbackForm) {
+        <div class="feedbackSentMsg">
+            <h3>✓ Feedback submitted!</h3>
+            <p>We appreciate you taking the time to help us improve our app.</p>
+        </div>
+        }
+    </div>
+</div>
+<!-- MOBILE FEEDBACK FORM -->
+<div class="mobileOverlay" *ngIf="showFeedbackForm">
+    <div class="feedbackForm">
+        <h4>Have suggestions? Let us know. <button (click)="showFeedbackForm = !showFeedbackForm;  emptySubjectOrDescription = false;" class="closeModal"></button></h4>
+        @if (!feedbackSent) {
+        <form (ngSubmit)="submitFeedback(feedbackTitle.value, feedbackDescription.value, true)">
+            <p>Don't worry, your identity is anonymous.</p>
+            <input #feedbackTitle (input)="autoResize(feedbackTitle)" type="text" name="feedback" id="feedbackInput"
+                placeholder="* Subject" autofocus required autocomplete="off">
+            <textarea #feedbackDescription name="feedbackDetails" id="feedbackDetails" placeholder="* Description"
+                (input)="autoResize(feedbackDescription)" required></textarea>
+                <p *ngIf="emptySubjectOrDescription" class="validationMsg">Subject and Description can't be empty.</p>
+            <div class="formBtns">
+                <button class="feedbackCancelBtn" (click)="$event.preventDefault(); showFeedbackForm = false; emptySubjectOrDescription = false;">Cancel</button>
+                <button type="submit" class="feedbackSubmitBtn">Submit</button>
+            </div>
+        </form>
+        }
+        @else if (feedbackSent) {
+        <div class="feedbackSentMsg">
+            <h3>✓ Feedback submitted!</h3>
+            <p>We appreciate you taking the time to help us improve our app.</p>
+        </div>
+        }
+    </div>
+</div>
