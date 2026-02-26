@@ -88,7 +88,7 @@ export class CreateNewTodoComponent implements OnInit {
     if (!this.isBrowser()) return;
 
     const storedTodo = localStorage.getItem('todoMasterList');
-    
+
     if (storedTodo) {
       this.todoMasterList = JSON.parse(storedTodo);
       this.todoTitles = this.todoMasterList.map((list) => ({
@@ -333,7 +333,7 @@ export class CreateNewTodoComponent implements OnInit {
     if (this.listType === 'expense') {
       this.expenseMasterList[listIndex].expenses[taskIndex].done =
         !this.expenseMasterList[listIndex].expenses[taskIndex].done;
-       this.saveToLocalStorage('expense')
+      this.saveToLocalStorage('expense');
     }
   }
 
@@ -467,10 +467,10 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   calculateTotalExpense(listIndex: ExpenseList) {
-     const total = listIndex.expenses
-     .filter((expense) => !expense.done)
+    const total = listIndex.expenses
+      .filter((expense) => !expense.done)
       .reduce((sum, e) => sum + Number(e.expenseAmount || 0), 0);
-      return total
+    return total;
   }
 
   saveToLocalStorage(type?: string) {
