@@ -1,5 +1,5 @@
 <div class="newToDoContainer">
-  <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Share your feedback ↗</button>
+  <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Feedback ?</button>
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>
@@ -176,7 +176,7 @@
           <div class="todoOpt">
             <p class="globalDate desktopDate">{{ expense.date ? (expense.date | date:'dd/MM/yy') : '' }}</p>
             <p class="globalDate mobileDate">{{ expense.date ? (expense.date | date:'dd/MM') : '' }}</p>
-            <input type="checkbox" name="markAsDone" id="markAsDone" class="markAsDone" title="mark as saving, this expense will be excluded from total expense" (input)="markAsDone(i, j)" [(ngModel)]="expense.done">
+            <input type="checkbox" name="markAsDone" id="markAsDone" class="markAsDone" title="mark as saving, this expense will be excluded from total expense" (input)="markAsDone(i, j)" [(ngModel)]="expense.done" [ngClass]="{disable : expense.isUpdate}">
             <span class="editTodo" (click)="expense.isUpdate = true; enterEditMode()" title="edit expense"
               *ngIf="!expense.isUpdate">✏️</span>
             <span class="editTodo" (click)="saveTodo(i, j, expense.expense, expense.expenseAmount)" title="save expense"

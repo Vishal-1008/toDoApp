@@ -11,14 +11,14 @@
                 <p *ngIf="emptySubjectOrDescription" class="validationMsg">Subject and Description can't be empty.</p>
             <div class="formBtns">
                 <button class="feedbackCancelBtn" (click)="$event.preventDefault(); showFeedbackForm = false; feedbackTitle.value= ''; feedbackDescription.value = '';  emptySubjectOrDescription = false;">Cancel</button>
-                <button type="submit" class="feedbackSubmitBtn">Submit</button>
+                <button type="submit" class="feedbackSubmitBtn">{{formSubmitBtnLabel}}</button>
             </div>
         </form>
         }
         @else if (feedbackSent && !showFeedbackForm) {
         <div class="feedbackSentMsg">
-            <h3>✓ Feedback submitted!</h3>
-            <p>We appreciate you taking the time to help us improve our app.</p>
+            <h3 [ngClass]="{formNotSubmit : !formSubmittedSuccess}">{{forSubmitHeading}}</h3>
+            <p>{{formSubmitTagline}}</p>
         </div>
         }
     </div>
@@ -37,14 +37,14 @@
                 <p *ngIf="emptySubjectOrDescription" class="validationMsg">Subject and Description can't be empty.</p>
             <div class="formBtns">
                 <button class="feedbackCancelBtn" (click)="$event.preventDefault(); showFeedbackForm = false; emptySubjectOrDescription = false;">Cancel</button>
-                <button type="submit" class="feedbackSubmitBtn">Submit</button>
+                <button type="submit" class="feedbackSubmitBtn">{{formSubmitBtnLabel}}</button>
             </div>
         </form>
         }
         @else if (feedbackSent) {
         <div class="feedbackSentMsg">
-            <h3>✓ Feedback submitted!</h3>
-            <p>We appreciate you taking the time to help us improve our app.</p>
+            <h3 [ngClass]="{formNotSubmit : !formSubmittedSuccess}">{{forSubmitHeading}}</h3>
+            <p>{{formSubmitTagline}}</p>
         </div>
         }
     </div>

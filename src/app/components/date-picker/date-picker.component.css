@@ -73,7 +73,7 @@
 @media only screen and (max-width: 768px) {
 
   ::ng-deep .p-datepicker {
-  border-radius: 2.5vw;
+  border-radius: 3vw;
    margin-left: 16vw;
   margin-top: 2vw !important;
   }
@@ -82,8 +82,8 @@
       /* display: none; */
       font-size: 3vw;
       width: 20vw;
-      padding-left: 1.7vw;
-      border-radius: 1.5vw 0 0 1.5vw;
+      padding-left: 2vw;
+      border-radius: 2vw 0 0 2vw;
     }
 
     ::ng-deep p-calendar input:focus {
@@ -91,15 +91,15 @@
     }
 
     ::ng-deep .p-calendar {
-    border-radius: 1.5vw;
+    border-radius: 2vw;
     height: 100%; 
   }
 
   ::ng-deep .p-button {
     border: 1px solid #222;
-    border-radius: 0 1.5vw 1.5vw 0;
+    border-radius: 0 2vw 2vw 0;
     width: max-content;
-    padding: 0 1.7vw;
+    padding: 0 2vw;
     border-left: 0;
     padding-left: 0.5vw;
 }
