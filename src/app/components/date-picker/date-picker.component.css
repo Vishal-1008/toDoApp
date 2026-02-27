@@ -29,7 +29,7 @@
 
 ::ng-deep .p-button {
     background-color: #151515;
-    border: 1px solid #333;
+    border: 1px solid #222;
     border-radius: 0 0.6vw 0.6vw 0;
     border-left: none;
 }
