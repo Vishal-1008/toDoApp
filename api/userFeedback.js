@@ -21,9 +21,9 @@ export default async function handler(req, res) {
       to: process.env.EMAIL,
       subject: "Feedback Received",
       html: `
-        <h3>Hey👋! You got a feedback from one of your <strong>Taskpilot</strong> user!</h3>
-        <p><strong>Title:</strong> ${title}</p>
-        <p><strong>Feedback:</strong> ${message}</p>
+        <h3>Hey👋, You got a feedback from one of your Taskpilot user.</h3>
+        <p>Title:<strong> ${title}</strong></p>
+        <p>Feedback:<strong> ${message}</strong></p>
       `,
     });
 
