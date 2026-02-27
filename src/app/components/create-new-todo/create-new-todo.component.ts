@@ -116,7 +116,7 @@ export class CreateNewTodoComponent implements OnInit {
 
   addTitle(title: string, type: string) {
     if (type == 'todo') {
-      if (this.todoMasterList.length < 5 && title && title.trim().length > 0) {
+      if (this.todoMasterList.length < 30 && title && title.trim().length > 0) {
         this.todoMasterList.unshift({
           title: title.trim().charAt(0).toUpperCase() + title.trim().slice(1),
           date: this.selDate,
@@ -140,7 +140,7 @@ export class CreateNewTodoComponent implements OnInit {
       } else if (this.todoMasterList.length >= 5) {
         this.errorStatus = true;
         this.errorMsg =
-          'Cannot create more than 5 todo lists at an instance! Please delete some lists and try again.';
+          'Cannot create more than 30 todo lists at an instance! Please delete some lists and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;
@@ -158,7 +158,7 @@ export class CreateNewTodoComponent implements OnInit {
       }
     } else if (type == 'expense') {
       if (
-        this.expenseMasterList.length < 5 &&
+        this.expenseMasterList.length < 30 &&
         title &&
         title.trim().length > 0
       ) {
@@ -188,7 +188,7 @@ export class CreateNewTodoComponent implements OnInit {
       } else if (this.expenseMasterList.length >= 5) {
         this.errorStatus = true;
         this.errorMsg =
-          'Cannot create more than 5 expense lists at an instance! Please delete some lists and try again.';
+          'Cannot create more than 30 expense lists at an instance! Please delete some lists and try again.';
 
         setTimeout(() => {
           this.errorStatus = false;

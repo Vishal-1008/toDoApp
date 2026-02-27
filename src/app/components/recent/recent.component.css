@@ -1,5 +1,6 @@
 .recent {
     width: 18%;
+    max-height: calc(100% - 10vw);
     background-color: #181818;
     border: 1px solid #222;
     position: fixed;
@@ -9,7 +10,19 @@
     padding: 1.5vw 1.7vw;
     display: flex;
     flex-direction: column;
-  }
+}
+
+.recent-list {
+    flex: 1;              
+    overflow-y: auto;     
+    /* scrollbar-width: thin;  auto | thin | none  */
+    scrollbar-width: none; /*to hide scrollbar in firefox*/
+    scrollbar-color: #444 transparent;
+}
+
+.recent-list:hover {
+  scrollbar-width: thin;
+}
   
   .recent h4 {
     padding: 1.5vw 0.5vw 0.5vw;
@@ -19,17 +32,19 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.9vw;
+    width: 95%;
   }
 
-  .recent h4:nth-child(1) {
+  .recent>h4:nth-child(1) {
     color: #89ac46;
-
+overflow: hidden;
   }
   
   .title{
     transition: 0.1s ease-in;
     font-weight: 500;
     font-size: 0.8vw !important;
+    overflow: visible;
   }
   
   .title:hover {
@@ -47,8 +62,34 @@
     font-weight: 500;
     font-size: 0.7vw;
   }
-  
 
+  /* Scrollbar width */
+.recent-list::-webkit-scrollbar {
+  width: 6px;
+  display: none; /*to hide scrollbar in Chrome*/
+}
+
+.recent-list:hover::-webkit-scrollbar {
+  display: block; /* Show scrollbar on hover */
+}
+
+/* Track (background area) */
+.recent-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Scroll thumb (the moving part) */
+.recent-list::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+/* Hover effect */
+.recent-list::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+  
   @media only screen and (max-width: 768px) {
     .recent {
       display: none;
