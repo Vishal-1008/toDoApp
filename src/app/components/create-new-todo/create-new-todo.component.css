@@ -591,16 +591,16 @@ input[type=number] {
   transition: 0.2s ease-in-out;
 }
 
-footer {
+  footer {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    right: 5%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 20px 50px;
-
+    padding: 20px 0px;
+    margin-left: auto;
   }
 
   footer a {
@@ -1154,11 +1154,16 @@ footer {
     display: block;
   }
 
-  footer {
+    footer {
+    bottom: 0;
+    right: unset;
+    width: 100%;
+    padding: 12px 0;
+    margin-left: unset;
     justify-content: center;
     background-color: transparent;
-    backdrop-filter: blur(6px);
-    padding: 10px 0;
+    backdrop-filter: blur(30px);
+    border-top: 1px solid #222;
   }
 
   footer p {

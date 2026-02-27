@@ -63,7 +63,10 @@ p{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #222;
+    background-color: transparent;
+    backdrop-filter: blur(30px);
   }
 
   footer a {
@@ -135,8 +138,6 @@ p{
 
   footer {
     justify-content: center;
-    background-color: transparent;
-    backdrop-filter: blur(6px);
     padding: 4.5px 0;
   }
 

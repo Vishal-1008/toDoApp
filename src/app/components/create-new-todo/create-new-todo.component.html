@@ -1,5 +1,6 @@
 <div class="newToDoContainer">
   <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Feedback ?</button>
+  <!-- <h2>My {{ listType }}s</h2> -->
   <div class="titleCont top">
     <input type="text" placeholder="Your {{listType}} list" #title />
     <app-date-picker #picker (selectedDate)="date($event)"></app-date-picker>

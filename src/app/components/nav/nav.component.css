@@ -5,12 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10vw;
+    padding: 0 5%;
     position: fixed;
     top: 0;
     z-index: 20;
-    backdrop-filter: blur(50px);
-    /* border-bottom: 1px solid #222; */
+    backdrop-filter: blur(30px);
+    border-bottom: 1px solid #222;
     margin-bottom: 3vh;
   }
   
@@ -26,11 +26,12 @@
   
   .navbar nav {
     height: 90%;
-    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 4vw;
     padding: 0 2vw;
+    padding-right: 0;
     border-radius: 100px;
   }
   
@@ -73,14 +74,14 @@
   @media only screen and (max-width: 768px) {
 
     .navbar {
-      padding: 0 5vw;
+      padding: 0 3vw;
     }
     .navbar h3 {
-      font-size: 4.5vw;
+      font-size: 4vw;
     }
 
      .navbar nav {
-    width: 65%;
+      gap: 6vw;
      }
 
     nav li {
