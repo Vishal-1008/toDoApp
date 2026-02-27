@@ -112,12 +112,12 @@
         <div class="options">
           <div>
             <ng-container *ngIf="!list.maxExpenseEditable">
-              <input type="number" placeholder="Set max. amount" #maxExpenseAmount class="maxExpenseAmount" [value]="list.maxExpenseAmount"/>
+              <input type="number" placeholder="Set Max. expense" #maxExpenseAmount class="maxExpenseAmount" [value]="list.maxExpenseAmount"/>
               <button class="resetMaxExpense" (click)="setMaxExpense(i, 0)" *ngIf="maxExpenseAmount.value">✕</button>
               <button class="setMaxExpense" (click)="setMaxExpense(i, maxExpenseAmount.value)">✓</button>
             </ng-container>
             <ng-container *ngIf="list.maxExpenseEditable">
-              <p class="maxExpenseAmount maxExpenseAmountP">Max. amount: ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}</p>
+              <p class="maxExpenseAmount maxExpenseAmountP">Max. expense: ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}</p>
               <button class="resetMaxExpense" (click)="setMaxExpense(i, 0)">✕</button>
               <button class="setMaxExpense maxExpenseAmountP" (click)="list.maxExpenseEditable = false">✏️</button>
             </ng-container>
