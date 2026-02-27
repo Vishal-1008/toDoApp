@@ -238,6 +238,7 @@ export class CreateNewTodoComponent implements OnInit {
       this.expenseMasterList[listIndex].maxExpenseAmount = 'Set max. amount';
       this.expenseMasterList[listIndex].maxExpenseEditable = false;
       this.expenseMasterList[listIndex].getConfirmation = false;
+      this.saveToLocalStorage('expense');
       this.errorStatus = true;
       this.deleteSuccess = true;
       this.errorMsg = `Max. expense amount reset successfully for ${this.expenseMasterList[listIndex].title}!`;
