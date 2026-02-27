@@ -26,7 +26,7 @@
 }
 
 .titleCont input {
-  background-color: #151515 !important;
+  background-color: #181818 !important;
   width: 60% !important;
   border: 1px solid #222 !important;
 }
@@ -36,6 +36,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1vw;
+  padding: 0 2vw;
 }
 
 .titleOpt h1 {
@@ -123,7 +124,7 @@
   transform: translate(-50%, -20%);
   width: 27vw;
   padding: 2vw;
-  background-color: #151515;
+  background-color: #181818;
   border-radius: 1vw;
   display: grid;
   place-content: center;
@@ -218,20 +219,21 @@
   /* z-index: 1; */
   height: auto;
   width: 60%;
-  background-color: #151515;
+  background-color: #181818;
   border-radius: 1.7vw;
   border: 1px solid #222;
-  padding: 2vw;
+  padding-top: 2vw;
 }
 
 .top {
   /* margin-top: 6vh; */
-  margin-top: 50px;
+  margin-top: 1.6vw;
   /* height: 5vh; */
   height: 40px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 2vw;
 }
 
 .top input {
@@ -285,12 +287,12 @@
 .bottom {
   width: 100%;
   background-color: #111;
-  border: 1px solid #222;
+  border-top: 1px solid #222;
   margin-top: 2%;
   display: flex;
   flex-direction: column;
   padding: 2vw 1vw;
-  border-radius: 1vw;
+  border-radius: 0 0 1.7vw 1.7vw;
   gap: 2vw;
 }
 
@@ -301,7 +303,6 @@
   border-bottom: 1px solid #222;
   transition: 0.1s ease-in;
   padding: 0.5vw 1vw;
-  border-radius: 0.6vw;
   overflow: visible;
   position: relative;
 
@@ -391,7 +392,7 @@
 }
 
 .maxAmountWarningMsg {
-  font-size: 0.62vw;
+  font-size: 0.7vw;
   color: #555;
   margin-top: 0.4vw;
 }
@@ -535,7 +536,7 @@
 }
 
 .totalExpense {
-  padding: 1vw;
+  padding: 0.7vw 1vw;
   width: 66%;
   display: flex;
   justify-content: space-between;
@@ -670,7 +671,7 @@ footer {
 
   .titleCont input {
     font-weight: normal !important;
-    background-color: #151515 !important;
+    background-color: #181818 !important;
     width: 47.5% !important;
   }
 
@@ -858,11 +859,10 @@ footer {
     /* z-index: 1; */
     height: auto;
     width: 100%;
-    background-color: #151515;
-    border-radius: 4vw;
+    background-color: #181818;
+    border-radius: 2.5vw;
     border: 1px solid #222;
-    padding: 3vw 0;
-    padding-bottom: 0;
+    /* padding: 3vw 0; */
   }
 
   .top {
@@ -1012,8 +1012,8 @@ footer {
     display: flex;
     /* align-items: flex-start; */
     justify-content: flex-end;
-    gap: 10px;
-    margin-left: 10px;
+    gap: 12px;
+    margin-left: 12px;
   }
 
   .todoItem h6 {
