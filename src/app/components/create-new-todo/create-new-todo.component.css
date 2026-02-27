@@ -11,6 +11,10 @@
   gap: 2vw;
 }
 
+.newToDoContainer>.top {
+  padding: 0;
+}
+
 .titleCont {
   width: 60% !important;
   position: relative;
