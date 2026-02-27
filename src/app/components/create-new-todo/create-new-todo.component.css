@@ -13,6 +13,7 @@
 
 .newToDoContainer>.top {
   padding: 0;
+  margin-top: 50px;
 }
 
 .titleCont {
@@ -667,6 +668,10 @@ footer {
     gap: 7vw;
     margin-bottom: 40px;
   }
+
+  .newToDoContainer>.top {
+  margin-top: 0;
+}
 
   .titleCont {
     width: 100% !important;
