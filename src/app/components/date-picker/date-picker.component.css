@@ -14,7 +14,7 @@
   ::ng-deep p-calendar input {
     padding-left: 0.8vw;
     background-color: #151515 !important;
-    border: 1px solid #333;
+    border: 1px solid #222;
     border-radius: 0.6vw 0 0 0.6vw;
     cursor: pointer;
     width: 6vw;
@@ -96,7 +96,7 @@
   }
 
   ::ng-deep .p-button {
-    border: 1px solid #333;
+    border: 1px solid #222;
     border-radius: 0 1.5vw 1.5vw 0;
     width: max-content;
     padding: 0 1.7vw;
