@@ -19,9 +19,9 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: process.env.EMAIL,
       to: process.env.EMAIL,
-      subject: "New feedback received for one of your user!",
+      subject: "Feedback Received",
       html: `
-        <h3>Feedback Received ✓</h3>
+        <h3>Hey👋! You got a feedback from one of your <strong>Taskpilot</strong> user!</h3>
         <p><strong>Title:</strong> ${title}</p>
         <p><strong>Feedback:</strong> ${message}</p>
       `,
