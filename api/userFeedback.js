@@ -22,8 +22,8 @@ export default async function handler(req, res) {
       subject: "Feedback Received",
       html: `
         <h3>Hey👋, You got a feedback from one of your Taskpilot user.</h3>
-        <p>Title:<strong> ${title}</strong></p>
-        <p>Feedback:<strong> ${message}</strong></p>
+        <p><strong>Subject: ${title}</strong></p>
+        <p><strong>Description: ${message}</strong></p>
       `,
     });
 
