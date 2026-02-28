@@ -83,7 +83,7 @@ export class FeedbackComponent {
 
           this.forSubmitHeading = '⚠️ Error submitting feedback!';
           this.formSubmitTagline =
-            'We apologize for the inconvenience, Please try again after some time!';
+            'Please try again later!';
           console.error('Email sending failed', err);
 
           setTimeout(() => {
