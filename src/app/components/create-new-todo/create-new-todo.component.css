@@ -544,17 +544,40 @@
   padding: 0.7vw 1vw;
   width: 66%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5vw;
+  /* justify-content: space-between;
+  align-items: flex-start; */
   background-color: #222;
   border-radius: 0.8vw;
   border-bottom: 1px solid #222;
 }
 
+.totalExpense div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .totalExpense h3 {
-  font-size: 0.9vw;
+  /* display: inline; */
+  font-size: 0.8vw;
   font-weight: 600;
   color: #e94a4a;
+}
+
+.saving h3 {
+  color: #89ac46 !important;
+}
+
+.total {
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.total h3 {
+  color: #fff !important;
+  padding: 0.5vw 0;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -1111,15 +1134,17 @@ input[type=number] {
   }
 
   .totalExpense {
-    padding: 2vw;
+    padding: 2vw 0;
     width: 100%;
     border-radius: 0;
     background-color: unset;
     border-bottom: 2px dotted #222;
+    gap: 2vw;
   }
 
   .totalExpense h3 {
     font-size: 3.25vw;
+    padding: 0 2vw;
   }
 
   .globalDate {
@@ -1153,6 +1178,17 @@ input[type=number] {
   .mobileDate {
     display: block;
   }
+
+  .total {
+  border-top: 2px dotted #222;
+  border-bottom: none;
+}
+
+.total h3 {
+  color: #fff !important;
+  padding: 2vw;
+  padding-bottom: 0;
+}
 
     footer {
     bottom: 0;

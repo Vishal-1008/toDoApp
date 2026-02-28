@@ -468,10 +468,17 @@ export class CreateNewTodoComponent implements OnInit {
   }
 
   calculateTotalExpense(listIndex: ExpenseList) {
-    const total = listIndex.expenses
+    const totalExpense = listIndex.expenses
       .filter((expense) => !expense.done)
       .reduce((sum, e) => sum + Number(e.expenseAmount || 0), 0);
-    return total;
+    return totalExpense;
+  }
+
+  calculateTotalSaving(listIndex: ExpenseList) {
+    const totalSaving = listIndex.expenses
+      .filter((saving) => saving.done)
+      .reduce((sum, e) => sum + Number(e.expenseAmount || 0), 0);
+    return totalSaving;
   }
 
   saveToLocalStorage(type?: string) {

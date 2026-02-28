@@ -199,16 +199,28 @@
           </div>
         </div>
         <div class="totalExpense">
-          <h3>Total Expense: </h3>
-          <h3 [ngClass]="{'maxAmountWarning': calculateTotalExpense(list) > list.maxExpenseAmount}">&#8377;{{ calculateTotalExpense(list) | number:'1.0-0':'en-IN' }}
-            <br>
-              <span class="maxAmountWarningMsg maxAmountWarningMsgDesktop" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
-                ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</span>
-          </h3>
+          <div>
+            <h3>Expense: </h3>
+            <h3>&#8377;{{ calculateTotalExpense(list) | number:'1.0-0':'en-IN' }}</h3>
+          </div>
+
+          <div class="saving" *ngIf="calculateTotalSaving(list) > 0">
+            <h3>Saving: </h3>
+            <h3>&#8377;{{ calculateTotalSaving(list) | number:'1.0-0':'en-IN' }}</h3>
+          </div>
+
+          <div class="total" *ngIf="calculateTotalSaving(list) > 0">
+            <h3>Total: </h3>
+            <h3>&#8377;{{ calculateTotalSaving(list) + calculateTotalExpense(list) | number:'1.0-0':'en-IN' }}
+            </h3>
+          </div>
+          <span class="maxAmountWarningMsg maxAmountWarningMsgDesktop"
+            *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the maximum expense limit of
+            <strong> ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</strong></span>
         </div>
         <span class="maxAmountWarningMsg maxAmountWarningMsgMobile" *ngIf="calculateTotalExpense(list) > list.maxExpenseAmount">You have exceeded the
           maximum expense limit of
-          ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</span>
+          <strong> ₹{{ list.maxExpenseAmount | number:'1.0-0':'en-IN' }}.</strong></span>
       </div>
     </div>
   </ng-container>
