@@ -548,9 +548,9 @@
   gap: 0.5vw;
   /* justify-content: space-between;
   align-items: flex-start; */
-  background-color: #222;
+  background-color: #111;
   border-radius: 0.8vw;
-  border-bottom: 1px solid #222;
+  border: 1px solid #222;
 }
 
 .totalExpense div {
@@ -571,8 +571,8 @@
 }
 
 .total {
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
 }
 
 .total h3 {
@@ -1138,6 +1138,7 @@ input[type=number] {
     width: 100%;
     border-radius: 0;
     background-color: unset;
+    border: none;
     border-bottom: 2px dotted #222;
     gap: 2vw;
   }
