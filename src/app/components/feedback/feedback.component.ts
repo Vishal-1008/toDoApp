@@ -25,6 +25,7 @@ export class FeedbackComponent {
   forSubmitHeading: string = '';
   formSubmitTagline: string = '';
   formSubmittedSuccess: boolean = false;
+  feedbackInProcess: boolean = false;
 
   ngOnChanges() {
     this.showFeedbackForm = this.showMobileFeedbackForm;
@@ -50,6 +51,8 @@ export class FeedbackComponent {
       };
 
       this.formSubmitBtnLabel = 'Sending...';
+      this.feedbackInProcess = true;
+
       this.http.post(this.apiUrl, formData).subscribe({
         next: (res) => {
           this.showFeedbackForm = isMobile ? true : false;
@@ -65,6 +68,7 @@ export class FeedbackComponent {
 
           setTimeout(() => {
             this.feedbackSent = false;
+            this.feedbackInProcess = false;
             this.showFeedbackForm = false;
             this.formSubmitBtnLabel = 'Submit';
             this.forSubmitHeading = '';
@@ -84,6 +88,7 @@ export class FeedbackComponent {
 
           setTimeout(() => {
             this.feedbackSent = false;
+            this.feedbackInProcess = false;
             this.showFeedbackForm = false;
             this.formSubmitBtnLabel = 'Submit';
             this.forSubmitHeading = '';

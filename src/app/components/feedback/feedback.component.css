@@ -133,6 +133,23 @@ textarea {
     color: #e94a4a !important;
 }
 
+textarea:disabled, input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed !important;
+}
+
+.feedbackCancelBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed !important;
+}
+
+.feedbackSubmitBtn:disabled {
+    opacity: 0.4;
+    cursor: wait !important;
+    background-color: #89ac46;
+    color: #fff;
+}
+
  @media only screen and (max-width: 768px) {
     .desktopOverlay {
         display: none;
