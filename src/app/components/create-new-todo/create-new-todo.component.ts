@@ -391,6 +391,7 @@ export class CreateNewTodoComponent implements OnInit {
       }, 4000);
       this.todoTitles.splice(listIndex, 1);
       this.saveToLocalStorage();
+      
     }
     if (this.listType === 'expense') {
       this.expenseMasterList[listIndex].getConfirmation =
