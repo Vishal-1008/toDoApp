@@ -10,8 +10,12 @@
     top: 0;
     z-index: 20;
     backdrop-filter: blur(30px);
-    border-bottom: 1px solid #222;
+    /* border-bottom: 1px solid #222; */
     margin-bottom: 3vh;
+  }
+
+  .navbar h3 {
+    font-size: 1.1vw;
   }
   
   .redh1 {
@@ -32,7 +36,7 @@
     gap: 4vw;
     padding: 0 2vw;
     padding-right: 0;
-    border-radius: 100px;
+    /* border-radius: 100px; */
   }
   
   nav li {

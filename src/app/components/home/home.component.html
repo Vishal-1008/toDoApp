@@ -1,11 +1,33 @@
-<div class="container">
-    <h1 class="tagline">Manage your<span class="orangeh1"> Todos</span> & <span class="greenh1">Expenses</span> here!</h1>
-    <div>
-      <a class="createBtn" [routerLink]="['/add', 'expense']">Create expense tracker +</a>
-      <a class="createBtn" [routerLink]="['/add', 'todo']">Create todo +</a>
-  </div>
-  <footer>
-    <p>Built with passion by <a href="https://vishal-two.vercel.app" target="_blank">Vishal<span>↗</span></a></p>
-  </footer>
-</div>
+<!-- <div class="main"> -->
+  <!------------------------------------ HERO SECTION ------------------------------------>
+  <div class="hero">
+    <div class="flex">
+      <div class="flexLeft">
+        <span>✨ Personal Productivity Suite</span>
+        <h1 class="tagline">One Dashboard<br>for Your<span class="orangeh1"> Todos</span> & <span
+            class="greenh1">Expenses</span>
+        </h1>
+        <p>Plan smarter, spend wiser, and stay organized -<br>all inside a clean, distraction-free workspace.</p>
+        <a class="createBtn todoBtn" [routerLink]="['/add', 'todo']">Get Started Free</a>
   
+      </div>
+      <div class="imgBtnCont">
+        <img src="../../../assets/home2.svg" alt="" srcset="">
+        <!-- <div class="btnCont">
+            <a class="createBtn todoBtn" [routerLink]="['/add', 'todo']">Create todo</a>
+            <a class="createBtn" [routerLink]="['/add', 'expense']">Create expense tracker</a>
+          </div> -->
+      </div>
+    </div>
+    
+    <footer>
+      <p>&copy; {{currentYear}} Taskpilot. All rights reserved | Built with passion by <a
+          href="https://vishal-two.vercel.app" target="_blank">Vishal<span>↗</span></a></p>
+    </footer>
+  </div>
+
+  <!------------------------------------ ABOUT SECTION ------------------------------------>
+  <!-- <app-about></app-about> -->
+
+
+<!-- </div> -->
