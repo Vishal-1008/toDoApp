@@ -10,12 +10,15 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
-
 export class NavComponent {
   authService = inject(AuthService);
 
   get isUserLoggedIn() {
     return !!this.authService.user();
+  }
+
+  signInWithGoogle() {
+    this.authService.loginWithGoogle();
   }
 
   logout() {

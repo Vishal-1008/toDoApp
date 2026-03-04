@@ -13,7 +13,7 @@
     <!-- <li><a href="#feature">Features</a></li>
     <li><a [routerLink]="['/pricing']">Pricing</a></li>-->
     <!-- <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Get Started Free</a></button> -->
-    <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Log In</a></button>
-    <button *ngIf="isUserLoggedIn" (click)="logout()"><a [routerLink]="['/login']">Log Out</a></button>
+    <button *ngIf="!isUserLoggedIn" (click)="signInWithGoogle()"><a>Log In</a></button>
+    <button *ngIf="isUserLoggedIn" (click)="logout()"><a>Log Out</a></button>
   </nav>
 </div>
