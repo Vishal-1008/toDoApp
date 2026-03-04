@@ -12,6 +12,7 @@
     backdrop-filter: blur(30px);
     /* border-bottom: 1px solid #222; */
     margin-bottom: 3vh;
+    overflow: visible;
   }
 
   .navbar h3 {
@@ -45,26 +46,22 @@
   
   nav li {
     list-style: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 0.8vw;
   }
   
   nav button {
     all: unset;
     background-color: #89ac46;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 0.8vw;
     padding:  0.5vw 1vw;
     border-radius: 0.6vw;
-  }
-  
-  nav button a {
     color: #111;
     transition: 0.12s ease;
-    text-decoration: none;
   }
   
-  nav button:hover a {
+  nav button:hover {
     color: #fff;
   }
   
@@ -72,10 +69,33 @@
     color: #fff;
     text-decoration: none;
     transition: 0.1s ease-in;
+    cursor: pointer;
   }
   
   nav li a:hover {
     color: #89ac46;
+  }
+
+  .username a {
+    /* font-size: 0.8vw; */
+    font-weight: 600;
+    color: #89ac46 !important;
+  }
+
+  .logout {
+    opacity: 0!important;
+    position: absolute !important;
+    top: 35px !important;
+    right: 5% !important;
+    z-index: 1000 !important;
+    transition: 0.1s ease-in-out !important;
+    scale: 0.6 !important;
+  }
+
+  .username:hover .logout{
+    opacity: 1 !important;
+    top: 42px !important;
+    scale: 1 !important;
   }
   
 

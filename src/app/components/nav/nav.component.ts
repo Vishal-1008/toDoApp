@@ -17,6 +17,10 @@ export class NavComponent {
     return !!this.authService.user();
   }
 
+  get getLoggedInUserData() {
+    return this.authService.user()?.displayName || 'User';
+  }
+
   signInWithGoogle() {
     this.authService.loginWithGoogle();
   }

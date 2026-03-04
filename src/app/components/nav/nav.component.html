@@ -10,10 +10,14 @@
     <li *ngIf="isUserLoggedIn"><a routerLink="/about">About</a></li>
     <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'todo']">Todos</a></li>
     <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'expense']">Expenses</a></li>
+    <li *ngIf="isUserLoggedIn" class="username">
+      <a>{{ getLoggedInUserData }} </a>
+      <button (click)="logout()" class="logout">Log Out</button>
+    </li>
     <!-- <li><a href="#feature">Features</a></li>
     <li><a [routerLink]="['/pricing']">Pricing</a></li>-->
     <!-- <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Get Started Free</a></button> -->
-    <button *ngIf="!isUserLoggedIn" (click)="signInWithGoogle()"><a>Log In</a></button>
-    <button *ngIf="isUserLoggedIn" (click)="logout()"><a>Log Out</a></button>
+    <button *ngIf="!isUserLoggedIn" (click)="signInWithGoogle()">Log In</button>
+    
   </nav>
 </div>
