@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLinkActive,RouterLink],
+  imports: [RouterLinkActive, RouterLink, CommonModule],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
+
 export class NavComponent {
+  authService = inject(AuthService);
+
+  get isUserLoggedIn() {
+    return !!this.authService.user();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

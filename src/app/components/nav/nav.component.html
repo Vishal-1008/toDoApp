@@ -1,16 +1,19 @@
 <div class="navbar">
   <h3>
     <!-- <span class="redh1">to </span><span class="greenh1">do </span><span class="orangeh1">notes.</span> -->
-    <span class="greenh1">task</span><span class="orangeh1">pilot.</span>
+    <a routerLink=""><span class="greenh1">task</span><span class="orangeh1">pilot.</span></a>
   </h3>
 
   <nav>
     <!-- <li><a href="#about">About</a></li> -->
-    <li><a routerLink="/about">About</a></li>
-    <li><a [routerLink]="['/add', 'todo']">Todos</a></li>
-    <li><a [routerLink]="['/add', 'expense']">Expenses</a></li>
+    <li *ngIf="isUserLoggedIn"><a routerLink="">Home</a></li>
+    <li *ngIf="isUserLoggedIn"><a routerLink="/about">About</a></li>
+    <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'todo']">Todos</a></li>
+    <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'expense']">Expenses</a></li>
     <!-- <li><a href="#feature">Features</a></li>
     <li><a [routerLink]="['/pricing']">Pricing</a></li>-->
-    <button><a [routerLink]="['/login']">Log In</a></button>
+    <!-- <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Get Started Free</a></button> -->
+    <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Log In</a></button>
+    <button *ngIf="isUserLoggedIn" (click)="logout()"><a [routerLink]="['/login']">Log Out</a></button>
   </nav>
 </div>

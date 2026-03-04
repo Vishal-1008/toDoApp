@@ -7,27 +7,51 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CreateNewTodoComponent } from './components/create-new-todo/create-new-todo.component';
 import { RecentComponent } from './components/recent/recent.component';
 import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './guards/auth.guard';
+import { loginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    // redirectTo: 'login',
+    // pathMatch: 'full',
   },
   {
     path: 'about',
-    component: AboutComponent,
+    // component: AboutComponent,
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/about/about.component').then(
+        (m) => m.AboutComponent,
+      )
   },
   {
     path: 'contact',
-    component: ContactComponent,
+    // component: ContactComponent,
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/contact/contact.component').then(
+        (m) => m.ContactComponent,
+      )
   },
   {
     path: 'add/:type',
-    component: CreateNewTodoComponent,
+    // component: CreateNewTodoComponent,
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/create-new-todo/create-new-todo.component').then(
+        (m) => m.CreateNewTodoComponent,
+      )
   },
   {
     path: 'login',
-    component: LoginComponent,
+    // component: LoginComponent,
+    canActivate: [loginGuard],
+    loadComponent: () =>
+      import('./components/login/login.component').then(
+        (m) => m.LoginComponent,
+      )
   },
   {
     path: '**',

@@ -36,6 +36,12 @@
   border: 1px solid #222 !important;
 }
 
+.welcomeMsg {
+  margin-top: 20px;
+  color: #555;
+  
+}
+
 .titleOpt {
   display: flex;
   justify-content: space-between;

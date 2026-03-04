@@ -9,6 +9,7 @@ import { text } from 'node:stream/consumers';
 import { ButtonDirective } from "primeng/button";
 import { registerLocaleData } from '@angular/common';
 import localeIn from '@angular/common/locales/en-IN';
+import { AuthService } from '../../services/auth.service';
 
 registerLocaleData(localeIn);
 
@@ -78,7 +79,10 @@ export class CreateNewTodoComponent implements OnInit {
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -104,6 +108,10 @@ export class CreateNewTodoComponent implements OnInit {
         title: list.title,
       }));
     }
+  }
+
+  get getLoggedInUserData() {
+    return this.authService.user()?.displayName || 'User';
   }
 
   openMobileFeedbackForm() {
@@ -391,7 +399,6 @@ export class CreateNewTodoComponent implements OnInit {
       }, 4000);
       this.todoTitles.splice(listIndex, 1);
       this.saveToLocalStorage();
-      
     }
     if (this.listType === 'expense') {
       this.expenseMasterList[listIndex].getConfirmation =
