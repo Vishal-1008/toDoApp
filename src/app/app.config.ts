@@ -10,7 +10,6 @@ import { getAuth } from 'firebase/auth';
 // import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  // apiKey: 'AIzaSyBoSYdACKN5aY2UZQfogMFMdEaojoKM2ow',
   apiKey: 'AIzaSyAy4StPXn5x8eLi2o4tT_lDxQ1JCFVXL6o',
   authDomain: 'taskpilot-4a52d.firebaseapp.com',
   projectId: 'taskpilot-4a52d',
