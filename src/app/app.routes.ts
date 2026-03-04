@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CreateNewTodoComponent } from './components/create-new-todo/create-new-todo.component';
 import { RecentComponent } from './components/recent/recent.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,10 @@ export const routes: Routes = [
   {
     path: 'add/:type',
     component: CreateNewTodoComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '**',
