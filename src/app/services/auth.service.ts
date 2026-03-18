@@ -25,7 +25,6 @@ export class AuthService {
 
     return signInWithPopup(auth, provider)
       .then((result) => {
-        console.log('User:', result.user);
         this.router.navigate(['/add/todo']);
       })
       .catch((error) => {
@@ -41,8 +40,6 @@ export class AuthService {
 
   private listenToAuthState() {
   onAuthStateChanged(auth, (user) => {
-    console.log('Auth State Changed:', user);
-
     this.user.set(user); // This handles both login AND logout
   });
 }
