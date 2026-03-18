@@ -9,7 +9,7 @@
     padding: 1.5vw 1.7vw;
     display: flex;
     flex-direction: column;
-    transition: 0.4s linear;
+    transition: 0.2s ease-in-out;
 }
 
 .feedbackForm h4 {
@@ -62,6 +62,16 @@ form p {
 form {
     width: 100%;
     transition: 0.2s ease-in-out;
+    height: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0.6;
+}
+
+.feedbackForm:hover form {
+    height: auto;
+    transform: scaleY(1);
+    opacity: 1;
 }
 
 textarea, input {
@@ -111,7 +121,11 @@ textarea {
     resize: vertical;
     min-height: 100px;
     max-height: 300px;
-    overflow: hidden;
+    overflow-x: hidden;
+}
+
+textarea::-webkit-scrollbar {
+    width: 5px;
 }
 
 .closeModal {

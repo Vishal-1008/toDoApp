@@ -11,7 +11,7 @@
     <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'todo']">Todos</a></li>
     <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'expense']">Expenses</a></li>
     <li *ngIf="isUserLoggedIn" class="username">
-      <a>{{ getLoggedInUserData }} </a>
+      <a>Hello, {{ getLoggedInUserData }} </a>
       <button (click)="logout()" class="logout">Log Out</button>
     </li>
     <!-- <li><a href="#feature">Features</a></li>

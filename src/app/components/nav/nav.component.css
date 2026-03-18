@@ -55,15 +55,16 @@
     background-color: #89ac46;
     font-weight: 600;
     font-size: 0.8vw;
-    padding:  0.5vw 1vw;
+    padding:  0.5vw 0.9vw;
     border-radius: 0.6vw;
     color: #111;
     transition: 0.12s ease;
+    cursor: pointer;
   }
   
-  nav button:hover {
+  /* nav button:hover {
     color: #fff;
-  }
+  } */
   
   nav li a {
     color: #fff;

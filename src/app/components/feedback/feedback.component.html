@@ -1,7 +1,7 @@
 <div class="desktopOverlay">
     <div class="feedbackForm">
-        <h4>Have suggestions? Let us know. <button (click)="showFeedbackForm = !showFeedbackForm;  emptySubjectOrDescription = false;">▼</button></h4>
-        @if (!feedbackSent && showFeedbackForm) {
+        <h4>Have suggestions? Let us know.</h4>
+        @if (!feedbackSent) {
         <form (submit)="submitFeedback(feedbackTitle.value, feedbackDescription.value, false)">
             <p>Don't worry, your identity is anonymous.</p>
             <input #feedbackTitle (input)="autoResize(feedbackTitle)" type="text" name="feedback" id="feedbackInput"
@@ -15,7 +15,7 @@
             </div>
         </form>
         }
-        @else if (feedbackSent && !showFeedbackForm) {
+        @else if (feedbackSent) {
         <div class="feedbackSentMsg">
             <h3 [ngClass]="{formNotSubmit : !formSubmittedSuccess}">{{forSubmitHeading}}</h3>
             <p>{{formSubmitTagline}}</p>
