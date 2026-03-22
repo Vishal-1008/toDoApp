@@ -1,11 +1,9 @@
 <div class="navbar">
   <h3>
-    <!-- <span class="redh1">to </span><span class="greenh1">do </span><span class="orangeh1">notes.</span> -->
     <a routerLink=""><span class="greenh1">task</span><span class="orangeh1">pilot.</span></a>
   </h3>
 
-  <nav>
-    <!-- <li><a href="#about">About</a></li> -->
+  <nav class="desktopNav">
     <li *ngIf="isUserLoggedIn"><a routerLink="">Home</a></li>
     <li *ngIf="isUserLoggedIn"><a routerLink="/about">About</a></li>
     <li *ngIf="isUserLoggedIn"><a [routerLink]="['/add', 'todo']">Todos</a></li>
@@ -14,10 +12,22 @@
       <a>Hello, {{ getLoggedInUserData }} </a>
       <button (click)="logout()" class="logout">Log Out</button>
     </li>
-    <!-- <li><a href="#feature">Features</a></li>
-    <li><a [routerLink]="['/pricing']">Pricing</a></li>-->
-    <!-- <button *ngIf="!isUserLoggedIn"><a [routerLink]="['/login']">Get Started Free</a></button> -->
     <button *ngIf="!isUserLoggedIn" (click)="signInWithGoogle()">Log In</button>
-    
   </nav>
+  <nav class="mobileNav">
+    <li *ngIf="isUserLoggedIn" class="username">
+      <a>Hello, {{ getLoggedInUserData }} </a>
+    </li>
+    <li *ngIf="isUserLoggedIn"><a (click)="openMobileNav()">=</a></li> 
+    <button *ngIf="!isUserLoggedIn" (click)="signInWithGoogle()">Log In</button>
+  </nav>
+  <div class="mobileNavContainer" [ngClass]="{mobileNavHeight : isMobileNav}">
+    <li><a (click)="openMobileNav()" routerLink="">Home | <span>home</span></a></li>
+    <li><a (click)="openMobileNav()" routerLink="/about">About | <span>about</span></a></li>
+    <li><a (click)="openMobileNav()" [routerLink]="['/add', 'todo']">Todos | <span>todo</span></a></li>
+    <li><a (click)="openMobileNav()" [routerLink]="['/add', 'expense']">Expenses | <span>expense</span></a></li>
+    <!-- <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Feedback ?</button> -->
+    <button *ngIf="isUserLoggedIn" (click)="logout(); openMobileNav()">Log Out</button>
+    <!-- <app-feedback [showMobileFeedbackForm]="showMobileFeedbackForm"></app-feedback> -->
+  </div>
 </div>
