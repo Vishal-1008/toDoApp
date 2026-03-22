@@ -272,4 +272,9 @@ textarea {
     color: #e94a4a !important;
 }
 
-  }
+.feedbackForm form {
+    height: auto;
+    transform: scaleY(1);
+    opacity: 1;
+}
+}

@@ -114,7 +114,6 @@
       top: 70px;
       left: 0;
       background-color: #111;
-      backdrop-filter: blur(30px);
       height: 0;
       width: 100vw;
       /* opacity: 0.4; */
@@ -125,7 +124,6 @@
       justify-content: flex-start;
       gap: 4vh;
       font-size: 4.5vw !important;
-      padding-top: 4vh;
     }
 
     .mobileNavContainer a {
@@ -157,6 +155,7 @@
 
     .mobileNavHeight {
       height: calc(100vh - 125px);
+      padding-top: 4vh;
       opacity: 1;
     }
 

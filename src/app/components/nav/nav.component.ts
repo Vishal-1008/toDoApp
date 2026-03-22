@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { FeedbackComponent } from "../feedback/feedback.component";
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLinkActive, RouterLink, CommonModule],
+  imports: [RouterLinkActive, RouterLink, CommonModule, FeedbackComponent],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })

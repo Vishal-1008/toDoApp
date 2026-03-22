@@ -28,5 +28,6 @@
     <li><a (click)="openMobileNav()" [routerLink]="['/add', 'expense']">Expenses | <span>expense</span></a></li>
     <!-- <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Feedback ?</button> -->
     <button *ngIf="isUserLoggedIn" (click)="logout(); openMobileNav()">Log Out</button>
+    <!-- <app-feedback [showMobileFeedbackForm]="showMobileFeedbackForm"></app-feedback> -->
   </div>
 </div>
