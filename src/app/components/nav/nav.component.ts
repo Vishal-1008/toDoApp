@@ -11,6 +11,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './nav.component.css',
 })
 export class NavComponent {
+  isMobileNav: boolean = false;
+  showMobileFeedbackForm: boolean = false;
+
   authService = inject(AuthService);
 
   get isUserLoggedIn() {
@@ -27,5 +30,18 @@ export class NavComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  openMobileNav() {
+    this.isMobileNav = !this.isMobileNav; 
+  }
+
+    openMobileFeedbackForm() {
+    this.openMobileNav()
+    this.showMobileFeedbackForm = false; // reset first
+
+    setTimeout(() => {
+      this.showMobileFeedbackForm = true; // then reopen
+    });
   }
 }
