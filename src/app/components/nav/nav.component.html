@@ -26,8 +26,10 @@
     <li><a (click)="openMobileNav()" routerLink="/about">About | <span>about</span></a></li>
     <li><a (click)="openMobileNav()" [routerLink]="['/add', 'todo']">Todos | <span>todo</span></a></li>
     <li><a (click)="openMobileNav()" [routerLink]="['/add', 'expense']">Expenses | <span>expense</span></a></li>
-    <!-- <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn">Feedback ?</button> -->
-    <button *ngIf="isUserLoggedIn" (click)="logout(); openMobileNav()">Log Out</button>
+    <div>
+      <button (click)="openMobileFeedbackForm()" class="mobileFeedbackBtn commingSoon">Feedback ?</button>
+      <button *ngIf="isUserLoggedIn" (click)="logout(); openMobileNav()">Log Out</button>
+    </div>
     <!-- <app-feedback [showMobileFeedbackForm]="showMobileFeedbackForm"></app-feedback> -->
   </div>
 </div>
