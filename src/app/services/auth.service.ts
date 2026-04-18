@@ -25,7 +25,7 @@ export class AuthService {
 
     return signInWithPopup(auth, provider)
       .then((result) => {
-        this.router.navigate(['/add/todo']);
+        this.router.navigate(['/add/expense']);
       })
       .catch((error) => {
         console.error(error.message);

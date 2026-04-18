@@ -197,6 +197,12 @@ textarea:disabled, input:disabled {
     font-size: 4vw;
 }
 
+    form {
+        height: auto !important;
+        transform: scaleY(1) !important;
+        opacity: 1 !important;
+    }
+
 .hide {
    display: none;
 }

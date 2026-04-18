@@ -114,20 +114,17 @@
       top: 70px;
       left: 0;
       background-color: #111;
-      height: 26vh;
+      height: 0;
       width: 100vw;
-      /* opacity: 0.4; */
-      transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+      transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
       display: flex;
-      /* flex-direction: column; */
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 3vw;
       font-size: 3.5vw !important;
       border-radius: 0 0 6vw 6vw;
-      transform: scale(0);
-      opacity: 0;
+      opacity: 0.5;
     }
     
     .mobileNavContainer li {
@@ -174,23 +171,26 @@
     }
 
     .mobileNavHeight {
-      /* height: 26vh; */
+      height: 26vh;
       padding: 4vw 3vw;
       padding-top: 0;
       border-bottom: 1px solid #555;
       opacity: 1;
-      transform: scale(1);
-      transform-origin: center top;
     }
 
     .navbar {
       padding: 0 3vw;
+      height: 70px;
+      align-items: flex-start !important;
+      padding-top: 10px !important;
     }
+
     .navbar h3 {
       font-size: 4vw;
     }
 
      .navbar nav {
+      align-items: flex-start !important;
       gap: 6vw;
       padding-top: 5px !important;
       color: #fff;
@@ -214,25 +214,22 @@
     } */
 
     nav button {
-    font-size: 3vw;
-    padding:  0.7vw 2vw;
-    border-radius: 1.3vw;
+    font-size: 2.8vw;
+    padding:  1vw 2vw;
+    border-radius: 1.5vw;
   }
-  
+
   nav button:hover a {
     color: #111;
   }
 
     .logout {
+    color: #fff !important;
     opacity: 1 !important;
-    top: 55px !important;
+    top: 38px !important;
     right: 3vw !important;
     scale: 1 !important;
+    font-weight: 500 !important;
   }
 
-  /* .username:hover .logout{
-    opacity: 1 !important;
-    top: 42px !important;
-    scale: 1 !important;
-  } */
   }
