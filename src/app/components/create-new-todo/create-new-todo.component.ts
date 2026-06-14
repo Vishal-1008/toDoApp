@@ -78,7 +78,6 @@ export class CreateNewTodoComponent implements OnInit {
   showMobileFeedbackForm: boolean = false;
 
   @ViewChild('ta') ta!: ElementRef<HTMLTextAreaElement>;
-  @ViewChild('toggleExpand') toggleExpand!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -307,11 +306,6 @@ export class CreateNewTodoComponent implements OnInit {
 
       this.saveToLocalStorage('expense');
     }
-  }
-
-  toggleExpand() {
-    console.log('Toggle Done');
-    this.toggleExpand;
   }
 
   saveTodo(
