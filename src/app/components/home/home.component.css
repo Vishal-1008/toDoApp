@@ -199,6 +199,10 @@
     box-shadow: none;
   }
 
+  .createBtn:hover {
+    color: #111;
+  }
+
   footer {
     padding: 15px 0;
   }
